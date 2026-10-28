@@ -9,7 +9,7 @@
 <style>
   /* Token từ Seva Design System (cùng bộ với prototype WorkPlace) */
   :root{
-    --primary-500:#07554b; --primary-600:#064d44; --primary-700:#053c35; --primary-50:#e6eeed;
+    --primary-500:#24544b; --primary-600:#1b443c; --primary-700:#153630; --primary-50:#eaf2f0;
     --canvas:#fafafa; --surface:#fff; --subtle:#f2f2f2;
     --n-300:#e4e6e6; --n-400:#dbdcdc; --n-600:#9b9c9c; --n-700:#737676; --n-800:#4c4d4d; --n-900:#262727;
     --link:#175cd3; --err-bg:#fffbfa; --err-bd:#fda29b; --err-tx:#912018; --warn-bg:#fffcf5; --warn-bd:#fec84b; --warn-tx:#7a2e0e;
@@ -718,10 +718,10 @@
 /* ===== NEW TOKEN SYSTEM ===== */
 :root {
   /* Brand: Deep indigo-teal, distinct from base.vn's flat green */
-  --sv-brand: #0f766e;
-  --sv-brand-dark: #0d5c56;
-  --sv-brand-light: #ccfbf1;
-  --sv-brand-50: #f0fdfa;
+  --sv-brand: #24544b;
+  --sv-brand-dark: #1b443c;
+  --sv-brand-light: #eaf2f0;
+  --sv-brand-50: #f4f8f7;
   
   /* Accent: Warm coral/rose gradient feel */
   --sv-accent: #f43f5e;
@@ -1605,6 +1605,496 @@ body {
   .dbr{padding:12px 16px;border-bottom:1px solid var(--n-300);cursor:pointer;} .dbr:last-child{border-bottom:none;} .dbr:hover{background:#f7f9f9;} .dbr b{display:block;font-size:14px;font-weight:500;color:var(--n-900);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;} .dbr span{font-size:12px;color:var(--n-700);} .dbe{padding:20px 16px;color:var(--n-700);font-size:14px;}
   @media(max-width:1100px){.dbk{grid-template-columns:repeat(2,minmax(0,1fr));}.dbc{grid-template-columns:1fr;}}
   #fw_q{height:36px;flex:none;}
+
+/* ===== USER REQUIREMENTS ENHANCEMENTS ===== */
+/* Hide rail, single multilevel sidebar - MES ERP Deep Green #24544b */
+.rail { display: none !important; }
+.side {
+  width: 284px !important;
+  background: #24544b !important; /* Exact MES ERP Deep Green */
+  color: #ffffff !important;
+  border-right: 1px solid #1c443c !important;
+  padding: 14px 10px !important;
+  box-shadow: 2px 0 10px rgba(0,0,0,0.08);
+}
+.side .side-head-title {
+  color: #ffffff !important;
+}
+.side .s-search {
+  background: rgba(255,255,255,0.12) !important;
+  border: 1px solid rgba(255,255,255,0.18) !important;
+  border-radius: 8px !important;
+  color: rgba(255,255,255,0.7) !important;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 0 10px;
+  height: 36px;
+  margin-bottom: 12px;
+}
+.side .s-search input {
+  border: none !important;
+  outline: none !important;
+  background: none !important;
+  flex: 1;
+  min-width: 0;
+  color: #ffffff !important;
+  font-size: 13px;
+}
+.side .s-search input::placeholder {
+  color: rgba(255,255,255,0.6) !important;
+}
+.side .s-search svg {
+  color: rgba(255,255,255,0.65) !important;
+}
+
+/* Multilevel sidebar styles */
+.side-menu-tree {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  margin-top: 6px;
+}
+.s-tree-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8.5px 10px;
+  border-radius: 8px;
+  color: rgba(255,255,255,0.85);
+  font-size: 13.5px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  user-select: none;
+}
+.s-tree-item:hover {
+  background: rgba(255,255,255,0.09);
+  color: #ffffff;
+}
+.s-tree-item.active {
+  background: rgba(255,255,255,0.18);
+  color: #ffffff;
+  font-weight: 700;
+}
+.s-tree-item.open {
+  color: #ffffff;
+}
+.s-tree-item.parent {
+  justify-content: space-between;
+  background: none !important;
+}
+.s-tree-item.parent:hover {
+  background: rgba(255,255,255,0.08) !important;
+}
+.s-tree-item.parent.active {
+  background: none !important;
+  color: #ffffff !important;
+}
+.s-tree-text {
+  flex: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.s-tree-badge {
+  font-size: 11px;
+  font-weight: 700;
+  background: rgba(255,255,255,0.18);
+  color: #ffffff;
+  padding: 1px 7px;
+  border-radius: 999px;
+  margin-right: 4px;
+}
+.s-tree-arrow {
+  color: rgba(255,255,255,0.65);
+  display: inline-flex;
+  transition: transform 0.2s ease;
+}
+.s-tree-arrow.expanded {
+  transform: rotate(180deg);
+}
+.s-tree-children {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding-left: 10px;
+  margin-left: 10px;
+  border-left: 1.5px solid rgba(255,255,255,0.18);
+  overflow: hidden;
+  transition: max-height 0.25s ease, opacity 0.2s ease;
+}
+.s-tree-children.collapsed {
+  display: none;
+}
+.s-tree-subitem {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6.5px 10px;
+  border-radius: 7px;
+  font-size: 12.5px;
+  color: rgba(255,255,255,0.8);
+  cursor: pointer;
+  transition: all 0.15s ease;
+  user-select: none;
+}
+.s-tree-subitem:hover {
+  background: rgba(255,255,255,0.08);
+  color: #ffffff;
+}
+.s-tree-subitem.active {
+  color: #ffffff;
+  font-weight: 700;
+  background: rgba(255,255,255,0.18);
+}
+.s-tree-bullet {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.45);
+}
+.s-tree-subitem.active .s-tree-bullet {
+  background: #ffffff;
+  transform: scale(1.3);
+}
+.s-tree-subitem .sn {
+  font-size: 11px;
+  color: rgba(255,255,255,0.7);
+  background: rgba(255,255,255,0.14);
+  padding: 0 6px;
+  border-radius: 999px;
+  font-weight: 600;
+  margin-left: auto;
+}
+.s-tree-subitem .sn.highlight {
+  background: #f59e0b;
+  color: #78350f;
+  font-weight: 800;
+}
+.s-tree-subgroup {
+  margin-top: 4px;
+}
+.s-tree-subchildren {
+  padding-left: 10px;
+  margin-left: 8px;
+  border-left: 1px dashed rgba(255,255,255,0.22);
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+.s-tree-subchildren.collapsed {
+  display: none;
+}
+.s-tree-leaf {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 5px 8px;
+  border-radius: 6px;
+  font-size: 12px;
+  color: rgba(255,255,255,0.75);
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+.s-tree-leaf:hover {
+  background: rgba(255,255,255,0.07);
+  color: #ffffff;
+}
+.s-tree-leaf.active {
+  color: #ffffff;
+  font-weight: 700;
+  background: rgba(255,255,255,0.16);
+}
+.s-tree-leaf-bullet {
+  font-size: 8px;
+  opacity: 0.5;
+}
+.s-tree-leaf .sn {
+  font-size: 10.5px;
+  color: rgba(255,255,255,0.65);
+  background: rgba(255,255,255,0.12);
+  padding: 0 5px;
+  border-radius: 999px;
+  margin-left: auto;
+}
+.side-vdiv {
+  border-top: 1px solid rgba(255,255,255,0.14);
+}
+
+/* Switch Toggle Component */
+.switch-toggle {
+  position: relative;
+  display: inline-block;
+  width: 44px;
+  height: 24px;
+  flex-shrink: 0;
+}
+.switch-toggle input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background-color: #cbd5e1;
+  transition: .25s ease;
+  border-radius: 24px;
+}
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 18px;
+  width: 18px;
+  left: 3px;
+  bottom: 3px;
+  background-color: white;
+  transition: .25s ease;
+  border-radius: 50%;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.25);
+}
+input:checked + .slider {
+  background-color: var(--sv-brand, #0f766e);
+}
+input:checked + .slider:before {
+  transform: translateX(20px);
+}
+
+/* Request Table Enhanced Columns & Header */
+.figma-table-header {
+  display: flex;
+  align-items: center;
+  padding: 9px 20px;
+  background: var(--sv-surface-warm, #fafbfc);
+  border-bottom: 1px solid var(--sv-border, #e8ebed);
+  gap: 16px;
+  user-select: none;
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--sv-text-muted, #8b9097);
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+}
+.row-figma {
+  display: flex !important;
+  align-items: center !important;
+  padding: 12px 20px !important;
+  border-bottom: 1px solid var(--sv-border-light, #f0f2f4) !important;
+  gap: 16px !important;
+  cursor: pointer;
+  transition: background 0.15s ease, transform 0.1s ease;
+}
+.row-figma:hover {
+  background: rgba(15,118,110,0.02) !important;
+}
+.col-star { width: 28px !important; flex-shrink: 0; }
+.col-content { flex: 1 !important; min-width: 220px !important; }
+.col-status { width: 105px !important; flex-shrink: 0; }
+.col-requester { width: 165px !important; flex-shrink: 0; display: flex; align-items: center; gap: 8px; min-width: 0; }
+.col-approvers { width: 120px !important; flex-shrink: 0; }
+.col-date { width: 85px !important; flex-shrink: 0; font-size: 12px; color: var(--sv-text-secondary); text-align: left !important; }
+.col-update { width: 110px !important; flex-shrink: 0; font-size: 12px; color: var(--sv-text-muted); text-align: left; }
+.col-dot { width: 20px !important; flex-shrink: 0; display: flex; justify-content: center; }
+
+.req-info-col {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  line-height: 1.3;
+}
+.req-role-label {
+  font-size: 11px;
+  color: var(--sv-text-muted, #8b9097);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.col-update-text {
+  background: var(--sv-surface-warm, #f8fafc);
+  border: 1px solid var(--sv-border, #e2e8f0);
+  border-radius: 999px;
+  padding: 2px 8px;
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--sv-text-secondary, #475569);
+  white-space: nowrap;
+}
+
+/* History item click styling */
+.clickable-hist, .clickable-feed {
+  cursor: pointer !important;
+  padding: 8px 10px !important;
+  border-radius: 8px !important;
+  transition: background 0.15s ease, transform 0.1s ease !important;
+  display: flex !important;
+  align-items: center !important;
+  gap: 10px !important;
+}
+.clickable-hist:hover, .clickable-feed:hover {
+  background: rgba(15,118,110,0.06) !important;
+  transform: translateX(2px);
+}
+
+/* Preview Document Card at end of detail */
+.preview-doc-card {
+  margin-top: 14px;
+  background: #ffffff;
+  border: 1px solid var(--sv-border, #e2e8f0);
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+  padding: 28px 32px;
+  position: relative;
+}
+.prev-doc-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding-bottom: 18px;
+  border-bottom: 2px solid var(--sv-text, #1e293b);
+  margin-bottom: 20px;
+}
+.prev-doc-brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.prev-doc-logo {
+  width: 44px;
+  height: 44px;
+  background: var(--sv-brand, #0f766e);
+  color: #fff;
+  font-weight: 800;
+  font-size: 14px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  letter-spacing: 1px;
+}
+.prev-doc-comp {
+  font-size: 15px;
+  font-weight: 800;
+  color: var(--sv-text, #0f172a);
+  letter-spacing: 0.2px;
+}
+.prev-doc-sub {
+  font-size: 12px;
+  color: var(--sv-text-muted, #64748b);
+  margin-top: 2px;
+}
+.prev-doc-meta {
+  text-align: right;
+  font-size: 12.5px;
+  line-height: 1.6;
+  color: var(--sv-text-secondary, #475569);
+}
+.prev-doc-title {
+  text-align: center;
+  margin: 24px 0 20px;
+}
+.prev-doc-title h2 {
+  font-size: 20px;
+  font-weight: 800;
+  color: var(--sv-text, #0f172a);
+  margin: 0;
+  letter-spacing: 0.5px;
+}
+.prev-doc-group {
+  font-size: 13px;
+  color: var(--sv-brand, #0f766e);
+  font-weight: 600;
+  margin-top: 4px;
+}
+.prev-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+  margin-bottom: 18px;
+}
+.prev-table td, .prev-table th {
+  padding: 8px 12px;
+  vertical-align: top;
+}
+.prev-lbl {
+  color: var(--sv-text-muted, #64748b);
+  font-weight: 500;
+}
+.prev-table.bordered {
+  border: 1px solid #cbd5e1;
+}
+.prev-table.bordered th {
+  background: #f1f5f9;
+  border: 1px solid #cbd5e1;
+  font-weight: 700;
+  text-align: left;
+  font-size: 12px;
+  color: #334155;
+}
+.prev-table.bordered td {
+  border: 1px solid #cbd5e1;
+}
+.prev-sec-title {
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 0.5px;
+  color: #334155;
+  text-transform: uppercase;
+  margin: 18px 0 8px;
+}
+.prev-sign-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 16px;
+  margin-top: 14px;
+}
+.prev-sign-box {
+  background: #f8fafc;
+  border: 1px dashed #cbd5e1;
+  border-radius: 8px;
+  padding: 14px;
+  text-align: center;
+}
+.prev-sign-role {
+  font-size: 11px;
+  font-weight: 700;
+  color: #64748b;
+  text-transform: uppercase;
+  margin-bottom: 8px;
+}
+.prev-sign-status {
+  font-size: 12px;
+  font-weight: 700;
+  padding: 4px 8px;
+  border-radius: 6px;
+  display: inline-block;
+  margin-bottom: 8px;
+}
+.prev-sign-status.signed {
+  background: #dcfce7;
+  color: #15803d;
+}
+.prev-sign-status.waiting {
+  background: #fef3c7;
+  color: #b45309;
+}
+.prev-sign-status.rejected {
+  background: #fee2e2;
+  color: #b91c1c;
+}
+.prev-sign-name {
+  font-size: 13.5px;
+  font-weight: 700;
+  color: #0f172a;
+}
+.prev-sign-date {
+  font-size: 11px;
+  color: #64748b;
+  margin-top: 2px;
+}
+
+
 </style>
 
 </head>
@@ -1817,40 +2307,202 @@ function renderRail(){
 }
 
 function renderSide(r){
-  if (r.parts[0] === 'dashboard') { $('#side').innerHTML = `<div class="side-head-title"><span>Workspace</span></div><div class="nv sec on">${ic('home', 15)} Dashboard</div><div class="nv sec" data-nav="#/requests">${ic('star', 15)} Request</div>${['Workflow', 'Process', 'Automation'].map(m => `<div class="nv sec" data-soon="${m}">${ic('flow', 15)} ${m}</div>`).join('')}`; $$('[data-nav]', $('#side')).forEach(e => e.onclick = () => go(e.dataset.nav)); $$('[data-soon]', $('#side')).forEach(e => e.onclick = () => toast('Module ' + e.dataset.soon + ' chưa có trong bản thử')); return; }
-  const adm = r.parts[0] === 'groups';
-  const n = {
-    tome: R.filter(x => x.steps.some(s => s.users.includes(ME.id))).length,
-    mine: R.filter(x => x.by === ME.id).length,
-    follow: R.filter(x => gOf(x.g) && gOf(x.g).fol.fixed.includes(ME.id)).length,
-    star: R.filter(x => x.fav).length
-  };
+  S.sideDrop = S.sideDrop || { root_req: true, grp: true, req: true };
+  if (S.sideDrop.root_req === undefined) S.sideDrop.root_req = true;
+  if (S.sideDrop.grp === undefined) S.sideDrop.grp = true;
+  if (S.sideDrop.req === undefined) S.sideDrop.req = true;
+
+  const p = r.parts[0];
+  const isDash = p === 'dashboard';
+  const isReqList = (!p || p === 'requests');
+  const isGroups = p === 'groups';
+  const isDetail = p === 'request';
+  const isStudio = p === 'studio';
+  const isWizard = p === 'wizard';
+  const isUnderRequest = isReqList || isGroups || isDetail || isStudio || isWizard;
+  
+  const starGroupCount = G.filter(g => g.fav).length;
+  const starReqCount = R.filter(x => x.fav).length;
+
   let h = `
-    <div class="side-head-title"><span>Request</span></div>
-    <div class="nv sec ${adm ? '' : 'on'}" data-nav="#/requests">${ic('list', 15)} Đơn đề xuất</div>
-    <div class="nv sec ${adm ? 'on' : ''}" data-nav="#/groups">${ic('gear', 15)} Quản lý nhóm đề xuất</div>
-    <div class="side-vdiv"></div>`;
-  if (adm) {
-    h += `
-    <div class="nv ${r.parts.length === 1 && S.gtab !== 'star' ? 'on' : ''}" data-gt2="all">${ic('grid', 15)} Tất cả nhóm đề xuất</div>
-    <div class="nv ${r.parts.length === 1 && S.gtab === 'star' ? 'on' : ''}" data-gt2="star">${ic('star', 15)} Có gắn dấu sao <span class="sn">${G.filter(g => g.fav).length || ''}</span></div>`;
-  } else {
-    h += `
-    ${[['tome', 'inbox', 'Gửi đến tôi'], ['mine', 'share', 'Tôi gửi đi'], ['follow', 'users', 'Đang theo dõi'], ['star', 'star', 'Có gắn dấu sao']].map(([k, i, l]) => { const on = k === 'star' ? S.tab === 'mark' : S.navf === k; return `<div class="nv ${on ? 'on' : ''}" data-sf="${k}" role="button" tabindex="0" aria-pressed="${on}">${ic(i, 15)} <span class="t">${l}</span><span class="sn">${n[k]}</span></div>`; }).join('')}`;
-  }
+    <!-- Sidebar Header & Search: MES ERP Styling -->
+    <div class="side-head-title" style="padding:4px 6px 14px;border-bottom:1px solid rgba(255,255,255,0.12);margin-bottom:12px">
+      <div style="display:flex;align-items:center;gap:10px">
+        <div style="width:30px;height:30px;border-radius:8px;background:rgba(255,255,255,0.18);display:flex;align-items:center;justify-content:center;color:#fff;font-weight:700">
+          ${ic('star', 16)}
+        </div>
+        <div style="display:flex;flex-direction:column">
+          <span style="font-size:14.5px;font-weight:800;letter-spacing:-0.2px;color:#fff">SEVAGO ERP</span>
+          <span style="font-size:11px;color:rgba(255,255,255,0.7);font-weight:500">Phân hệ Quản trị Đề xuất</span>
+        </div>
+      </div>
+    </div>
+    
+    <div class="s-search">
+      ${ic('search', 14)}
+      <input id="side_search" placeholder="Tìm kiếm nhanh..." aria-label="Tìm kiếm nhanh" value="${esc(S.sideSearch||'')}">
+    </div>
+
+    <div class="side-menu-tree">
+      <!-- Cấp 1: Dashboard -->
+      <div class="s-tree-item ${isDash ? 'active' : ''}" data-nav="#/dashboard">
+        ${ic('home', 16)}
+        <span class="s-tree-text">Trang chủ (Dashboard)</span>
+      </div>
+
+      <!-- Cấp 1: Request (Module Cha - không nhận focus nền) -->
+      <div class="s-tree-group">
+        <div class="s-tree-item parent ${isUnderRequest ? 'open' : ''}" id="tg_root_req">
+          <div style="display:flex;align-items:center;gap:9px;flex:1;min-width:0">
+            ${ic('flow', 17)}
+            <span class="s-tree-text" style="font-weight:700;font-size:14px">Request</span>
+          </div>
+          <span class="s-tree-arrow ${S.sideDrop.root_req ? 'expanded' : ''}">${ic('caret', 12)}</span>
+        </div>
+
+        <div class="s-tree-children ${S.sideDrop.root_req ? '' : 'collapsed'}" id="children_root_req">
+          
+          <!-- Cấp 2: Quản lý nhóm đề xuất (Không nhận focus nền) -->
+          <div class="s-tree-subgroup">
+            <div class="s-tree-item parent" id="tg_grp" style="padding:7px 8px">
+              <div style="display:flex;align-items:center;gap:8px;flex:1;min-width:0" data-nav="#/groups">
+                ${ic('grid', 15)}
+                <span class="s-tree-text" style="font-weight:600;font-size:13px">Quản lý nhóm đề xuất</span>
+              </div>
+              <span class="s-tree-arrow ${S.sideDrop.grp ? 'expanded' : ''}">${ic('caret', 11)}</span>
+            </div>
+
+            <div class="s-tree-subchildren ${S.sideDrop.grp ? '' : 'collapsed'}" id="children_grp">
+              <div class="s-tree-subitem ${isGroups && S.gtab !== 'star' ? 'active' : ''}" data-gt2="all">
+                <span class="s-tree-bullet"></span>
+                <span class="s-tree-text">Tất cả nhóm</span>
+              </div>
+              <div class="s-tree-subitem ${isGroups && S.gtab === 'star' ? 'active' : ''}" data-gt2="star">
+                <span class="s-tree-bullet"></span>
+                <span class="s-tree-text">Có gắn dấu sao</span>
+                <span class="sn">${starGroupCount}</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Cấp 2: Đơn đề xuất (Không nhận focus nền) -->
+          <div class="s-tree-subgroup" style="margin-top:4px">
+            <div class="s-tree-item parent" id="tg_req" style="padding:7px 8px">
+              <div style="display:flex;align-items:center;gap:8px;flex:1;min-width:0" data-nav="#/requests">
+                ${ic('doc', 15)}
+                <span class="s-tree-text" style="font-weight:600;font-size:13px">Đơn đề xuất</span>
+              </div>
+              <span class="s-tree-arrow ${S.sideDrop.req ? 'expanded' : ''}">${ic('caret', 11)}</span>
+            </div>
+
+            <div class="s-tree-subchildren ${S.sideDrop.req ? '' : 'collapsed'}" id="children_req">
+              <div class="s-tree-subitem ${isReqList && S.navf==='all' && S.tab==='all' ? 'active' : ''}" data-sf="all">
+                <span class="s-tree-bullet"></span>
+                <span class="s-tree-text">Tất cả đề xuất</span>
+              </div>
+              <div class="s-tree-subitem ${S.navf==='tome' ? 'active' : ''}" data-sf="tome">
+                <span class="s-tree-bullet"></span>
+                <span class="s-tree-text">Gửi đến tôi</span>
+              </div>
+              <div class="s-tree-subitem ${S.navf==='mine' ? 'active' : ''}" data-sf="mine">
+                <span class="s-tree-bullet"></span>
+                <span class="s-tree-text">Tôi gửi đi</span>
+              </div>
+              <div class="s-tree-subitem ${S.navf==='follow' ? 'active' : ''}" data-sf="follow">
+                <span class="s-tree-bullet"></span>
+                <span class="s-tree-text">Đang theo dõi</span>
+              </div>
+              <div class="s-tree-subitem ${S.tab==='mark' ? 'active' : ''}" data-sf="star">
+                <span class="s-tree-bullet"></span>
+                <span class="s-tree-text">Có gắn dấu sao</span>
+                <span class="sn">${starReqCount}</span>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Divider -->
+      <div class="side-vdiv" style="margin:10px 4px 6px"></div>
+
+      <!-- Cấp 1: Các Module khác -->
+      <div class="s-tree-item" data-soon="Báo cáo & Thống kê">
+        ${ic('chart', 16)}
+        <span class="s-tree-text">Báo cáo & Thống kê</span>
+      </div>
+      <div class="s-tree-item" data-soon="Mess">
+        ${ic('chat', 16)}
+        <span class="s-tree-text">Tin nhắn (Mess)</span>
+      </div>
+      <div class="s-tree-item" data-soon="Process">
+        ${ic('gear', 16)}
+        <span class="s-tree-text">Quy trình (Process)</span>
+      </div>
+    </div>
+  `;
+
   $('#side').innerHTML = h;
-  $$('[data-nav]', $('#side')).forEach(e => e.onclick = () => go(e.dataset.nav));
-  $$('[data-sf], [data-gt2]', $('#side')).forEach(e => {
-    const t = () => {
-      if (e.dataset.sf === 'star') { S.tab = S.tab === 'mark' ? 'all' : 'mark'; go('#/requests'); }
-      else if (e.dataset.sf) { S.navf = S.navf === e.dataset.sf ? 'all' : e.dataset.sf; go('#/requests'); }
-      else { S.gtab = e.dataset.gt2; go('#/groups'); }
+
+  // Event handlers
+  const tgRoot = $('#tg_root_req', $('#side'));
+  if (tgRoot) tgRoot.onclick = (e) => {
+    e.stopPropagation();
+    S.sideDrop.root_req = !S.sideDrop.root_req;
+    renderSide(r);
+  };
+  const tgGrp = $('#tg_grp', $('#side'));
+  if (tgGrp) {
+    tgGrp.onclick = (e) => {
+      e.stopPropagation();
+      S.sideDrop.grp = !S.sideDrop.grp;
+      renderSide(r);
+    };
+  }
+  const tgReq = $('#tg_req', $('#side'));
+  if (tgReq) {
+    tgReq.onclick = (e) => {
+      e.stopPropagation();
+      S.sideDrop.req = !S.sideDrop.req;
+      renderSide(r);
+    };
+  }
+
+  $('#side_search').oninput = (e) => {
+    S.sideSearch = e.target.value;
+    const q = S.sideSearch.trim().toLowerCase();
+    if (q) {
+      S.q = q;
+      if (location.hash.includes('/requests')) list();
+      else go('#/requests');
+    }
+  };
+
+  $$('[data-nav]', $('#side')).forEach(e => e.onclick = (ev) => {
+    ev.stopPropagation();
+    go(e.dataset.nav);
+  });
+  $$('[data-soon]', $('#side')).forEach(e => e.onclick = () => toast('Mở module ' + e.dataset.soon));
+  $$('[data-sf]', $('#side')).forEach(e => {
+    e.onclick = (ev) => {
+      ev.stopPropagation();
+      const sf = e.dataset.sf;
+      if (sf === 'star') { S.tab = 'mark'; S.navf = 'all'; }
+      else if (sf === 'all') { S.tab = 'all'; S.navf = 'all'; }
+      else { S.navf = sf; S.tab = 'all'; }
+      go('#/requests');
       render();
     };
-    e.onclick = t; e.onkeydown = ev => { if (ev.key === 'Enter' || ev.key === ' ') { ev.preventDefault(); t(); } };
+  });
+  $$('[data-gt2]', $('#side')).forEach(e => {
+    e.onclick = (ev) => {
+      ev.stopPropagation();
+      S.gtab = e.dataset.gt2;
+      go('#/groups');
+      render();
+    };
   });
 }
-
 function renderCrumb(r){ if(r.parts[0]==='dashboard'){ $('#crumb').innerHTML='<a data-nav="#/requests">Workspace</a><i>›</i><b aria-current="page">Dashboard</b>'; $$('[data-nav]',$('#crumb')).forEach(e=>e.onclick=()=>go(e.dataset.nav)); return; } const p=r.parts, adm=p[0]==='groups', pg=!p[0]||p[0]==='requests'?'Danh sách':p[0]==='request'?'Chi tiết đề xuất':!p[1]?'Danh sách':p[1]==='new'?'Tạo nhóm':'Chỉnh sửa nhóm';
   const it=(l,h,on)=>h?`<a data-nav="${h}">${l}</a>`:`<b${on?' aria-current="page"':''}>${l}</b>`;
   $('#crumb').innerHTML=[it('Workspace','#/requests'),it('Request','#/requests'),it(adm?'Quản lý nhóm đề xuất':'Đơn đề xuất',adm?'#/groups':'#/requests'),it(pg,'',1)].join('<i>›</i>');
@@ -1977,6 +2629,18 @@ function list(){
         </div>
       ` : ''}
 
+      <!-- Table Header with Required 8 Columns -->
+      <div class="figma-table-header">
+        <div class="col-star" style="opacity:0">★</div>
+        <div class="col-content">TIÊU ĐỀ ĐỀ XUẤT</div>
+        <div class="col-status">TRẠNG THÁI</div>
+        <div class="col-requester">NGƯỜI TẠO</div>
+        <div class="col-approvers">NGƯỜI XÉT DUYỆT</div>
+        <div class="col-date">NGÀY GỬI</div>
+        <div class="col-update">CẬP NHẬT</div>
+        <div class="col-dot"></div>
+      </div>
+
       <!-- Rows Scroll Area -->
       <div class="figma-rows-container">
         ${rows.length ? rows.map(r => {
@@ -2009,6 +2673,8 @@ function list(){
 
           const metaLine = `Nhóm: ${esc(g.name)} · Bộ đếm: ${esc(r.code)} · ${r.vals['Kính gửi'] || r.vals['Nội dung'] || r.vals['Lý do'] || 'Kính gửi Lãnh đạo các Công ty và các Khối/Phòng/Ban...'}`;
 
+          const updTime = r.logs && r.logs.length ? r.logs[r.logs.length - 1][0] : r.at;
+          const uRole = (USERS.find(x => x.id === r.by) || {}).role || 'Nhân sự';
           return `
             <div class="row-figma ${r.read ? '' : 'unread'}" data-r="${r.id}">
               <!-- Col 1: Star -->
@@ -2029,14 +2695,16 @@ function list(){
                 <span class="status-pill ${statusClass}">${statusLabel}</span>
               </div>
 
-              <!-- Col 4: Requester -->
+              <!-- Col 4: Người tạo (Requester Column) -->
               <div class="col-requester">
                 <div class="req-avatar-circle" style="background:${uBg};">${uIni}</div>
-                <span class="req-name-label" title="${esc(uName)}">${esc(uName)}</span>
-                <span style="color:var(--n-400); font-size:12px;">&gt;</span>
+                <div class="req-info-col">
+                  <span class="req-name-label" title="${esc(uName)}">${esc(uName)}</span>
+                  <span class="req-role-label" title="${esc(uRole)}">${esc(uRole)}</span>
+                </div>
               </div>
 
-              <!-- Col 5: Approvers -->
+              <!-- Col 5: Người duyệt (Approvers Chain) -->
               <div class="col-approvers">
                 <div style="display:flex; align-items:center;">
                   ${approversHtml}
@@ -2044,12 +2712,17 @@ function list(){
                 </div>
               </div>
 
-              <!-- Col 6: Date -->
-              <div class="col-date">${fmt(r.at)}</div>
+              <!-- Col 6: Ngày gửi (Created Date) -->
+              <div class="col-date" title="Ngày gửi: ${dtFull(r.at)}">${fmt(r.at)}</div>
 
-              <!-- Col 7: Dot -->
+              <!-- Col 7: Thời gian update (Updated Time Column) -->
+              <div class="col-update">
+                <span class="col-update-text" title="Cập nhật gần nhất: ${dtFull(updTime)}">${ago(updTime)}</span>
+              </div>
+
+              <!-- Col 8: Read Dot -->
               <div class="col-dot">
-                <div class="read-dot ${r.read ? 'read' : 'unread'}"></div>
+                <div class="read-dot ${r.read ? 'read' : 'unread'}" title="${r.read ? 'Đã xem' : 'Chưa đọc'}"></div>
               </div>
             </div>
           `;
@@ -2126,7 +2799,7 @@ function groups(){
   rows.sort((x,y)=>(cmp(key(x),key(y))||cmp((x.name||'').toLowerCase(),(y.name||'').toLowerCase()))*so.d);
   const hl=t=>{ const e=esc(t); if(!q) return e; const i=t.toLowerCase().indexOf(q); return i<0?e:esc(t.slice(0,i))+'<mark>'+esc(t.slice(i,i+q.length))+'</mark>'+esc(t.slice(i+q.length)); };
   const hd=(k,l)=>`<button class="gsb ${so.k===k?'on':''}" data-gs="${k}" title="Sắp xếp theo ${l.toLowerCase()}">${l}${so.k===k?(so.d>0?' ↑':' ↓'):''}</button>`;
-  $('#main').innerHTML=`<div class="scroll gray gp"><h1 class="gpt">Danh sách nhóm đề xuất</h1><div class="gbx gall"><div class="gtabs" role="tablist">${TB.map(([k,l])=>`<div class="tab ${gt===k?'on':''}" data-gt="${k}" role="tab" tabindex="0" aria-selected="${gt===k}">${l} <span class="tcn">${cnt[k]}</span></div>`).join('')}</div><div class="gtool"><label class="gsrch">${ic('search',14)}<input class="inp" id="gsq" placeholder="Tìm nhóm đề xuất" aria-label="Tìm nhóm đề xuất" value="${esc(S.gq||'')}"></label><select class="sel" id="gfd" aria-label="Lọc theo nhóm"><option value="">Nhóm: Tất cả</option>${[...new Set(G.map(g=>g.folder))].sort().map(f=>`<option ${S.gfd===f?'selected':''}>${esc(f)}</option>`).join('')}</select><span class="sp"></span><span class="bsplit"><button class="btn blue" id="newg">+ Tạo nhóm đề xuất</button><button class="btn blue" id="newm" aria-haspopup="menu" aria-label="Cách tạo khác" title="Tạo từ mẫu">${ic('caret',12)}</button></span></div>${rows.length?`<div class="gth"><span></span>${hd('name','TÊN NHÓM ĐỀ XUẤT')}${hd('fol','NHÓM')}<span class="gq">QUY TRÌNH</span>${hd('sla','SLA')}${hd('gactive','TRẠNG THÁI')}<span></span></div>${rows.map(g=>{ const st=g.draft?'dft':g.active?'on':'off'; return `<div class="gr2 ${st}" data-g="${g.id}" role="button" tabindex="0" title="${esc(g.desc||'')}"><span class="star ${g.fav?'on':''}" data-fav="${g.id}" role="button" tabindex="0" title="${g.fav?'Bỏ gắn dấu sao':'Gắn dấu sao'}" aria-label="Gắn dấu sao">${ic('star',18)}</span><div class="g2n"><b>${hl(g.name||'(Chưa đặt tên)')}</b><span>${esc(g.desc||'Không có mô tả')}</span></div><span class="g2g"><span class="gtag">${ic('folder',13)} ${esc(g.folder)}</span></span><span class="g2f">${ic('flow',14)} ${esc(FLOWS[g.flow])}</span><span class="g2s">${g.sla?g.sla+' giờ':'—'}</span><span class="g2t">${g.draft?'<span class="gst dft">Bản nháp</span>':`<button class="sw ${g.active?'on':''}" data-sw="${g.id}" role="switch" aria-checked="${g.active}" title="${g.active?'Đang khả dụng':'Đang tạm đóng'}" aria-label="${g.active?'Đang khả dụng, bấm để tạm đóng':'Đang tạm đóng, bấm để bật lại'}"></button>${g.active?'':'<span class="g2l off">Đang tạm đóng</span>'}`}</span><span class="g2b">${g.draft?'':`<button class="btn ico" data-dup="${g.id}" title="Nhân bản" aria-label="Nhân bản nhóm">${ic('doc',14)}</button>`}<button class="btn" data-edit="${g.id}">${ic('edit',12)} ${g.draft?'Tiếp tục':'Sửa'}</button></span></div>`;}).join('')}`:'<div class="empty">Không có nhóm đề xuất</div>'}</div></div>`;
+  $('#main').innerHTML=`<div class="scroll gray gp"><h1 class="gpt">Danh sách nhóm đề xuất</h1><div class="gbx gall"><div class="gtabs" role="tablist">${TB.map(([k,l])=>`<div class="tab ${gt===k?'on':''}" data-gt="${k}" role="tab" tabindex="0" aria-selected="${gt===k}">${l} <span class="tcn">${cnt[k]}</span></div>`).join('')}</div><div class="gtool"><label class="gsrch">${ic('search',14)}<input class="inp" id="gsq" placeholder="Tìm nhóm đề xuất" aria-label="Tìm nhóm đề xuất" value="${esc(S.gq||'')}"></label><select class="sel" id="gfd" aria-label="Lọc theo nhóm"><option value="">Nhóm: Tất cả</option>${[...new Set(G.map(g=>g.folder))].sort().map(f=>`<option ${S.gfd===f?'selected':''}>${esc(f)}</option>`).join('')}</select><span class="sp"></span><span class="bsplit"><button class="btn blue" id="newg">+ Tạo nhóm đề xuất</button><button class="btn blue" id="newm" aria-haspopup="menu" aria-label="Cách tạo khác" title="Tạo từ mẫu">${ic('caret',12)}</button></span></div>${rows.length?`<div class="gth"><span></span>${hd('name','TÊN NHÓM ĐỀ XUẤT')}${hd('fol','NHÓM')}<span class="gq">QUY TRÌNH</span>${hd('sla','SLA')}${hd('gactive','TRẠNG THÁI')}<span></span></div>${rows.map(g=>{ const st=g.draft?'dft':g.active?'on':'off'; return `<div class="gr2 ${st}" data-g="${g.id}" role="button" tabindex="0" title="${esc(g.desc||'')}"><span class="star ${g.fav?'on':''}" data-fav="${g.id}" role="button" tabindex="0" title="${g.fav?'Bỏ gắn dấu sao':'Gắn dấu sao'}" aria-label="Gắn dấu sao">${ic('star',18)}</span><div class="g2n"><b>${hl(g.name||'(Chưa đặt tên)')}</b><span>${esc(g.desc||'Không có mô tả')}</span></div><span class="g2g"><span class="gtag">${ic('folder',13)} ${esc(g.folder)}</span></span><span class="g2f">${ic('flow',14)} ${esc(FLOWS[g.flow])}</span><span class="g2s">${g.sla?g.sla+' giờ':'—'}</span><span class="g2t">${g.draft ? '<span class="status-pill returned">Bản nháp</span>' : g.active ? '<span class="status-pill approved">Đang khả dụng</span>' : '<span class="status-pill rejected" style="background:#f3f4f6;color:#6b7280;border:1px solid #d1d5db;">Đang tạm đóng</span>'}</span><span class="g2b">${g.draft?'':`<button class="btn ico" data-dup="${g.id}" title="Nhân bản" aria-label="Nhân bản nhóm">${ic('doc',14)}</button>`}<button class="btn" data-edit="${g.id}">${ic('edit',12)} ${g.draft?'Tiếp tục':'Sửa'}</button></span></div>`;}).join('')}`:'<div class="empty">Không có nhóm đề xuất</div>'}</div></div>`;
   $$('[data-gt]').forEach(e=>{ e.onclick=()=>{ S.gtab=e.dataset.gt; groups(); }; e.onkeydown=ev=>{ if(ev.key==='Enter'||ev.key===' '){ ev.preventDefault(); e.click(); } }; });
   const openG=g=>g.draft?go('#/groups/new/'+g.id+'?step=1'):go('#/groups/show/'+g.id);
   $$('[data-sw]').forEach(e=>e.onclick=ev=>{ ev.stopPropagation(); toggleG(gOf(e.dataset.sw)); });
@@ -2178,47 +2851,331 @@ function roView(c){
   const t=$('#tg_i',c); if(t) t.parentElement.remove();
   $$('.emptyc',c).forEach(e=>{ e.textContent=e.textContent.replace(' Nhập nhãn ở ô bên dưới.',''); });
 }
-function studio(id,tab){
-  const g0=gOf(id); if(!g0){ $('#main').innerHTML='<div class="empty">Không tìm thấy nhóm</div>'; return; } S.stab=tab; S.wiz=false;
-  if(!g0.vers) bumpVer(g0); const vs=g0.vers, cur=vs[vs.length-1], old=S.vview&&S.vview.id===id&&S.vview.v!==cur.v?vs.find(x=>x.v===S.vview.v):null, edit=S.edit===id&&!old;
-  const g=old?Object.assign({},g0,Object.fromEntries(JSON.parse(old.snap).map((x,i)=>[VF[i],x]))):g0;
-  let lastDay=''; const hp=`<aside class="ghist" aria-label="Lịch sử hoạt động"><div class="ghh"><span>Lịch sử hoạt động</span><button class="gx" id="h_x" aria-label="Đóng lịch sử">${ic('x',16)}</button></div><div class="ghl">${[...vs].reverse().map(x=>{ const lab=dayLab(x.at), hd=lab!==lastDay?`<div class="ghd">${lab}</div>`:'', on=(old?old.v:cur.v)===x.v; lastDay=lab;
-    return hd+`<div class="ghi ${on?'on':''}" data-hv="${x.v}" role="button" tabindex="0"${on?' aria-current="true"':''}><i>${ic('hist',20)}</i><div><b>${dtFull(x.at)}</b><span class="ghn">${esc(x.note)} · v${x.v}${x===cur?' (hiện tại)':''}</span><span class="ghu">${av(x.by,'xs')} ${esc(x.by)}</span></div></div>`; }).join('')}</div></aside>`;
-  $('#main').innerHTML=`<div class="mhead" style="padding-bottom:12px;flex-wrap:nowrap;align-items:center"><div style="flex:1"><h1 style="margin:0">${esc(g.name)}</h1><div style="color:var(--muted);font-size:11px">${esc(g.desc||'Không có mô tả')}</div></div><label class="vsw"><span>Phiên bản</span><select class="sel" id="vsel" aria-label="Chọn phiên bản cấu hình" ${edit?'disabled title="Lưu hoặc hủy trước khi đổi phiên bản"':''}>${[...vs].reverse().map(x=>`<option value="${x.v}" ${(old?old.v:cur.v)===x.v?'selected':''}>v${x.v}${x===cur?' (hiện tại)':''} · ${verT(x.at)} · ${esc(x.by)} · ${esc(x.note)}</option>`).join('')}</select></label><div style="display:flex;gap:8px">${edit?'<button class="btn" id="e_no">Hủy</button><button class="btn green" id="e_ok">Lưu thay đổi</button>':`<button class="btn" id="ed0" ${old?'disabled':''}>${ic('edit',12)} Chỉnh sửa</button>`}<button class="btn" id="g_more" aria-haspopup="menu" aria-label="Thêm" title="Thêm">${ic('dots',14)}</button></div></div>
-   ${edit?'<div class="rob ed" role="status">Đang chỉnh sửa. Thay đổi chỉ được lưu thành phiên bản mới khi bấm "Lưu thay đổi".</div>':''}
-   ${old?`<div class="rob" role="status"><span>Đang xem <b>v${old.v}</b> (${verT(old.at)}, ${esc(old.by)}), chỉ đọc.</span><span class="sp"></span><button class="btn" id="v_cur">Về bản hiện tại</button><button class="btn green" id="v_rs">Khôi phục bản này</button></div>`:''}
-   <div class="stu ${edit?'':'ro'}"><nav class="snav">${SEC.map(([k,l,s,i])=>`<div class="sn ${tab===k?'on':''}" data-s="${k}">${ic(i,17)}<div><b>${l}</b><span class="s">${s}</span></div></div>`).join('')}</nav><div class="sbody scroll gray"><div class="col" id="sc"></div></div>${S.ghist?hp:''}</div>`;
-  $$('.sn').forEach(e=>e.onclick=()=>go(`#/groups/show/${id}?tab=${e.dataset.s}`));
-  if(!edit) $('#sc').inert=true;
-  if($('#ed0')) $('#ed0').onclick=()=>{ S.edit=id; studio(id,tab); };
-  if(edit){ $('#e_no').onclick=()=>{ JSON.parse(cur.snap).forEach((x,i)=>{ g0[VF[i]]=x; }); S.edit=null; renderSide(route()); studio(id,tab); toast('Đã hủy thay đổi'); };
-    $('#e_ok').onclick=()=>{ const n=g0.vers.length; bumpVer(g0); S.edit=null; renderSide(route()); studio(id,tab); toast(g0.vers.length>n?'Đã lưu thành phiên bản v'+g0.vers[g0.vers.length-1].v:'Không có thay đổi để lưu'); }; }
-  $('#g_more').onclick=ev=>{ ev.stopPropagation(); if($('.menu')){ $('.menu').remove(); return; } showMenu(ev.currentTarget,[['Lịch sử chỉnh sửa',()=>{ S.ghist=true; studio(id,tab); }]]); };
-  if(S.ghist){ $('#h_x').onclick=()=>{ S.ghist=false; studio(id,tab); };
-    $$('[data-hv]').forEach(e=>{ const go1=()=>{ if(edit){ toast('Lưu hoặc hủy thay đổi trước khi xem phiên bản khác'); return; } S.vview=+e.dataset.hv===cur.v?null:{id,v:+e.dataset.hv}; studio(id,tab); }; e.onclick=go1; e.onkeydown=ev=>{ if(ev.key==='Enter'||ev.key===' '){ ev.preventDefault(); go1(); } }; }); }
-  $('#vsel').onchange=e=>{ S.vview=+e.target.value===cur.v?null:{id,v:+e.target.value}; studio(id,tab); };
-  if(old){ $('#v_cur').onclick=()=>{ S.vview=null; studio(id,tab); };
-    $('#v_rs').onclick=()=>{ JSON.parse(old.snap).forEach((x,i)=>{ g0[VF[i]]=x; }); bumpVer(g0,'Khôi phục từ v'+old.v); S.vview=null; renderSide(route()); studio(id,tab); toast('Đã khôi phục v'+old.v+' thành bản mới'); }; }
-  const B={general:sGeneral,form:sForm,tags:sTags,print:sPrint,hook:sHook,perm:sPerm,sign:sSign,count:sCount,noti:sNoti}[tab]; B(g,$('#sc')); if(!edit) roView($('#sc'));
+function showVerDetail(x, g0, cur) {
+  let snapObj = {};
+  try {
+    const raw = JSON.parse(x.snap);
+    VF.forEach((k, i) => { snapObj[k] = raw[i]; });
+  } catch(e) {}
+  const isCur = x.v === cur.v;
+  modal('sm', mh(`Chi tiết phiên bản cấu hình v${x.v}`)+`
+    <div class="mb" style="gap:14px;padding:20px">
+      <div style="display:flex;align-items:center;gap:12px;padding:12px 14px;background:#f8fafb;border-radius:10px;border:1px solid #e2e8f0">
+        ${av(x.by, 'md')}
+        <div>
+          <b style="font-size:14.5px;color:var(--sv-text,#1a1d21);display:block">${esc(x.by)}</b>
+          <span style="font-size:12px;color:var(--sv-text-muted,#8b9097)">Cập nhật vào ${dtFull(x.at)}</span>
+        </div>
+        ${isCur ? '<span class="tag-status active" style="margin-left:auto;font-size:11.5px;padding:3px 8px;border-radius:10px;background:#eaf2f0;color:#24544b;font-weight:700">Bản hiện tại</span>' : ''}
+      </div>
+
+      <div style="display:flex;flex-direction:column;gap:8px">
+        <div style="font-size:12px;font-weight:700;color:var(--sv-text-secondary,#5f6468);text-transform:uppercase">Ghi chú phiên bản</div>
+        <div style="padding:10px 12px;background:#fff;border:1px solid #e2e8f0;border-radius:8px;font-size:13.5px;color:var(--sv-text,#1a1d21)">
+          ${esc(x.note || 'Cập nhật cấu hình')}
+        </div>
+      </div>
+
+      <div style="display:flex;flex-direction:column;gap:8px">
+        <div style="font-size:12px;font-weight:700;color:var(--sv-text-secondary,#5f6468);text-transform:uppercase">Thông số cấu hình lưu trữ</div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;font-size:12.5px">
+          <div style="padding:8px 10px;background:#f8fafb;border-radius:6px;border:1px solid #eef2f6"><b>Tên nhóm:</b> <span style="color:#24544b">${esc(snapObj.name || g0.name)}</span></div>
+          <div style="padding:8px 10px;background:#f8fafb;border-radius:6px;border:1px solid #eef2f6"><b>SLA:</b> ${snapObj.sla || g0.sla} giờ</div>
+          <div style="padding:8px 10px;background:#f8fafb;border-radius:6px;border:1px solid #eef2f6"><b>Quy trình:</b> ${FLOWS[snapObj.flow !== undefined ? snapObj.flow : g0.flow] || '—'}</div>
+          <div style="padding:8px 10px;background:#f8fafb;border-radius:6px;border:1px solid #eef2f6"><b>Số khối duyệt:</b> ${(snapObj.blocks || g0.blocks || []).length} cấp</div>
+          <div style="padding:8px 10px;background:#f8fafb;border-radius:6px;border:1px solid #eef2f6"><b>Số trường form:</b> ${(snapObj.form && snapObj.form.req || g0.form.req || []).length} trường</div>
+          <div style="padding:8px 10px;background:#f8fafb;border-radius:6px;border:1px solid #eef2f6"><b>Trạng thái:</b> ${(snapObj.active !== undefined ? snapObj.active : g0.active) ? 'Khả dụng' : 'Tạm đóng'}</div>
+        </div>
+      </div>
+    </div>
+    <div class="mf" style="padding:14px 20px;border-top:1px solid #e2e8f0;display:flex;justify-content:flex-end;gap:10px">
+      <button class="btn gray" data-close>Đóng</button>
+      ${!isCur ? `<button class="btn green" id="vd_restore" style="background:#24544b;color:#fff;font-weight:600">Khôi phục bản này</button>` : ''}
+      <button class="btn btn-outline" id="vd_view" style="font-weight:600">Xem bản này</button>
+    </div>`, m => {
+    $('#vd_view').onclick = () => {
+      closeM();
+      S.vview = isCur ? null : { id: g0.id, v: x.v };
+      studio(g0.id, S.stab);
+    };
+    if ($('#vd_restore')) {
+      $('#vd_restore').onclick = () => {
+        closeM();
+        JSON.parse(x.snap).forEach((val, i) => { g0[VF[i]] = val; });
+        bumpVer(g0, 'Khôi phục từ v' + x.v);
+        S.vview = null;
+        renderSide(route());
+        studio(g0.id, S.stab);
+        toast('Đã khôi phục v' + x.v + ' thành bản mới');
+      };
+    }
+  });
+}
+
+function studio(id, tab){
+  const g0 = gOf(id);
+  if (!g0) {
+    $('#main').innerHTML = '<div class="empty" style="padding:40px;text-align:center;font-size:16px">Không tìm thấy nhóm đề xuất</div>';
+    return;
+  }
+  S.stab = tab || 'general';
+  S.wiz = false;
+  if (!g0.vers) bumpVer(g0);
+  const vs = g0.vers;
+  const cur = vs[vs.length - 1];
+  const old = S.vview && S.vview.id === id && S.vview.v !== cur.v ? vs.find(x => x.v === S.vview.v) : null;
+  const edit = S.edit === id && !old;
+  const g = old ? Object.assign({}, g0, Object.fromEntries(JSON.parse(old.snap).map((x, i) => [VF[i], x]))) : g0;
+
+  let lastDay = '';
+  const hp = `
+    <aside class="ghist" aria-label="Lịch sử hoạt động" style="position:fixed;right:0;top:56px;bottom:0;width:340px;background:#fff;border-left:1px solid var(--sv-border,#e8ebed);box-shadow:-4px 0 20px rgba(0,0,0,0.08);z-index:90;display:flex;flex-direction:column">
+      <div class="ghh" style="padding:16px 20px;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid var(--sv-border,#e8ebed)">
+        <span style="font-weight:700;font-size:15px;color:var(--sv-text,#1a1d21)">Lịch sử phiên bản cấu hình</span>
+        <button class="gx icon-btn" id="h_x" aria-label="Đóng lịch sử">${ic('x', 18)}</button>
+      </div>
+      <div class="ghl" style="flex:1;overflow-y:auto;padding:16px">
+        ${[...vs].reverse().map(x => {
+          const lab = dayLab(x.at);
+          const hd = lab !== lastDay ? `<div class="ghd" style="font-size:11px;font-weight:700;text-transform:uppercase;color:var(--sv-text-muted,#8b9097);margin:14px 0 6px">${lab}</div>` : '';
+          const on = (old ? old.v : cur.v) === x.v;
+          lastDay = lab;
+          return hd + `
+            <div class="ghi ${on ? 'on' : ''}" data-hv="${x.v}" role="button" tabindex="0" title="Bấm để xem chi tiết phiên bản" style="display:flex;gap:12px;padding:12px;border-radius:10px;border:1px solid ${on ? '#24544b' : 'var(--sv-border,#e2e8f0)'};margin-bottom:8px;background:${on ? '#eaf2f0' : '#fff'};cursor:pointer;transition:all 0.15s ease">
+              <i style="color:#24544b;margin-top:2px">${ic('hist', 18)}</i>
+              <div style="flex:1">
+                <b style="font-size:13.5px;display:block;color:var(--sv-text,#1a1d21)">${dtFull(x.at)}</b>
+                <span class="ghn" style="font-size:12px;color:var(--sv-text-secondary,#5f6468);display:block;margin-top:2px">${esc(x.note)} · <b>v${x.v}${x === cur ? ' (hiện tại)' : ''}</b></span>
+                <span class="ghu" style="font-size:11.5px;color:var(--sv-text-muted,#8b9097);display:flex;align-items:center;gap:6px;margin-top:4px">${av(x.by, 'xs')} ${esc(x.by)}</span>
+              </div>
+            </div>
+          `;
+        }).join('')}
+      </div>
+    </aside>
+  `;
+
+  $('#main').innerHTML = `
+    <div class="mhead" style="padding:16px 24px;border-bottom:1px solid var(--sv-border,#e2e8f0);background:#fff;display:flex;align-items:center;justify-content:space-between;flex-wrap:nowrap">
+      <div style="flex:1;min-width:0">
+        <div style="display:flex;align-items:center;gap:8px;font-size:13px;margin-bottom:4px">
+          <a data-nav="#/groups" style="color:#24544b;font-weight:700;display:inline-flex;align-items:center;gap:4px">
+            ${ic('back', 14)} Quản lý nhóm đề xuất
+          </a>
+          <span style="color:var(--sv-text-muted,#8b9097)">›</span>
+          <span style="color:var(--sv-text-secondary,#5f6468)">${esc(g.folder || 'Mặc định')}</span>
+        </div>
+        <h1 style="margin:0;font-size:20px;font-weight:700;color:var(--sv-text,#1a1d21);display:flex;align-items:center;gap:10px">
+          ${esc(g.name)}
+          <span class="tag-status ${g.active ? 'active' : 'inactive'}" style="font-size:12px;font-weight:600;padding:2px 8px;border-radius:12px;background:${g.active ? '#eaf2f0' : '#f1f5f9'};color:${g.active ? '#24544b' : '#64748b'}">
+            ${g.active ? 'Đang khả dụng' : 'Đang tạm đóng'}
+          </span>
+        </h1>
+        <div style="color:var(--sv-text-secondary,#5f6468);font-size:12px;margin-top:3px">${esc(g.desc || 'Không có mô tả')}</div>
+      </div>
+
+      <div style="display:flex;align-items:center;gap:10px">
+        <label class="vsw" style="display:flex;align-items:center;gap:8px;font-size:13px;background:#fff;border:1px solid var(--sv-border,#e2e8f0);padding:6px 12px;border-radius:8px">
+          <span style="color:var(--sv-text-secondary,#5f6468);font-weight:500">Phiên bản:</span>
+          <select class="sel" id="vsel" aria-label="Chọn phiên bản" style="border:none;outline:none;font-weight:700;color:#24544b;background:none;cursor:pointer" ${edit ? 'disabled title="Lưu hoặc hủy trước khi đổi phiên bản"' : ''}>
+            ${[...vs].reverse().map(x => `<option value="${x.v}" ${(old ? old.v : cur.v) === x.v ? 'selected' : ''}>v${x.v}${x === cur ? ' (hiện tại)' : ''} · ${verT(x.at)} · ${esc(x.by)}</option>`).join('')}
+          </select>
+        </label>
+
+        <button class="btn btn-outline" id="btn_history" style="height:36px;padding:0 14px;border-radius:8px;font-weight:600;display:inline-flex;align-items:center;gap:6px">
+          ${ic('hist', 16)} Lịch sử phiên bản
+        </button>
+
+        ${edit ? `
+          <button class="btn btn-outline" id="e_no" style="height:36px;padding:0 14px;border-radius:8px">Hủy</button>
+          <button class="btn green" id="e_ok" style="height:36px;padding:0 18px;border-radius:8px;background:#24544b;color:#fff;font-weight:700">Lưu thay đổi</button>
+        ` : `
+          <button class="btn green" id="ed0" style="height:36px;padding:0 18px;border-radius:8px;background:#24544b;color:#fff;font-weight:700;display:inline-flex;align-items:center;gap:6px" ${old ? 'disabled' : ''}>
+            ${ic('edit', 14)} Chỉnh sửa
+          </button>
+        `}
+        <button class="btn btn-outline" id="g_more" aria-label="Thêm thao tác" style="height:36px;width:36px;padding:0;border-radius:8px;display:inline-flex;align-items:center;justify-content:center">
+          ${ic('dots', 16)}
+        </button>
+      </div>
+    </div>
+
+    ${edit ? '<div class="rob ed" role="status" style="background:#fffbeb;border-bottom:1px solid #fde68a;color:#92400e;padding:10px 24px;font-size:13.5px;font-weight:500">Đang ở chế độ chỉnh sửa. Thay đổi chỉ được lưu thành phiên bản mới khi bạn bấm "Lưu thay đổi".</div>' : ''}
+    ${old ? `<div class="rob" role="status" style="background:#eff6ff;border-bottom:1px solid #bfdbfe;color:#1e40af;padding:10px 24px;font-size:13.5px;display:flex;align-items:center;justify-content:space-between"><span>Đang xem <b>v${old.v}</b> (${verT(old.at)}, ${esc(old.by)}), chỉ đọc.</span><div style="display:flex;gap:8px"><button class="btn btn-outline" id="v_cur">Về bản hiện tại</button><button class="btn green" id="v_rs" style="background:#24544b;color:#fff">Khôi phục bản này</button></div></div>` : ''}
+
+    <div class="stu ${edit ? '' : 'ro'}" style="position:relative">
+      <nav class="snav">${SEC.map(([k, l, s, i]) => `<div class="sn ${tab === k ? 'on' : ''}" data-s="${k}">${ic(i, 17)}<div><b>${l}</b><span class="s">${s}</span></div></div>`).join('')}</nav>
+      <div class="sbody scroll gray"><div class="col" id="sc"></div></div>
+      ${S.ghist ? hp : ''}
+    </div>
+  `;
+
+  $$('.sn').forEach(e => e.onclick = () => go(`#/groups/show/${id}?tab=${e.dataset.s}`));
+  $$('[data-nav]').forEach(e => e.onclick = () => go(e.dataset.nav));
+  if (!edit) $('#sc').inert = true;
+
+  const bHist = $('#btn_history');
+  if (bHist) bHist.onclick = () => { S.ghist = true; studio(id, tab); };
+
+  if ($('#ed0')) $('#ed0').onclick = () => { S.edit = id; studio(id, tab); };
+  if (edit) {
+    $('#e_no').onclick = () => {
+      JSON.parse(cur.snap).forEach((x, i) => { g0[VF[i]] = x; });
+      S.edit = null;
+      renderSide(route());
+      studio(id, tab);
+      toast('Đã hủy thay đổi');
+    };
+    $('#e_ok').onclick = () => {
+      const n = g0.vers.length;
+      bumpVer(g0);
+      S.edit = null;
+      renderSide(route());
+      studio(id, tab);
+      toast(g0.vers.length > n ? 'Đã lưu thành phiên bản v' + g0.vers[g0.vers.length - 1].v : 'Không có thay đổi để lưu');
+    };
+  }
+  $('#g_more').onclick = ev => {
+    ev.stopPropagation();
+    if ($('.menu')) { $('.menu').remove(); return; }
+    showMenu(ev.currentTarget, [
+      ['Lịch sử chỉnh sửa', () => { S.ghist = true; studio(id, tab); }],
+      ['Nhân bản nhóm đề xuất', () => { toast('Đã sao chép cấu hình nhóm đề xuất'); }],
+      ['Tải tệp cấu hình JSON', () => { toast('Đang xuất cấu hình nhóm...'); }]
+    ]);
+  };
+  if (S.ghist) {
+    $('#h_x').onclick = () => { S.ghist = false; studio(id, tab); };
+    $$('[data-hv]').forEach(e => {
+      const vNum = +e.dataset.hv;
+      const verObj = vs.find(x => x.v === vNum);
+      e.onclick = () => {
+        if (verObj) showVerDetail(verObj, g0, cur);
+      };
+      e.onkeydown = ev => {
+        if (ev.key === 'Enter' || ev.key === ' ') {
+          ev.preventDefault();
+          if (verObj) showVerDetail(verObj, g0, cur);
+        }
+      };
+    });
+  }
+  $('#vsel').onchange = e => {
+    S.vview = +e.target.value === cur.v ? null : { id, v: +e.target.value };
+    studio(id, tab);
+  };
+  if (old) {
+    $('#v_cur').onclick = () => { S.vview = null; studio(id, tab); };
+    $('#v_rs').onclick = () => {
+      JSON.parse(old.snap).forEach((x, i) => { g0[VF[i]] = x; });
+      bumpVer(g0, 'Khôi phục từ v' + old.v);
+      S.vview = null;
+      renderSide(route());
+      studio(id, tab);
+      toast('Đã khôi phục v' + old.v + ' thành bản mới');
+    };
+  }
+
+  const B = { general: sGeneral, form: sForm, tags: sTags, print: sPrint, hook: sHook, perm: sPerm, sign: sSign, count: sCount, noti: sNoti }[tab] || sGeneral;
+  B(g, $('#sc'));
+  if (!edit) roView($('#sc'));
 }
 const again=g=>S.wiz?wizard(g.id,S.wstep):studio(g.id,S.stab);
-function sGeneral(g,c,keep){
-  const rows=[['Tên nhóm đề xuất',esc(g.name)],['Nhóm',esc(g.folder)],['Tạo bởi',`${av(g.by,'sm')} ${esc(g.by)}`],['Phân loại',g.cat||'Không có phân loại'],['SLA',g.sla+' giờ'],['Cho phép chỉnh SLA',g.allowSla?'Có':'Không'],['Sử dụng cho',esc(g.scope)],['Mô tả nhóm đề xuất',esc(g.desc||'—')],['Trạng thái',g.active?'Đang khả dụng':'Tạm đóng']];
-  c.innerHTML=`<div class="card">${cardH('doc','Thông tin chung','Thiết lập các thông tin chung về nhóm đề xuất','<span data-a="editg">Sửa thông tin chung</span>')}${rows.map(([k,v])=>`<div class="kv"><span class="k">${k}</span><span class="v">${v}</span></div>`).join('')}</div>
-   <div class="card">${cardH('user','Người duyệt','Danh sách các khối người duyệt theo thứ tự của nhóm đề xuất',g.blocks.length?'<span data-a="addb">+ Thêm</span>':'')}${g.blocks.length?g.blocks.map((b,i)=>{ const u=b.t==='direct'?null:USERS.find(x=>x.id===b.u[0]); return `<div class="ap">${u?av(u.name):`<span class="av" style="background:#9aa">QL</span>`}<div style="flex:1"><b>${b.t==='direct'?'Quản lý trực tiếp':esc(b.u.map(UN).join(', ')||'Người duyệt '+({flex:'linh động',cond:'theo điều kiện'}[b.t]||''))}</b><div class="m">${u?esc(u.h)+' · '+esc(u.role)+' · ':''}<code>${b.t==='direct'?'direct_manager':b.t==='flex'?'flexible_approver':b.t==='cond'?'conditional_approver':'fixed_approver_'+esc((u&&u.h||'').replace('@',''))}</code></div></div><span style="cursor:pointer;color:#999" data-delb="${i}" title="Xóa khối">${ic('dots',16)}</span></div>`; }).join(''):'<div class="emptyc">Chưa có khối người duyệt<br><button class="btn" data-a="addb" style="margin-top:10px">+ Thêm người duyệt</button></div>'}</div>
-   <div class="card">${cardH('flow','Luồng phê duyệt','Thiết lập luồng phê duyệt đề xuất')}
-    <div class="set"><div class="k">Luồng phê duyệt<small>Luồng phê duyệt hoạt động như thế nào</small></div><select class="sel" id="o_f">${FLOWS.map((f,i)=>`<option value="${i}" ${g.flow===i?'selected':''}>${f}</option>`).join('')}</select></div>
-    <div class="set"><div class="k">SLA cho từng người duyệt<small>Bật/Tắt SLA cho từng người duyệt</small></div><select class="sel" id="o_s"><option value="1" ${g.slaPer?'selected':''}>Kích hoạt</option><option value="0" ${g.slaPer?'':'selected'}>Ngừng kích hoạt</option></select></div>
-    <div class="set"><div class="k">Tùy chỉnh bắt buộc nhập ý kiến phê duyệt<small>Hành động duyệt bắt buộc phải nhập ý kiến</small></div><div class="cks">${['Chấp thuận','Từ chối','Chuyển tiếp','Chấp thuận và chuyển tiếp'].map((l,i)=>`<label><input type="checkbox" data-nd="${i}" ${g.need[i]?'checked':''}> ${l}</label>`).join('')}</div></div>
-    <div class="set"><div class="k">Ưu tiên vai trò người duyệt<small>Khi các khối trùng người duyệt</small></div><select class="sel" id="o_p"><option value="0" ${g.prio?'':'selected'}>Ưu tiên vai trò duyệt của khối xuất hiện sau nhất</option><option value="1" ${g.prio?'selected':''}>Ưu tiên vai trò duyệt của khối xuất hiện đầu tiên</option></select></div></div>
-   <div class="card">${cardH('users','Người theo dõi','Danh sách các thành viên có thể xem đề xuất trong nhóm và lấy báo cáo','<span data-a="editfol">Chọn người theo dõi</span>')}<div class="kv"><span class="k">${ic('users',14)} Người theo dõi cố định</span><span class="v">${g.fol.fixed.map(UN).join(', ')||'Chưa có'}</span></div><div class="kv"><span class="k">${ic('users',14)} Người theo dõi theo điều kiện</span><span class="v">${g.fol.cond.length} điều kiện</span></div></div>`;
-  $('[data-a=editg]',c).onclick=()=>editGeneral(g); $('[data-a=editfol]',c).onclick=()=>editFollow(g);
-  $$('[data-a=addb]',c).forEach(a=>a.onclick=ev=>{ ev.stopPropagation(); showMenu(ev.currentTarget,[['Thêm người duyệt cố định',()=>addFixed(g,false)],['Thêm nhiều người duyệt cố định',()=>addFixed(g,true)],['Thêm quản lý trực tiếp',()=>{ g.blocks.push({id:uid('b'),t:'direct',u:[]}); again(g); }],['Thêm người duyệt linh động',()=>{ g.blocks.push({id:uid('b'),t:'flex',u:[]}); again(g); toast('Người duyệt linh động: do người tạo chọn khi gửi đề xuất (giả định, video không mở màn này)'); }],['Thêm người duyệt theo điều kiện',()=>{ g.blocks.push({id:uid('b'),t:'cond',u:[]}); again(g); toast('Người duyệt theo điều kiện: video không mở màn cấu hình này'); }]]); });
-  $$('[data-delb]',c).forEach(e=>e.onclick=()=>{ g.blocks.splice(+e.dataset.delb,1); again(g); });
-  $('#o_f').onchange=e=>{ g.flow=+e.target.value; }; $('#o_s').onchange=e=>{ g.slaPer=e.target.value==='1'; }; $('#o_p').onchange=e=>{ g.prio=+e.target.value; }; $$('[data-nd]',c).forEach(e=>e.onchange=()=>{ g.need[+e.dataset.nd]=e.checked; });
-  if(keep) [...c.children].forEach((el,i)=>{ if(!keep.includes(i)) el.remove(); });
+
+function sGeneral(g, c, keep){
+  const rows = [
+    ['Tên nhóm đề xuất', esc(g.name)],
+    ['Nhóm', esc(g.folder)],
+    ['Tạo bởi', `${av(g.by, 'sm')} ${esc(g.by)}`],
+    ['Phân loại', g.cat || 'Không có phân loại'],
+    ['SLA', g.sla + ' giờ'],
+    ['Cho phép chỉnh SLA', g.allowSla ? 'Có' : 'Không'],
+    ['Sử dụng cho', esc(g.scope)],
+    ['Mô tả nhóm đề xuất', esc(g.desc || '—')],
+    ['Trạng thái', `<span class="tag-status ${g.active ? 'active' : 'inactive'}" style="font-size:12px;font-weight:600;padding:2px 8px;border-radius:12px;background:${g.active ? '#eaf2f0' : '#f1f5f9'};color:${g.active ? '#24544b' : '#64748b'}">${g.active ? 'Đang khả dụng' : 'Đang tạm đóng'}</span>`]
+  ];
+
+  c.innerHTML = `
+    <div class="card">
+      ${cardH('doc', 'Thông tin chung', 'Thiết lập các thông tin chung về nhóm đề xuất', '<span data-a="editg">Sửa thông tin chung</span>')}
+      ${rows.map(([k, v]) => `<div class="kv"><span class="k">${k}</span><span class="v">${v}</span></div>`).join('')}
+    </div>
+    <div class="card">
+      ${cardH('user', 'Người duyệt', 'Danh sách các khối người duyệt theo thứ tự của nhóm đề xuất', g.blocks.length ? '<span data-a="addb">+ Thêm</span>' : '')}
+      ${g.blocks.length ? g.blocks.map((b, i) => {
+        const u = b.t === 'direct' ? null : USERS.find(x => x.id === b.u[0]);
+        return `
+          <div class="ap">
+            ${u ? av(u.name) : '<span class="av" style="background:#24544b">QL</span>'}
+            <div style="flex:1">
+              <b>${b.t === 'direct' ? 'Quản lý trực tiếp' : esc(b.u.map(UN).join(', ') || 'Người duyệt ' + ({ flex: 'linh động', cond: 'theo điều kiện' }[b.t] || ''))}</b>
+              <div class="m">${u ? esc(u.h) + ' · ' + esc(u.role) + ' · ' : ''}<code>${b.t === 'direct' ? 'direct_manager' : b.t === 'flex' ? 'flexible_approver' : b.t === 'cond' ? 'conditional_approver' : 'fixed_approver_' + esc((u && u.h || '').replace('@', ''))}</code></div>
+            </div>
+            <span style="cursor:pointer;color:#999" data-delb="${i}" title="Xóa khối">${ic('dots', 16)}</span>
+          </div>
+        `;
+      }).join('') : '<div class="emptyc">Chưa có khối người duyệt<br><button class="btn" data-a="addb" style="margin-top:10px">+ Thêm người duyệt</button></div>'}
+    </div>
+    <div class="card">
+      ${cardH('flow', 'Luồng phê duyệt', 'Thiết lập luồng phê duyệt đề xuất')}
+      <div class="set">
+        <div class="k">Luồng phê duyệt<small>Luồng phê duyệt hoạt động như thế nào</small></div>
+        <select class="sel" id="o_f">${FLOWS.map((f, i) => `<option value="${i}" ${g.flow === i ? 'selected' : ''}>${f}</option>`).join('')}</select>
+      </div>
+      <div class="set">
+        <div class="k">SLA cho từng người duyệt<small>Bật/Tắt SLA cho từng người duyệt</small></div>
+        <select class="sel" id="o_s"><option value="1" ${g.slaPer ? 'selected' : ''}>Kích hoạt</option><option value="0" ${g.slaPer ? '' : 'selected'}>Ngừng kích hoạt</option></select>
+      </div>
+      <div class="set">
+        <div class="k">Tùy chỉnh bắt buộc nhập ý kiến phê duyệt<small>Hành động duyệt bắt buộc phải nhập ý kiến</small></div>
+        <div class="cks">${['Chấp thuận', 'Từ chối', 'Chuyển tiếp', 'Chấp thuận và chuyển tiếp'].map((l, i) => `<label><input type="checkbox" data-nd="${i}" ${g.need[i] ? 'checked' : ''}> ${l}</label>`).join('')}</div>
+      </div>
+      <div class="set">
+        <div class="k">Ưu tiên vai trò người duyệt<small>Khi các khối trùng người duyệt</small></div>
+        <select class="sel" id="o_p"><option value="0" ${g.prio ? '' : 'selected'}>Ưu tiên vai trò duyệt của khối xuất hiện sau nhất</option><option value="1" ${g.prio ? 'selected' : ''}>Ưu tiên vai trò duyệt của khối xuất hiện đầu tiên</option></select>
+      </div>
+    </div>
+    <div class="card">
+      ${cardH('users', 'Người theo dõi', 'Danh sách các thành viên có thể xem đề xuất trong nhóm và lấy báo cáo', '<span data-a="editfol">Chọn người theo dõi</span>')}
+      <div class="kv"><span class="k">${ic('users', 14)} Người theo dõi cố định</span><span class="v">${g.fol.fixed.map(UN).join(', ') || 'Chưa có'}</span></div>
+      <div class="kv"><span class="k">${ic('users', 14)} Người theo dõi theo điều kiện</span><span class="v">${g.fol.cond.length} điều kiện</span></div>
+    </div>
+  `;
+
+  $('[data-a=editg]', c).onclick = () => editGeneral(g);
+  $('[data-a=editfol]', c).onclick = () => editFollow(g);
+  $$('[data-a=addb]', c).forEach(a => a.onclick = ev => {
+    ev.stopPropagation();
+    showMenu(ev.currentTarget, [
+      ['Thêm người duyệt cố định', () => addFixed(g, false)],
+      ['Thêm nhiều người duyệt cố định', () => addFixed(g, true)],
+      ['Thêm quản lý trực tiếp', () => { g.blocks.push({ id: uid('b'), t: 'direct', u: [] }); again(g); }],
+      ['Thêm người duyệt linh động', () => { g.blocks.push({ id: uid('b'), t: 'flex', u: [] }); again(g); toast('Người duyệt linh động: do người tạo chọn khi gửi đề xuất'); }],
+      ['Thêm người duyệt theo điều kiện', () => { g.blocks.push({ id: uid('b'), t: 'cond', u: [] }); again(g); toast('Người duyệt theo điều kiện'); }]
+    ]);
+  });
+  $$('[data-delb]', c).forEach(e => e.onclick = () => {
+    g.blocks.splice(+e.dataset.delb, 1);
+    again(g);
+  });
+  $('#o_f').onchange = e => { g.flow = +e.target.value; };
+  $('#o_s').onchange = e => { g.slaPer = e.target.value === '1'; };
+  $('#o_p').onchange = e => { g.prio = +e.target.value; };
+  $$('[data-nd]', c).forEach(e => e.onchange = () => { g.need[+e.dataset.nd] = e.checked; });
+  if (keep) [...c.children].forEach((el, i) => { if (!keep.includes(i)) el.remove(); });
 }
-function editGeneral(g){ modal('',mh('Chỉnh sửa thông tin chung')+`<div class="mb"><div class="fr"><label>Tên nhóm đề xuất *</label><input class="inp" id="eg_n" value="${esc(g.name)}"></div><div class="fr"><label>Nhóm</label><select class="sel" id="eg_f">${[...new Set(G.map(x=>x.folder))].sort().map(f=>`<option ${g.folder===f?'selected':''}>${esc(f)}</option>`).join('')}</select></div><div class="fr"><label>Phân loại</label><input class="inp" id="eg_c" value="${esc(g.cat)}"></div><div class="fr"><label>SLA (giờ)</label><input class="inp" id="eg_s" value="${g.sla}"></div><div class="fr"><label>Cho phép chỉnh SLA</label><select class="sel" id="eg_a"><option>Không</option><option ${g.allowSla?'selected':''}>Có</option></select></div><div class="fr"><label>Mô tả nhóm đề xuất</label><textarea class="inp" id="eg_m" rows="3">${esc(g.desc)}</textarea></div></div><div class="mf"><button class="btn gray" data-close>Hủy bỏ</button><button class="btn green" id="eg_ok">Lưu lại</button></div>`,()=>{ $('#eg_ok').onclick=()=>{ g.name=$('#eg_n').value||g.name; g.folder=$('#eg_f').value; g.cat=$('#eg_c').value; g.sla=+$('#eg_s').value||0; g.allowSla=$('#eg_a').value==='Có'; g.desc=$('#eg_m').value; closeM(); again(g); renderSide(route()); }; }); }
+function editGeneral(g){ modal('',mh('Chỉnh sửa thông tin chung')+`<div class="mb"><div class="fr"><label>Tên nhóm đề xuất *</label><input class="inp" id="eg_n" value="${esc(g.name)}"></div><div class="fr"><label>Nhóm</label><select class="sel" id="eg_f">${[...new Set(G.map(x=>x.folder))].sort().map(f=>`<option ${g.folder===f?'selected':''}>${esc(f)}</option>`).join('')}</select></div><div class="fr"><label>Phân loại</label><input class="inp" id="eg_c" value="${esc(g.cat)}"></div><div class="fr"><label>SLA (giờ)</label><input class="inp" id="eg_s" value="${g.sla}"></div><div class="fr"><label>Cho phép chỉnh SLA</label><select class="sel" id="eg_a"><option>Không</option><option ${g.allowSla?'selected':''}>Có</option></select></div><div class="fr"><label>Mô tả nhóm đề xuất</label><textarea class="inp" id="eg_m" rows="3">${esc(g.desc)}</textarea></div>
+<div class="fr"><label>Trạng thái</label><div style="display:flex;align-items:center;gap:12px;margin-top:6px"><label class="switch-toggle"><input type="checkbox" id="eg_active" ${g.active?'checked':''}><span class="slider round"></span></label><span id="eg_active_txt" style="font-weight:600;color:${g.active?'var(--sv-success,#059669)':'var(--sv-text-muted,#8b9097)'}">${g.active?'Đang khả dụng':'Đang tạm đóng'}</span></div></div>
+</div><div class="mf"><button class="btn gray" data-close>Hủy bỏ</button><button class="btn green" id="eg_ok">Lưu lại</button></div>`,()=>{ if($('#eg_active')) $('#eg_active').onchange = (e) => {
+      $('#eg_active_txt').textContent = e.target.checked ? 'Đang khả dụng' : 'Đang tạm đóng';
+      $('#eg_active_txt').style.color = e.target.checked ? 'var(--sv-success,#059669)' : 'var(--sv-text-muted,#8b9097)';
+    };
+    $('#eg_ok').onclick=()=>{
+      g.name=$('#eg_n').value||g.name; g.folder=$('#eg_f').value; g.cat=$('#eg_c').value; g.sla=+$('#eg_s').value||0; g.allowSla=$('#eg_a').value==='Có'; g.desc=$('#eg_m').value;
+      if($('#eg_active')) g.active = $('#eg_active').checked;
+      const g0 = gOf(g.id); if(g0) { g0.active = g.active; bumpVer(g0); }
+      closeM(); again(g); renderSide(route()); toast('Đã lưu thông tin chung');
+    }; }); }
 /* gợi ý @tên: gõ @ hiện danh sách người, lọc theo tên hoặc @handle (không phân biệt dấu) */
 const fold=t=>t.normalize('NFD').replace(/[̀-ͯ]/g,'').replace(/đ/g,'d').toLowerCase();
 function atPick(inp,cb,skip){
@@ -2276,12 +3233,29 @@ function editFollow(g){
   modal('wide',mh('Chỉnh sửa danh sách người theo dõi')+`<div class="mb" id="mb_f"></div><div class="mf"><button class="btn gray" data-close>Hủy bỏ</button><button class="btn green" id="ef_ok">Lưu lại</button></div>`,()=>{ draw();
     $('#ef_ok').onclick=()=>{ sync(); const bad=d.cond.findIndex(c=>!c.v.trim()||!c.us.length); if(bad>=0){ toast('Điều kiện '+(bad+1)+': nhập giá trị và chọn ít nhất một người'); return; } g.fol=d; closeM(); again(g); }; });
 }
-function sForm(g,c){
-  const part=(key,title,beta)=>{ const L=g.form[key]; return `<div class="card">${cardH('edit','Mẫu form '+title+(beta?' <span class="tag-n">BETA</span>':''),'Kéo thả file excel để nhập trường dữ liệu tùy chỉnh <a>(File excel mẫu)</a>',`<span data-add="${key}">+ Thêm</span>`)}${L.length?L.map((f,i)=>`<div class="fld"><span style="color:#ccc;cursor:grab">⋮⋮</span><span class="nm">${esc(f.label)}${f.cond?'<span class="tag-n">có điều kiện</span>':''}</span><span class="tg ${f.req?'req':''}">${f.req?'BẮT BUỘC':'KHÔNG BẮT BUỘC'}</span><button class="sw ${f.req?'on':''}" data-rq="${key}:${i}"></button><span class="ty">${f.type==='int'?'int':'text'}</span><span style="cursor:pointer;color:#aaa" data-rm="${key}:${i}">×</span></div>`).join(''):`<div class="emptyc">${ic('inbox')}Chưa thiết lập</div>`}</div>`; };
-  c.innerHTML=part('req','đề xuất')+part('app','phê duyệt',true);
-  $$('[data-add]',c).forEach(e=>e.onclick=ev=>{ ev.stopPropagation(); addField(g,e.dataset.add); });
-  $$('[data-rq]',c).forEach(e=>e.onclick=()=>{ const [k,i]=e.dataset.rq.split(':'); g.form[k][+i].req=!g.form[k][+i].req; again(g); });
-  $$('[data-rm]',c).forEach(e=>e.onclick=()=>{ const [k,i]=e.dataset.rm.split(':'); g.form[k].splice(+i,1); again(g); });
+function sForm(g, c){
+  const part = (key, title, beta) => {
+    const L = g.form[key];
+    return `
+      <div class="card">
+        ${cardH('edit', 'Mẫu form ' + title + (beta ? ' <span class="tag-n">BETA</span>' : ''), 'Kéo thả file excel để nhập trường dữ liệu tùy chỉnh <a>(File excel mẫu)</a>', `<span data-add="${key}">+ Thêm</span>`)}
+        ${L.length ? L.map((f, i) => `
+          <div class="fld">
+            <span style="color:#ccc;cursor:grab">⋮⋮</span>
+            <span class="nm">${esc(f.label)}${f.cond ? '<span class="tag-n">có điều kiện</span>' : ''}</span>
+            <span class="tg ${f.req ? 'req' : ''}">${f.req ? 'BẮT BUỘC' : 'KHÔNG BẮT BUỘC'}</span>
+            <button class="sw ${f.req ? 'on' : ''}" data-rq="${key}:${i}" title="Chuyển đổi bắt buộc"></button>
+            <span class="ty">${f.type === 'int' ? 'int' : 'text'}</span>
+            <span style="cursor:pointer;color:#aaa" data-rm="${key}:${i}" title="Xóa trường">×</span>
+          </div>
+        `).join('') : `<div class="emptyc">${ic('inbox')}Chưa thiết lập</div>`}
+      </div>
+    `;
+  };
+  c.innerHTML = part('req', 'đề xuất') + part('app', 'phê duyệt', true);
+  $$('[data-add]', c).forEach(e => e.onclick = ev => { ev.stopPropagation(); addField(g, e.dataset.add); });
+  $$('[data-rq]', c).forEach(e => e.onclick = () => { const [k, i] = e.dataset.rq.split(':'); g.form[k][+i].req = !g.form[k][+i].req; again(g); });
+  $$('[data-rm]', c).forEach(e => e.onclick = () => { const [k, i] = e.dataset.rm.split(':'); g.form[k].splice(+i, 1); again(g); });
 }
 function addField(g,key){
   const isApp=key==='app', others=g.form[key], OPS=['Bằng','Khác','Lớn hơn','Nhỏ hơn'];
@@ -2325,6 +3299,48 @@ function fbC(c,r,isRe){ c.id=c.id||uid('m'); c.lk=c.lk||[]; c.re=c.re||[]; const
    <div class="fbx">${mention(c.txt)}</div>
    <div class="fba"><button data-lk="${c.id}" class="${liked?'on':''}" title="${c.lk.map(UN).map(esc).join(', ')}">Thích${c.lk.length?' ('+c.lk.length+')':''}</button>${isRe?'':`<button data-rp="${c.id}">Phản hồi</button>`}</div>
    ${c.re.length?`<div class="fbre">${c.re.map(x=>fbC(x,r,true)).join('')}</div>`:''}${S.reply===c.id?`<div class="fbin sm">${av(ME.name,'xs')}<div class="fbp"><input id="d_rp" placeholder="Phản hồi ${esc(UN(u))}…" aria-label="Phản hồi"><button id="d_rs" class="fbsend" aria-label="Gửi phản hồi" title="Gửi">${ic('share',16)}</button></div></div>`:''}</div></div>`; }
+
+function openAuditDetail(info){
+  modal('', mh('Chi tiết lịch sử hoạt động') + `
+    <div class="mb" style="gap:16px">
+      <div style="display:flex;align-items:center;gap:12px;padding:12px 16px;background:var(--sv-surface-warm,#f8fafc);border:1px solid var(--sv-border,#e2e8f0);border-radius:12px">
+        <div style="width:40px;height:40px;border-radius:50%;background:${info.color || 'var(--sv-brand)'};color:#fff;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:16px">
+          ${info.icon || '✓'}
+        </div>
+        <div style="flex:1">
+          <b style="font-size:15px;display:block;color:var(--sv-text)">${esc(info.actionTitle)}</b>
+          <span style="font-size:12px;color:var(--sv-text-muted)">Mã sự kiện: <code>${info.auditId}</code> · ${info.fullTime}</span>
+        </div>
+      </div>
+
+      <div style="display:grid;grid-template-columns:140px 1fr;gap:10px 16px;font-size:13px;padding:6px 4px">
+        <span style="color:var(--sv-text-muted)">Người thực hiện:</span>
+        <div><b>${esc(info.userName)}</b> (${esc(info.userRole)}) <code style="color:var(--sv-brand)">${esc(info.userHandle)}</code></div>
+
+        <span style="color:var(--sv-text-muted)">Hành động:</span>
+        <div><span class="status-pill ${info.pillClass || 'approved'}">${esc(info.actionBadge)}</span></div>
+
+        <span style="color:var(--sv-text-muted)">Thời gian ghi nhận:</span>
+        <div><b>${info.fullTime}</b> (${info.relativeTime})</div>
+
+        <span style="color:var(--sv-text-muted)">Nội dung / Ghi chú:</span>
+        <div style="background:#fff;border:1px solid var(--sv-border);border-radius:8px;padding:10px;line-height:1.5">
+          ${esc(info.note || 'Không có ghi chú thêm.')}
+        </div>
+
+        <span style="color:var(--sv-text-muted)">Thay đổi trạng thái:</span>
+        <div><code>${esc(info.prevStatus || 'Chờ duyệt')}</code> → <b style="color:var(--sv-brand)">${esc(info.newStatus || 'Đang xử lý')}</b></div>
+
+        <span style="color:var(--sv-text-muted)">IP & Thiết bị:</span>
+        <div style="color:var(--sv-text-secondary);font-size:12px">192.168.1.108 · macOS Chrome (Bảo mật SSL Sevago ERP)</div>
+      </div>
+    </div>
+    <div class="mf" style="justify-content:flex-end">
+      <button class="btn green" data-close style="min-width:100px">Đóng</button>
+    </div>
+  `);
+}
+
 function detail(id){
   const _p=[...document.querySelectorAll('.d3m,.d3,.d3rp,.d3l')].map(e=>e.scrollTop), _same=S.dId===id; S.dId=id;
   const r=R.find(x=>x.id===id); if(!r){ $('#main').innerHTML='<div class="empty">Không tìm thấy đề xuất</div>'; return; } r.read=true; const g=gOf(r.g), mine=waitingMe(r); r.cm=r.cm||[]; r.lk=r.lk||{}; r.ev=r.ev||{}; r.fol=r.fol||[...new Set([r.by,...g.fol.fixed])];
@@ -2371,14 +3387,199 @@ function detail(id){
        ${body?`<div class="fi2t ${f.c?'bub':''}">${body}</div>`:''}${o.file&&o.file.img?`<a href="${o.file.url}" target="_blank" rel="noopener" class="fi2im"><img src="${o.file.url}" alt="${esc(o.file.n)}"></a><div class="mu sm" style="margin-top:4px">${esc(o.file.n)} · ${esc(o.file.z)} · <a href="${o.file.url}" download="${esc(o.file.n)}" class="mnl">Tải xuống</a></div>`:o.file?`<div class="fi2f"><i>${ic('doc',22)}</i><div><b>${esc(o.file.n)}</b><div class="mu sm">${esc(o.file.z)} · ${o.file.url?`<a href="${o.file.url}" target="_blank" rel="noopener">Xem trước</a> · <a href="${o.file.url}" download="${esc(o.file.n)}">Tải xuống</a>`:'Không có bản xem trước'}</div></div></div>`:''}
        <div class="fi2a"><button data-rp="${o.id}" class="fi2c">Thảo luận <span>${o.re.length}</span></button><span>·</span><button data-lk="${o.id}" class="fi2l ${liked?'on':''}">${ic('like',15)} Thích</button>${o.lk.length?`<span class="fi2r" data-lkc="${o.id}" tabindex="0" aria-label="${o.lk.length} người đã thích"><i>${ic('like',12)}</i> ${o.lk.length}</span>`:''}</div>
        ${S.reply===o.id?`<div class="fbre">${o.re.map(x=>fbC(x,r,true)).join('')}<div class="fbin sm">${av(ME.name,'xs')}<div class="fbp"><input id="d_rp" placeholder="Viết thảo luận…" aria-label="Phản hồi"><button id="d_rs" class="btn">Gửi</button></div></div></div>`:''}</div></div>`; }).join('')}</div>
+
+    <!-- PREVIEW BẢN IN & XEM LẠI ĐỀ XUẤT (Requirement 2) -->
+    <div class="d3h" style="margin-top:36px;display:flex;justify-content:space-between;align-items:center">
+      <span>XEM LẠI ĐỀ XUẤT / PREVIEW BẢN IN CHÍNH THỨC</span>
+      <div style="display:flex;gap:8px">
+        <button class="btn" id="btn_print_req">${ic('print',14)} In phiếu đề xuất</button>
+        <button class="btn blue" id="btn_modal_prev">${ic('doc',14)} Phóng to xem lại</button>
+      </div>
+    </div>
+    <div class="preview-doc-card" id="print_area">
+      <div class="prev-doc-header">
+        <div class="prev-doc-brand">
+          <div class="prev-doc-logo">SEVA</div>
+          <div>
+            <div class="prev-doc-comp">CÔNG TY CỔ PHẦN TẬP ĐOÀN SEVAGO</div>
+            <div class="prev-doc-sub">Hệ thống Quản trị & Điều hành Doanh nghiệp Sevago ERP</div>
+          </div>
+        </div>
+        <div class="prev-doc-meta">
+          <div><b>Mã đề xuất:</b> <code>${esc(r.code)}</code></div>
+          <div><b>Ngày lập phiếu:</b> ${dt(r.at)}</div>
+          <div><b>Trạng thái:</b> <span class="status-pill ${SL[1]}">${SL[0]}</span></div>
+        </div>
+      </div>
+
+      <div class="prev-doc-title">
+        <h2>PHIẾU ĐỀ NGHỊ / ĐỀ XUẤT DUYỆT</h2>
+        <div class="prev-doc-group">Nhóm quy trình: ${esc(g.name)}</div>
+      </div>
+
+      <div class="prev-sec-title">I. THÔNG TIN NGƯỜI ĐỀ NGHỊ</div>
+      <table class="prev-table bordered">
+        <tr>
+          <td class="prev-lbl" style="width:20%">Họ và tên người tạo:</td>
+          <td style="width:30%"><b>${esc(UN(r.by))}</b></td>
+          <td class="prev-lbl" style="width:20%">Chức vụ / Chức danh:</td>
+          <td style="width:30%">${esc(U(r.by).role || 'Chuyên viên')}</td>
+        </tr>
+        <tr>
+          <td class="prev-lbl">Khối / Phòng ban:</td>
+          <td>${esc(g.folder)}</td>
+          <td class="prev-lbl">Thời hạn xử lý (SLA):</td>
+          <td>${g.sla ? g.sla + ' giờ (' + (r.at ? dt(r.at + g.sla * 3600e3) : '—') + ')' : 'Theo quy định chung'}</td>
+        </tr>
+      </table>
+
+      <div class="prev-sec-title">II. NỘI DUNG VÀ CHI TIẾT CÁC TRƯỜNG DỮ LIỆU</div>
+      <table class="prev-table bordered">
+        <thead>
+          <tr>
+            <th style="width:6%">STT</th>
+            <th style="width:34%">Trường dữ liệu</th>
+            <th style="width:60%">Giá trị / Nội dung chi tiết</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td style="text-align:center">1</td>
+            <td><b>Tiêu đề đề xuất</b></td>
+            <td><b>${esc(r.title)}</b></td>
+          </tr>
+          ${g.form.req.filter(f=>f.label!=='Tiêu đề').map((f, idx) => `
+            <tr>
+              <td style="text-align:center">${idx + 2}</td>
+              <td>${esc(f.label)}</td>
+              <td>${/tiền/i.test(f.label) && +r.vals[f.label] ? (+r.vals[f.label]).toLocaleString('vi-VN') + ' VNĐ' : esc(r.vals[f.label] || '—')}</td>
+            </tr>
+          `).join('')}
+          ${body ? `
+            <tr>
+              <td style="text-align:center">${g.form.req.length + 2}</td>
+              <td>Nội dung giải trình / Lý do</td>
+              <td style="white-space:pre-wrap;line-height:1.5">${esc(body)}</td>
+            </tr>
+          ` : ''}
+        </tbody>
+      </table>
+
+      <div class="prev-sec-title">III. Ý KIẾN VÀ CHỮ KÝ PHÊ DUYỆT CÁC CẤP</div>
+      <div class="prev-sign-grid">
+        <div class="prev-sign-box">
+          <div class="prev-sign-role">NGƯỜI ĐỀ NGHỊ</div>
+          <div class="prev-sign-status signed">✓ ĐÃ KÝ ĐIỆN TỬ</div>
+          <div class="prev-sign-name">${esc(UN(r.by))}</div>
+          <div class="prev-sign-date">${dt(r.at)}</div>
+        </div>
+        ${ap.map(x => `
+          <div class="prev-sign-box">
+            <div class="prev-sign-role">${esc(U(x.u).role || 'NGƯỜI XÉT DUYỆT')}</div>
+            <div class="prev-sign-status ${x.st === 'ok' ? 'signed' : x.st === 'no' ? 'rejected' : 'waiting'}">
+              ${x.st === 'ok' ? '✓ ĐÃ PHÊ DUYỆT' : x.st === 'no' ? '✕ ĐÃ TỪ CHỐI' : '⏳ ĐANG CHỜ DUYỆT'}
+            </div>
+            <div class="prev-sign-name">${esc(UN(x.u))}</div>
+            <div class="prev-sign-date">${x.st === 'ok' ? 'Đã xác nhận điện tử' : '—'}</div>
+          </div>
+        `).join('')}
+      </div>
+    </div>
    </section>
    <aside class="d3rp">
     <div class="d3p"><div class="d3ph">NGƯỜI XÉT DUYỆT</div><div class="d3pg" id="d_prog" role="button" tabindex="0" title="Xem chi tiết tiến trình">${ic('clock',16)}<span>Tiến trình của người duyệt</span><b>${done}/${ap.length} »</b><div class="bar"><i style="width:${ap.length?done/ap.length*100:0}%"></i></div></div>
      ${ap.map(x=>`<div class="d3a">${av(UN(x.u),'sm')}<div><b>${esc(UN(x.u))}</b><div class="mu sm">${esc(U(x.u).h)} · ${esc(U(x.u).role)}</div></div>${(()=>{ const now=r.status==='pending'&&r.steps.some(z=>z.state==='cur'&&z.users.includes(x.u)&&!z.done.includes(x.u)), t=x.st==='ok'?['Đã duyệt','ok']:x.st==='no'?['Từ chối','no']:now?['Đang chờ','now']:['Không còn chờ','nx']; return `<span class="d3chip ${t[1]}">${t[0]}</span>`; })()}</div>`).join('')}</div>
     <div class="d3p"><div class="d3ph">NGƯỜI THEO DÕI <button class="lnk" id="d_unf">${r.fol.includes(ME.id)?'Bỏ theo dõi':'Theo dõi'}</button></div><div class="d3av">${r.fol.map(u=>av(UN(u),'sm')).join('')}<button class="d3add" id="d_addf" aria-label="Thêm người theo dõi" title="Thêm người theo dõi">+</button></div></div>
-    <div class="d3p"><div class="d3ph">HÀNH ĐỘNG CHÍNH</div><div class="d3tl">${r.logs.map(l=>{ const k=/^Từ chối/.test(l[2])?'no':/^Chấp thuận/.test(l[2])?'ok':'new'; return `<div class="d3ti"><i class="${k}">${k==='ok'?'✓':k==='no'?'✕':'+'}</i><div><div class="mu sm">${dt(l[0])}</div><b>${esc(UN(l[1]))}</b> ${act(l[2])[0]}</div></div>`; }).join('')}</div></div>
-    <div class="d3p"><button class="d3ph d3hb" id="d_hist" aria-expanded="${!!S.hist}"><span>LỊCH SỬ HOẠT ĐỘNG</span>${ic('caret',12)}</button>${S.hist?`<div class="d3hl">${feed.map(f=>`<div class="d3hi"><span class="mu sm">${dt(f.t)}</span><span><b>${esc(UN(f.u))}</b> ${f.c?'thảo luận: '+esc(f.txt):esc(f.txt)}</span></div>`).join('')}</div>`:''}</div>
+    <div class="d3p">
+      <div class="d3ph" style="display:flex;justify-content:space-between">
+        <span>HÀNH ĐỘNG CHÍNH</span>
+        <span style="font-size:11px;font-weight:normal;color:var(--sv-text-muted)">(Bấm để xem chi tiết)</span>
+      </div>
+      <div class="d3tl">${r.logs.map((l, idx)=>{
+        const k=/^Từ chối/.test(l[2])?'no':/^Chấp thuận/.test(l[2])?'ok':'new';
+        return `<div class="d3ti clickable-hist" data-log-idx="${idx}" title="Bấm để xem chi tiết sự kiện"><i class="${k}">${k==='ok'?'✓':k==='no'?'✕':'+'}</i><div style="flex:1"><div class="mu sm">${dt(l[0])}</div><b>${esc(UN(l[1]))}</b> ${act(l[2])[0]}</div><span style="color:var(--sv-text-muted);font-size:14px">›</span></div>`;
+      }).join('')}</div>
+    </div>
+    <div class="d3p">
+      <button class="d3ph d3hb" id="d_hist" aria-expanded="${!!S.hist}" style="display:flex;justify-content:space-between;align-items:center">
+        <span>LỊCH SỬ HOẠT ĐỘNG</span>
+        <div style="display:flex;align-items:center;gap:6px">
+          <span style="font-size:11px;font-weight:normal;color:var(--sv-text-muted)">(Bấm dòng xem chi tiết)</span>
+          ${ic('caret',12)}
+        </div>
+      </button>
+      ${S.hist?`<div class="d3hl">${feed.map((f, idx)=>`<div class="d3hi clickable-feed" data-feed-idx="${idx}" title="Bấm để xem chi tiết sự kiện"><span class="mu sm">${dt(f.t)}</span><span style="flex:1"><b>${esc(UN(f.u))}</b> ${f.c?'thảo luận: '+esc(f.txt):esc(f.txt)}</span><span style="color:var(--sv-text-muted);font-size:14px">›</span></div>`).join('')}</div>`:''}
+    </div>
     </aside></div>`;
+  
+  // Print and Preview Modal handlers
+  if ($('#btn_print_req')) $('#btn_print_req').onclick = () => window.print();
+  if ($('#btn_modal_prev')) $('#btn_modal_prev').onclick = () => {
+    modal('wide', mh('Xem trước phiếu đề xuất chính thức') + `
+      <div class="mb" style="max-height:80vh">
+        ${$('#print_area').outerHTML}
+      </div>
+      <div class="mf" style="justify-content:flex-end">
+        <button class="btn" onclick="window.print()">${ic('print',14)} In phiếu</button>
+        <button class="btn green" data-close>Đóng</button>
+      </div>
+    `);
+  };
+
+  // Clickable History in right panel
+  $$('.clickable-hist').forEach(e => {
+    e.onclick = () => {
+      const idx = +e.dataset.logIdx;
+      const l = r.logs[idx];
+      if (!l) return;
+      const user = U(l[1]);
+      const [actionText, detailNote] = act(l[2]);
+      const isAp = /^Chấp thuận/.test(l[2]);
+      const isRj = /^Từ chối/.test(l[2]);
+      openAuditDetail({
+        auditId: 'AUD-' + String(l[0]).slice(-6),
+        actionTitle: 'Sự kiện hệ thống: ' + actionText,
+        actionBadge: isAp ? 'Chấp thuận' : isRj ? 'Từ chối' : 'Ghi nhận',
+        pillClass: isAp ? 'approved' : isRj ? 'rejected' : 'pending',
+        userName: UN(l[1]),
+        userRole: user.role || 'Cán bộ quản lý',
+        userHandle: user.h || '@user',
+        fullTime: dtFull(l[0]),
+        relativeTime: ago(l[0]),
+        note: detailNote || l[2],
+        prevStatus: idx === 0 ? 'Khởi tạo' : 'Đang xử lý',
+        newStatus: isAp ? 'Đã phê duyệt' : isRj ? 'Đã từ chối' : r.status === 'approved' ? 'Đã chấp thuận' : 'Chờ duyệt',
+        color: isAp ? 'var(--sv-success)' : isRj ? 'var(--sv-error)' : 'var(--sv-brand)',
+        icon: isAp ? '✓' : isRj ? '✕' : 'ℹ'
+      });
+    };
+  });
+
+  $$('.clickable-feed').forEach(e => {
+    e.onclick = () => {
+      const idx = +e.dataset.feedIdx;
+      const f = feed[idx];
+      if (!f) return;
+      const user = U(f.u);
+      openAuditDetail({
+        auditId: 'FEED-' + String(f.t).slice(-6),
+        actionTitle: f.c ? 'Thảo luận / Ghi chú phản hồi' : 'Ghi nhận hoạt động: ' + f.txt,
+        actionBadge: f.c ? 'Thảo luận' : 'Hoạt động',
+        pillClass: f.c ? 'returned' : 'pending',
+        userName: UN(f.u),
+        userRole: user.role || 'Thành viên',
+        userHandle: user.h || '@member',
+        fullTime: dtFull(f.t),
+        relativeTime: ago(f.t),
+        note: f.txt,
+        prevStatus: 'Đang theo dõi',
+        newStatus: r.status === 'approved' ? 'Đã chấp thuận' : 'Chờ duyệt',
+        color: 'var(--sv-info)',
+        icon: '💬'
+      });
+    };
+  });
+
   if(_same) [...document.querySelectorAll('.d3m,.d3,.d3rp,.d3l')].forEach((e,i)=>{ e.scrollTop=_p[i]||0; });
   $$('[data-nav]').forEach(e=>e.onclick=()=>go(e.dataset.nav)); $$('.d3c').forEach(e=>{ e.onclick=()=>go('#/request/'+e.dataset.r); e.onkeydown=ev=>{ if(ev.key==='Enter'||ev.key===' '){ ev.preventDefault(); go('#/request/'+e.dataset.r); } }; });
   { const pg=$('#d_prog'); pg.onclick=()=>progM(r); pg.onkeydown=e=>{ if(e.key==='Enter'||e.key===' ') progM(r); }; }
@@ -2524,6 +3725,16 @@ function wizard(id,step){
      <div class="wfg">
       <label class="wf full"><span>Tên nhóm đề xuất <em>*</em></span><input class="inp" id="w_n" placeholder="Ví dụ: NS_ĐX01 (Xin nghỉ phép)" value="${esc(g.name)}"></label>
       <label class="wf full"><span>Nhóm</span><select class="sel" id="w_f">${[...new Set(G.map(x=>x.folder))].sort().map(f=>`<option ${g.folder===f?'selected':''}>${esc(f)}</option>`).join('')}</select><small>Thư mục chứa nhóm đề xuất, hiện ở cột "Nhóm" trong danh sách.</small></label>
+      <div class="wf full" style="display:flex;align-items:center;justify-content:space-between;padding:12px 16px;background:var(--sv-surface-warm,#fafbfc);border:1px solid var(--sv-border,#e8ebed);border-radius:10px;margin-top:6px">
+        <div>
+          <b style="font-size:13.5px;display:block">Kích hoạt nhóm sau khi tạo</b>
+          <span style="font-size:12px;color:var(--sv-text-muted,#8b9097)">Cho phép nhân viên gửi đề xuất vào nhóm này ngay lập tức</span>
+        </div>
+        <div style="display:flex;align-items:center;gap:10px">
+          <label class="switch-toggle"><input type="checkbox" id="w_act" ${g.active?'checked':''}><span class="slider round"></span></label>
+          <span id="w_act_txt" style="font-size:12.5px;font-weight:600;color:${g.active?'var(--sv-success,#059669)':'var(--sv-text-muted,#8b9097)'}">${g.active?'Đang khả dụng':'Đang tạm đóng'}</span>
+        </div>
+      </div>
       <details class="wmore full" ${(g.cat||g.sla||g.allowSla||g.desc||g.scope!=='Toàn công ty')?'open':''}><summary>Thiết lập thêm <em>Phân loại, SLA, phạm vi sử dụng, mô tả. Không bắt buộc</em></summary><div class="wfg wfg2">
       <label class="wf"><span>Phân loại</span><input class="inp" id="w_c" value="${esc(g.cat)}" placeholder="Ví dụ: Phòng KD, Human Resource"></label>
       <label class="wf"><span>SLA (giờ)</span><input class="inp" id="w_s" type="number" min="0" value="${g.sla||''}" placeholder="Để trống nếu không yêu cầu"><small>Số giờ tối đa để xử lý một đề xuất.</small></label>
