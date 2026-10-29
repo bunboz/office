@@ -1713,7 +1713,7 @@ body.role-user #g-set{display:none}
     .canvas-top-bar{flex-wrap:nowrap;gap:8px;} .fl-svsel{max-width:130px;} .canvas-status-pill{display:none;} .canvas-top-left{min-width:0;} .canvas-controls-overlay{flex-wrap:wrap;max-width:calc(100% - 24px);} .fl-tbl{display:block;overflow-x:auto;}
   }
   .fl-chip button{color:#4C4D4D;width:24px;height:24px;} #node-config-drawer .fl-sg span:not(.wf-node-icon):not(.fl-chip),#node-config-drawer .fl-fr span{color:#4C4D4D;}
-  .fl-pill{transform:translateX(-50%);padding:0 12px;max-width:250px;overflow:hidden;text-overflow:ellipsis;}
+  .fl-pill{transform:translateX(-50%);padding:0 12px;max-width:160px;overflow:hidden;text-overflow:ellipsis;}
   .fl-addln{position:absolute;transform:translateX(-100%);height:26px;padding:0 12px;border-radius:999px;border:1px solid #07554B;background:#fff;color:#07554B;font-size:12px;font-weight:600;cursor:pointer;white-space:nowrap;z-index:2;} .fl-addln:hover{background:#E7F1EF;}
   .fl-frl{position:absolute;left:14px;top:-11px;background:#FFF8E6;border:1px solid #FEC84B;color:#93370D;border-radius:999px;font-size:12px;font-weight:600;padding:2px 10px;pointer-events:none;}
   /* dấu + giữa đường nối chỉ hiện khi chọn khối, rê chuột vào đường nối, bấm Tab tới, hoặc đang kéo khối từ bảng chọn */
@@ -1792,6 +1792,7 @@ body.role-user #g-set{display:none}
   #toast-box .kb-why{color:inherit;}
   #canvas-work-area,#plus-context-menu,.fl-km,.fl-pill,.fl-node{user-select:none;-webkit-user-select:none;} #canvas-work-area input,#canvas-work-area textarea{user-select:text;-webkit-user-select:text;}
   .fl-km{user-select:none;} .fl-km .fl-dis{opacity:.5;}
+  .kb-ap{width:28px;height:28px;border-radius:6px;border:1px solid transparent;display:inline-flex;align-items:center;justify-content:center;cursor:pointer;padding:0;} .kb-ap svg{width:12px;height:12px;fill:none;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round;} .kb-ap.ok{background:#12B76A;} .kb-ap.rej{background:#F04438;} .kb-ap.ok svg,.kb-ap.rej svg{stroke:#fff;} .kb-ap.more{background:#fff;border-color:#84CAFF;} .kb-ap.more svg{stroke:#2E90FA;} .kb-ap:hover{filter:brightness(.94);} .kb-pre{font-size:12px;color:#B54708;background:#FFFAEB;border-radius:6px;padding:3px 8px;}
 </style>
 </head>
 <body>
@@ -3876,7 +3877,7 @@ function flHtml() {
   const NW = GNW, NH = GNH, PW = GPW, P = [], N = [], C = [], SP = flSP, RC = new Set(['start']);
   [FL.start.next, ...Object.values(FL.B).flatMap(b => flSucc(b))].forEach(v => v && RC.add(v)); /* khối có ít nhất một dây nối vào */
   const nodeH = (b, x, y) => { const t = FT[b.type]; return `<div data-id="${b.id}" role="button" tabindex="0" aria-label="${t.l}: ${flE(b.title)}" title="${flE(t.l)}: ${flE(t.d || '')}" ondblclick="flRename(event,'${b.id}')" onkeydown="flNodeKey(event,'${b.id}')" class="fl-node t-${t.t}${RC.has(b.id) ? '' : ' fl-orphan'}${V.N[b.id] ? ' fl-err' : V.WARN[b.id] ? ' fl-warnn' : ''}${FMODE[b.type] === 'a' ? ' fl-auto' : ''}${FL.sel === b.id ? ' on' : ''}${FL.fresh === b.id ? ' new' : ''}" style="left:${x}px;top:${y}px;width:${NW}px" onclick="flNodeClick(event,'${b.id}')"><div class="fl-nh"><span class="wf-node-icon fl-ic">${t.i}</span><span class="fl-nl">${t.l}</span><button class="fl-kb" onclick="flKebab(event,'${b.id}')" aria-label="Tùy chọn">⋮</button></div><div class="fl-nt" title="${flE(b.title)}">${flE(b.title)}</div><div class="fl-nf"><span>${flE(flFoot(b))}</span>${FMODE[b.type] ? `<span class="fl-md ${FMODE[b.type]}">${FMODE[b.type] === 'm' ? 'Người xử lý' : 'Tự động'}</span>` : ''}</div>${SP(b) ? `<span class="fl-port" data-o="${b.id}" data-k="next" title="Kéo để nối tới khối khác"></span>` : ''}${V.N[b.id] ? `<span class="fl-eflag" title="${flE(V.N[b.id].join('\n'))}">⚠ Lỗi${V.N[b.id].length > 1 ? ' (' + V.N[b.id].length + ')' : ''}</span>` : V.WARN[b.id] ? `<span class="fl-eflag w" title="${flE(V.WARN[b.id].join('\n'))}">Lưu ý</span>` : ''}</div>`; };
-  const pill = (cx, top, x, o) => `<div class="fl-pill c-${x.c}" data-n="${o}" role="button" tabindex="0" title="Bấm để thêm khối vào nhánh này" onclick="flPillClick(event,'${o}','${x.k}')" onkeydown="if(event.key==='Enter')flPillClick(event,'${o}','${x.k}')" style="left:${cx}px;top:${top}px;min-width:${PW}px"><span class="fl-pt">${x.i} ${flE(x.l)}</span><span class="fl-port" data-o="${o}" data-k="${x.k}" title="Kéo để nối tới khối khác"></span></div>`;
+  const pill = (cx, top, x, o) => `<div class="fl-pill c-${x.c}" data-n="${o}" role="button" tabindex="0" title="${flE(x.l)}. Bấm để thêm khối vào nhánh này" onclick="flPillClick(event,'${o}','${x.k}')" onkeydown="if(event.key==='Enter')flPillClick(event,'${o}','${x.k}')" style="left:${cx}px;top:${top}px;min-width:${PW}px"><span class="fl-pt">${x.i} ${flE(x.l)}</span><span class="fl-port" data-o="${o}" data-k="${x.k}" title="Kéo để nối tới khối khác"></span></div>`;
   const svg = (x) => P.push(x), inc = {}, ports = [];
   [['start', FL.start], ...Object.entries(FL.B)].forEach(([id, b]) => {
     if (b.type === 'end') return; const ps = id === 'start' ? null : flPorts(b), list = ps || [{ k: 'next' }];
@@ -4443,12 +4444,26 @@ function flKActs(b) {
   return o.filter(x => !['more', 'fail'].includes(x.k) || b[x.k]).map(x => ({ k: x.k, l: b.type === 'approval' ? ({ ok: 'Phê duyệt', rej: 'Từ chối', more: 'Yêu cầu bổ sung' })[x.k] : x.l, c: x.c }));
 }
 function flAgo(t) { const m = Math.floor((Date.now() - t) / 60000); return m < 1 ? 'vừa xong' : m < 60 ? m + ' phút trước' : m < 1440 ? Math.floor(m / 60) + ' giờ trước' : Math.floor(m / 1440) + ' ngày trước'; }
+/* thẻ phê duyệt: ✓ duyệt, ✕ từ chối, ▾ menu (thêm người duyệt trước, duyệt và chuyển tiếp, yêu cầu bổ sung) */
+function flKApAct(t, idx, b, tok) {
+  const pre = (tok.pre || []).length ? `<span class="kb-pre" style="flex-basis:100%">Chờ duyệt trước: ${flE(tok.pre.join(', '))}</span>` : '';
+  return `${pre}<button class="kb-ap ok" title="Phê duyệt" aria-label="Phê duyệt" onclick="flKAct('${t.id}',${idx},'ok')"><svg viewBox="0 0 12 12"><path d="M2.5 6.5l2.5 2.5 4.5-5"/></svg></button><button class="kb-ap rej" title="Từ chối" aria-label="Từ chối" onclick="flKAct('${t.id}',${idx},'rej')"><svg viewBox="0 0 12 12"><path d="M3 3l6 6M9 3l-6 6"/></svg></button><button class="kb-ap more" title="Thao tác khác" aria-label="Thao tác khác" aria-haspopup="menu" onclick="flKApMenu(event,'${t.id}',${idx})"><svg viewBox="0 0 12 12"><path d="M3 4.5l3 3 3-3"/></svg></button>`;
+}
+function flKApMenu(e, tid, idx) {
+  const r = e.currentTarget.getBoundingClientRect(), b = FL.B[flTk(FL.svc).find(x => x.id === tid).tokens[idx].b], fake = { stopPropagation() { }, currentTarget: e.currentTarget };
+  const people = fn => () => flMenu(fake, FUSERS.map(u => [u, () => fn(u)]), r.left, r.bottom + 4);
+  const its = [['Thêm người duyệt trước', people(u => flKApPre(tid, idx, u))], ['Duyệt và chuyển tiếp', people(u => flKApFwd(tid, idx, u))]];
+  if (b.more) its.push(['Yêu cầu bổ sung', () => flKAct(tid, idx, 'more')]);
+  flMenu(e, its, r.left, r.bottom + 4);
+}
+function flKApPre(tid, idx, u) { const t = flTk(FL.svc).find(x => x.id === tid), k = t.tokens[idx]; (k.pre = k.pre || []).push(u); t.hist.push({ at: Date.now(), block: FL.B[k.b].title, act: 'add_pre', note: u }); renderApp(); showToast(`Đã thêm ${u} duyệt trước phiếu ${tid}.`); }
+function flKApFwd(tid, idx, u) { flKAct(tid, idx, 'ok'); const t = flTk(FL.svc).find(x => x.id === tid); if (t && t.hist.length) t.hist[t.hist.length - 1].note = 'Chuyển tiếp cho ' + u; }
 function renderKanbanView() {
   const svc = FL.svc, F = FL, all = flTk(svc); flSweep(F, all);
   const mine = FK.mine === undefined ? ROLE === 'user' : FK.mine, q = flFold(FK.kq || ''), list = all.filter(t => (!mine || t.by === ROLE_NAME[ROLE]) && flFold(t.title + ' ' + t.id).includes(q));
   const cols = flOrder(F).filter(b => MANUAL.includes(b.type));
   const card = (t, idx) => { const tok = t.tokens[idx], b = F.B[tok.b];
-    return `<div class="kb-card t-${FT[b.type].t}" draggable="${!flLocked(b)}" ondragstart="flKDrag(event,'${t.id}',${idx})" ondragend="flKDragEnd(event)"><div class="kb-c1"><span class="kb-code">${t.id}</span>${t.tokens.length > 1 ? '<span class="kb-tag">Chạy song song</span>' : ''}</div><div class="kb-t">${flE(t.title)}</div><div class="kb-m">${flE(t.by)} · ${flAgo(t.at)}</div>${flEmpty((t.data || {})['Tổng tiền']) ? '' : `<div class="kb-tot">Tổng tiền: <b>${Number(t.data['Tổng tiền']).toLocaleString('vi-VN')} đ</b></div>`}<div class="kb-acts">${flLocked(b) ? '<span class="kb-wait">Đang chờ người có quyền duyệt</span>' : flKActs(b).map(a => `<button class="kb-act c-${a.c}" onclick="flKAct('${t.id}',${idx},'${a.k}')">${flE(a.l)}</button>`).join('')}</div></div>`; };
+    return `<div class="kb-card t-${FT[b.type].t}" draggable="${!flLocked(b)}" ondragstart="flKDrag(event,'${t.id}',${idx})" ondragend="flKDragEnd(event)"><div class="kb-c1"><span class="kb-code">${t.id}</span>${t.tokens.length > 1 ? '<span class="kb-tag">Chạy song song</span>' : ''}</div><div class="kb-t">${flE(t.title)}</div><div class="kb-m">${flE(t.by)} · ${flAgo(t.at)}</div>${flEmpty((t.data || {})['Tổng tiền']) ? '' : `<div class="kb-tot">Tổng tiền: <b>${Number(t.data['Tổng tiền']).toLocaleString('vi-VN')} đ</b></div>`}<div class="kb-acts">${flLocked(b) ? '<span class="kb-wait">Đang chờ người có quyền duyệt</span>' : b.type === 'approval' ? flKApAct(t, idx, b, tok) : flKActs(b).map(a => `<button class="kb-act c-${a.c}" onclick="flKAct('${t.id}',${idx},'${a.k}')">${flE(a.l)}</button>`).join('')}</div></div>`; };
   const colH = b => { const ts = []; list.forEach(t => t.tokens.forEach((k, i) => { if (k.b === b.id) ts.push(card(t, i)); }));
     return `<section class="kb-col t-${FT[b.type].t}" data-tg="${b.id}" ondragover="flKOver(event)" ondrop="flKDrop(event)"><header><span class="wf-node-icon fl-ic">${FT[b.type].i}</span><div><b>${flE(b.title)}</b><span>${FT[b.type].l}</span></div><em>${ts.length}</em></header><div class="kb-list">${ts.join('') || '<div class="kb-empty">Không có phiếu ở bước này</div>'}</div></section>`; };
   const fin = (st, title, tone) => { const ts = list.filter(t => t.status === st); return `<section class="kb-col ${tone}" data-tg="${st}" ondragover="flKOver(event)" ondrop="flKDrop(event)"><header><div><b>${title}</b><span>${st === 'done' ? 'Phiếu đã xử lý xong' : 'Phiếu bị hủy'}</span></div><em>${ts.length}</em></header><div class="kb-list">${ts.map(t => `<div class="kb-card ${tone}"><div class="kb-c1"><span class="kb-code">${t.id}</span></div><div class="kb-t">${flE(t.title)}</div><div class="kb-m">${flAgo(t.at)}</div></div>`).join('') || '<div class="kb-empty">Không có phiếu ở bước này</div>'}</div></section>`; };
@@ -4479,7 +4494,8 @@ function flKUndo() { const u = FK.undo; if (!u) return; const l = flTk(FL.svc), 
 function flUndoToast(msg) { const w = document.createElement('span'); w.append(msg + ' '); const b = document.createElement('button'); b.className = 'kb-undo'; b.textContent = 'Hoàn tác'; b.onclick = flKUndo; w.append(b); flNote('success', w, 6000); }
 let flKT2 = 0;
 function flKAct(tid, idx, key) {
-  const t0 = flTk(FL.svc).find(x => x.id === tid), k0 = t0 && t0.tokens[idx]; if (k0 && FL.B[k0.b] && flLocked(FL.B[k0.b])) { showToast('Bạn chưa có quyền duyệt phiếu này. Hãy nhờ người duyệt xử lý.'); return; } FK.undo = { tid, snap: JSON.stringify(t0) }; flAct(FL.svc, tid, idx, key); const t = flTk(FL.svc).find(x => x.id === tid); renderApp(); flUndoToast(t && t.status === 'done' ? `Phiếu ${tid} đã hoàn tất.` : t && t.status === 'cancel' ? `Phiếu ${tid} đã bị hủy.` : `Đã chuyển phiếu ${tid} sang bước kế tiếp.`); }
+  const t0 = flTk(FL.svc).find(x => x.id === tid), k0 = t0 && t0.tokens[idx]; if (k0 && FL.B[k0.b] && flLocked(FL.B[k0.b])) { showToast('Bạn chưa có quyền duyệt phiếu này. Hãy nhờ người duyệt xử lý.'); return; }
+  if (key === 'ok' && k0 && (k0.pre || []).length) { const u = k0.pre.shift(); t0.hist.push({ at: Date.now(), block: FL.B[k0.b].title, act: 'pre_ok', note: u }); renderApp(); showToast(`${u} đã duyệt trước${k0.pre.length ? `, còn ${k0.pre.length} người` : '. Đến lượt người duyệt chính'}.`); return; } FK.undo = { tid, snap: JSON.stringify(t0) }; flAct(FL.svc, tid, idx, key); const t = flTk(FL.svc).find(x => x.id === tid); renderApp(); flUndoToast(t && t.status === 'done' ? `Phiếu ${tid} đã hoàn tất.` : t && t.status === 'cancel' ? `Phiếu ${tid} đã bị hủy.` : `Đã chuyển phiếu ${tid} sang bước kế tiếp.`); }
 function flGoKanban() { window.location.hash = '#/kanban'; }
 function flTicketFields(F) { const tg = Object.values(F.B).filter(b => b.type === 'transform').map(b => b.target); return (F.fields || []).filter(f => (f.scope || 'svc') === 'svc' && !tg.includes(f.label)); }
 function flTicketModal(name) {
