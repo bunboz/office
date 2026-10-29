@@ -1541,25 +1541,6 @@
     overflow: hidden;
   }
 
-  /* Toast Notification */
-  #toast-box {
-    position: fixed;
-    bottom: 24px;
-    right: 24px;
-    background: #0f172a;
-    color: #ffffff;
-    padding: 10px 16px;
-    border-radius: var(--r-xs);
-    font-size: 13px;
-    font-weight: 500;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    box-shadow: var(--shadow-popup);
-    z-index: 400;
-    transition: opacity 0.2s, transform 0.2s;
-  }
-
   .hidden { display: none !important; }
 /* header + sidebar theo mẫu ERP (Kho Phụ Liệu) */
   #sevago-sidebar{width:var(--sidebar-w);background:#07554b;}
@@ -1744,6 +1725,73 @@ body.role-user #g-set{display:none}
   .fl-secd{padding:0!important;} .fl-secd>summary{display:flex;align-items:center;justify-content:space-between;gap:8px;padding:14px 16px;cursor:pointer;list-style:none;font-size:14px;color:#262727;} .fl-secd>summary::-webkit-details-marker{display:none;} .fl-secd>summary b{font-weight:600;} .fl-secd>summary::after{content:"▾";color:#737676;margin-left:8px;transition:transform .15s;} .fl-secd[open]>summary::after{transform:rotate(180deg);} .fl-secd .fl-sum{margin-left:auto;font-size:12px;color:#4C4D4D;background:#F2F4F3;border-radius:999px;padding:2px 10px;}
   .fl-secd>p{margin:0;padding:0 16px;font-size:12px;color:#565858;} .fl-secd>.fl-sg,.fl-secd>.fl-adv{padding:12px 16px 16px;margin:0;}
   .kb-bar{display:flex;align-items:center;gap:12px;flex-wrap:wrap;} .kb-bar .fl-in{width:280px;} .kb-mine{display:flex;align-items:center;gap:6px;font-size:13px;color:#262727;cursor:pointer;} .kb-bar .kb-sub{margin-left:auto;background:none;border:none;padding:0;} .kb-tot{font-size:12px;color:#4C4D4D;} .kb-tot b{color:#262727;} .kb-undo{border:none;background:none;color:#07554B;font-weight:700;cursor:pointer;text-decoration:underline;padding:0 0 0 6px;font-size:inherit;} .fl-nth{margin:6px 0 0;font-size:13px;font-weight:600;color:#262727;}
+  /* ===== Canvas giống phần mềm vẽ sơ đồ: thẻ nổi, cổng nối, phân biệt khối người xử lý và tự động ===== */
+  .fl-node:not(.fl-start){background:linear-gradient(180deg,var(--tb,#F2F4F3) 0,var(--tb,#F2F4F3) 56px,#fff 56px);border-color:#C9CFCF;box-shadow:0 3px 10px rgba(16,24,40,.14),0 1px 2px rgba(16,24,40,.08);} .fl-node:not(.fl-start):hover{box-shadow:0 6px 16px rgba(16,24,40,.2),0 1px 3px rgba(16,24,40,.1);} .fl-node.on:not(.fl-start){box-shadow:0 0 0 2px #07554B,0 6px 16px rgba(16,24,40,.2);}
+  .fl-node.fl-auto:not(.fl-start){border-style:dashed;border-left-style:solid;background:linear-gradient(180deg,#E8EEF5 0,#E8EEF5 56px,#F7F9FB 56px);}
+  .fl-md{font-size:11px;font-weight:600;border-radius:999px;padding:2px 9px;white-space:nowrap;} .fl-md.m{background:#E7F1EF;color:#05603A;} .fl-md.a{background:#DCE6F2;color:#1F3F66;}
+  .fl-node .fl-nf{justify-content:space-between;gap:8px;}
+  .fl-legend{position:absolute;left:16px;bottom:14px;z-index:5;display:flex;gap:14px;background:#fff;border:1px solid #E4E6E6;border-radius:999px;padding:6px 14px;font-size:12px;color:#4C4D4D;box-shadow:0 1px 3px rgba(16,24,40,.08);} .fl-legend span{display:flex;align-items:center;gap:6px;} .fl-legend i{width:14px;height:14px;border-radius:4px;display:inline-block;} .fl-legend i.m{background:#E7F1EF;border:1.5px solid #05603A;} .fl-legend i.a{background:#DCE6F2;border:1.5px dashed #1F3F66;}
+  .fl-port{position:absolute;width:12px;height:12px;border-radius:50%;background:#fff;border:2px solid #07554B;left:50%;bottom:-7px;transform:translateX(-50%);opacity:0;cursor:crosshair;z-index:3;transition:opacity .12s,transform .12s;} .fl-node:hover>.fl-port,.fl-node.on>.fl-port,.fl-pill:hover>.fl-port,body.fl-cning .fl-port{opacity:1;} .fl-port:hover{transform:translateX(-50%) scale(1.35);background:#07554B;}
+  .fl-start>.fl-port{left:50%;} .fl-pill{overflow:visible;} .fl-pt{display:block;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;} .fl-pill>.fl-port{bottom:-8px;}
+  .fl-node.cn-ok{outline:3px solid #12B76A;outline-offset:2px;} .fl-node.cn-bad{outline:3px solid #F04438;outline-offset:2px;}
+  .fl-cnl{position:absolute;left:0;top:0;width:100%;height:100%;pointer-events:none;z-index:20;overflow:visible;} .fl-cnl path{stroke:#07554B;stroke-width:2;stroke-dasharray:6 4;fill:none;}
+  .fl-cntip{position:absolute;z-index:30;max-width:320px;background:#262727;color:#fff;font-size:12px;line-height:1.45;border-radius:8px;padding:8px 12px;box-shadow:0 6px 18px rgba(0,0,0,.25);pointer-events:none;}
+  .fl-zv{border:1px solid transparent;background:none;font-size:12px;font-weight:600;min-width:58px;height:24px;border-radius:6px;cursor:pointer;color:#262727;} .fl-zv::after{content:" ▾";color:#737676;} .fl-zv:hover{background:#F2F4F3;border-color:#E4E6E6;}
+  .fl-fhead{display:flex;justify-content:space-between;align-items:center;gap:10px;} .fl-link{border:none;background:none;color:#07554B;font-weight:600;font-size:12px;cursor:pointer;padding:4px 0;text-align:left;} .fl-link:hover{text-decoration:underline;}
+  .fl-eh{position:absolute;width:14px;height:14px;border-radius:50%;background:#07554B;border:2px solid #fff;box-shadow:0 0 0 1px #07554B;z-index:4;opacity:0;cursor:grab;transition:opacity .12s,transform .12s;} .fl-eh.s-T{left:50%;top:-8px;transform:translateX(-50%);} .fl-eh.s-L{left:-8px;top:50%;transform:translateY(-50%);} .fl-eh.s-R{right:-8px;top:50%;transform:translateY(-50%);}
+  .fl-node:hover>.fl-eh,.fl-node.on>.fl-eh,.fl-ghost:hover>.fl-eh,body.fl-cning .fl-eh{opacity:1;} .fl-eh:hover{background:#12B76A;} .fl-ghost{overflow:visible;}
+  #fl-run{position:absolute;top:0;right:0;bottom:0;width:380px;background:#fff;border-left:1px solid #E4E6E6;box-shadow:-4px 0 24px rgba(15,23,42,.08);z-index:95;display:flex;flex-direction:column;transition:transform .28s cubic-bezier(.2,.8,.2,1);} #fl-run.hidden{transform:translateX(100%);}
+  .fl-run-btn{height:26px;padding:0 14px;border-radius:6px;border:none;background:#07554B;color:#fff;font-size:12px;font-weight:600;cursor:pointer;} .fl-run-btn:hover{background:#05443C;}
+  .fl-node.run-done:not(.fl-start){box-shadow:0 0 0 2px #12B76A,0 3px 10px rgba(16,24,40,.14);} .fl-node.run-done::after{content:"✓";position:absolute;right:-9px;top:-9px;width:20px;height:20px;border-radius:50%;background:#12B76A;color:#fff;font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center;}
+  .fl-node.run-now{box-shadow:0 0 0 3px #2E90FA,0 0 18px rgba(46,144,250,.55);animation:flPulse .9s ease-in-out infinite;} .fl-node.run-wait{box-shadow:0 0 0 3px #F79009,0 0 14px rgba(247,144,9,.45);} .fl-node.run-wait::after{content:"Chờ";position:absolute;right:-6px;top:-10px;background:#F79009;color:#fff;font-size:11px;font-weight:700;border-radius:999px;padding:2px 8px;}
+  @keyframes flPulse{0%,100%{box-shadow:0 0 0 3px #2E90FA,0 0 10px rgba(46,144,250,.4);}50%{box-shadow:0 0 0 4px #2E90FA,0 0 24px rgba(46,144,250,.7);}}
+  .fl-rl{list-style:none;margin:0 0 12px;padding:0;display:flex;flex-direction:column;gap:2px;} .fl-rl li{display:flex;gap:10px;padding:8px 0;border-bottom:1px solid #F2F2F2;font-size:13px;} .fl-rl li b{display:block;color:#262727;font-weight:600;} .fl-rl li small{display:block;color:#565858;font-size:12px;} .fl-rl li em{display:block;font-style:normal;font-size:12px;color:#05603A;margin-top:2px;} .fl-rd{width:10px;height:10px;border-radius:50%;margin-top:5px;flex-shrink:0;background:#12B76A;} .fl-rl li.now .fl-rd{background:#2E90FA;animation:flPulse .9s infinite;} .fl-rl li.wait .fl-rd{background:#F79009;}
+  .fl-rw{background:#FFFAEB;border:1px solid #FEC84B;border-radius:10px;padding:12px;display:flex;flex-direction:column;gap:8px;font-size:13px;} .fl-rw.ok{background:#ECFDF3;border-color:#A6F4C5;} .fl-rw span{color:#4C4D4D;font-size:12px;}
+  .fl-rh{margin:16px 0 6px;font-size:13px;font-weight:600;} .fl-rdl{display:grid;grid-template-columns:1fr auto;gap:4px 12px;margin:0;font-size:13px;} .fl-rdl dt{color:#565858;} .fl-rdl dd{margin:0;font-weight:600;text-align:right;}
+  #fl-run .fl-db{padding:16px 20px;overflow:auto;flex:1;display:block;} #fl-run .fl-db>.fl-f{margin-bottom:12px;}
+  .fl-cntip ul,.kb-why{margin:6px 0 0;padding-left:18px;} .fl-cntip li,.kb-why li{margin:3px 0;} .fl-cntip{max-width:380px;} .kb-why{text-align:left;}
+
+  /* ===== đồ thị tự do ===== */
+  .fl-svg path.fl-ep{stroke:#9B9C9C;stroke-width:1.8;} .fl-svg path.fl-ep.taken{stroke:#12B76A;stroke-width:2.6;} .fl-svg path.fl-hit{stroke:transparent;stroke-width:20;pointer-events:stroke;}
+  .fl-eb{position:absolute;transform:translate(-50%,-50%);display:flex;gap:4px;opacity:0;transition:opacity .12s;z-index:4;} .fl-eb.show,.fl-eb:hover,body.fl-dragging .fl-eb{opacity:1;} .fl-eb .fl-plus{position:static;transform:none;opacity:1;} .fl-cut{width:22px;height:22px;border-radius:50%;border:1px solid #F04438;background:#fff;color:#D92D20;cursor:pointer;display:flex;align-items:center;justify-content:center;padding:0;} .fl-cut:hover{background:#FEF3F2;}
+  .fl-eh.g{transform:translate(-50%,-50%);} .fl-eh.g.show{opacity:1;}
+  .fl-addln{position:absolute;transform:translate(0,-50%);height:26px;padding:0 12px;border-radius:999px;border:1px solid #07554B;background:#fff;color:#07554B;font-size:12px;font-weight:600;cursor:pointer;white-space:nowrap;z-index:3;}
+  .fl-orphan{outline:2px dashed #F04438;outline-offset:3px;} .fl-orphan::before{content:"Chưa nối";position:absolute;left:8px;top:-22px;background:#F04438;color:#fff;font-size:11px;font-weight:700;border-radius:999px;padding:1px 9px;}
+  .fl-dirty{font-size:11px;font-weight:600;color:#B54708;background:#FFFAEB;border:1px solid #FEC84B;border-radius:999px;padding:2px 8px;white-space:nowrap;} .fl-tidy:disabled,.fl-run-btn:disabled{opacity:.45;cursor:default;}
+  /* ===== lỗi ===== */
+  .fl-node.fl-err:not(.fl-start){outline:2px solid #F04438;outline-offset:2px;background:linear-gradient(180deg,#FEE4E2 0,#FEE4E2 56px,#FFF6F5 56px)!important;border-color:#FDA29B;} .fl-node.fl-warnn:not(.fl-start){outline:2px dashed #F79009;outline-offset:2px;}
+  .fl-eflag{position:absolute;right:-8px;top:-12px;background:#F04438;color:#fff;font-size:11px;font-weight:700;border-radius:999px;padding:2px 9px;z-index:3;white-space:nowrap;} .fl-eflag.w{background:#F79009;}
+  .fl-svg path.fl-ep.bad{stroke:#F04438;stroke-width:2.6;stroke-dasharray:7 5;}
+  .fl-errbox{margin:12px 16px 0;background:#FEF3F2;border:1px solid #FDA29B;border-radius:10px;padding:10px 14px;font-size:13px;color:#7A271A;} .fl-errbox b{display:block;margin-bottom:4px;} .fl-errbox ul{margin:0;padding-left:18px;} .fl-errbox li{margin:2px 0;} .fl-errbox span{display:block;margin-top:6px;font-size:12px;color:#B42318;} .fl-errbox.w{background:#FFFAEB;border-color:#FEC84B;color:#93370D;}
+  #fl-run .fl-errbox{margin:0 0 14px;}
+  .fl-node.run-err{box-shadow:0 0 0 3px #F04438,0 0 18px rgba(240,68,56,.5)!important;} .fl-node.run-err::after{content:"Lỗi";position:absolute;right:-6px;top:-10px;background:#F04438;color:#fff;font-size:11px;font-weight:700;border-radius:999px;padding:2px 9px;}
+  .fl-rl li.err .fl-rd{background:#F04438;} .fl-rl li em.e{color:#B42318;font-weight:600;} .fl-rw.err{background:#FEF3F2;border-color:#FDA29B;} .fl-rw.err span{color:#B42318;}
+  .fl-addln{border-style:dashed;height:26px;padding:0 10px;font-size:12px;}
+  .canvas-top-right .btn:disabled{opacity:.45;cursor:default;}
+  /* ===== HUD kiểu công cụ vẽ ===== */
+  .fl-tools{position:absolute;left:16px;top:50%;transform:translateY(-50%);z-index:6;background:#fff;border:1px solid #E4E6E6;border-radius:999px;box-shadow:0 2px 12px rgba(16,24,40,.1);padding:8px 6px;display:flex;flex-direction:column;align-items:center;gap:4px;}
+  .fl-tools button{width:34px;height:34px;border-radius:50%;border:none;background:transparent;color:#4C4D4D;cursor:pointer;display:flex;align-items:center;justify-content:center;padding:0;} .fl-tools button:hover:not(:disabled){background:#F2F4F3;color:#07554B;} .fl-tools button.on{background:#07554B;color:#fff;} .fl-tools button:disabled{opacity:.35;cursor:default;} .fl-tsep{width:20px;height:1px;background:#E4E6E6;margin:2px 0;}
+  .fl-hudr{position:absolute;right:16px;bottom:14px;z-index:6;display:flex;gap:8px;align-items:center;} .fl-hb{width:34px;height:34px;border-radius:50%;border:1px solid #E4E6E6;background:#fff;color:#4C4D4D;cursor:pointer;display:flex;align-items:center;justify-content:center;box-shadow:0 1px 4px rgba(16,24,40,.08);font-weight:600;padding:0;} .fl-hb:hover,.fl-hb[aria-pressed=true]{background:#E7F1EF;color:#07554B;border-color:#BFDCD6;}
+  .fl-zg{display:flex;align-items:center;background:#fff;border:1px solid #E4E6E6;border-radius:999px;box-shadow:0 1px 4px rgba(16,24,40,.08);padding:3px 4px;} .fl-zg .fl-zb{width:28px;height:28px;border-radius:50%;border:none;background:transparent;cursor:pointer;font-size:16px;color:#4C4D4D;} .fl-zg .fl-zb:hover{background:#F2F4F3;}
+  .fl-mini{position:absolute;right:16px;bottom:58px;width:200px;height:150px;z-index:6;background:#fff;border:1px solid #E4E6E6;border-radius:12px;box-shadow:0 4px 16px rgba(16,24,40,.14);overflow:hidden;cursor:pointer;touch-action:none;} .fl-mini[hidden]{display:none;}
+  .tool-hand{cursor:grab;} .tool-hand .fl-node,.tool-hand .fl-pill,.tool-hand .fl-plus,.tool-hand .fl-port,.tool-hand .fl-eh,.tool-hand .fl-eb,.tool-hand .fl-addln{pointer-events:none;}
+  .tool-cut{cursor:crosshair;} .tool-cut .fl-node,.tool-cut .fl-pill,.tool-cut .fl-plus,.tool-cut .fl-port,.tool-cut .fl-eh,.tool-cut .fl-eb,.tool-cut .fl-addln{pointer-events:none;} .tool-cut .fl-eb,.tool-cut .fl-eh{display:none;} .tool-cut .fl-svg path.fl-hit{cursor:crosshair;stroke-width:24;} .fl-svg path.fl-ep.hot{stroke:#F04438;stroke-width:3;stroke-dasharray:6 4;}
+  .fl-legend{left:76px;}
+  .fl-guide{border-left:1px solid #E4E6E6;border-top:4px solid #07554B;z-index:30;} .fl-guide::after{content:"";position:absolute;bottom:-7px;left:var(--ax,40px);width:12px;height:12px;background:#fff;border-right:1px solid #E4E6E6;border-bottom:1px solid #E4E6E6;transform:translateX(-50%) rotate(45deg);}
+  .fl-svg path.fl-ep.sel{stroke:#07554B;stroke-width:3.2;}
+
+  /* Thông báo (Seva DS Notification): giữa-trên màn hình, 4 loại */
+  #toast-box{position:fixed;top:16px;left:50%;transform:translateX(-50%);z-index:600;max-width:min(560px,calc(100vw - 32px));display:flex;align-items:flex-start;gap:10px;padding:10px 14px;border-radius:12px;border:1px solid var(--nc-bd);background:var(--nc-bg);color:var(--nc-tx);font-size:13px;font-weight:500;line-height:1.45;box-shadow:0 8px 24px rgba(16,24,40,.12);transition:opacity .2s;}
+  #toast-box.nt-success{--nc-bg:#ECFDF3;--nc-bd:#A6F4C5;--nc-tx:#05603A;--nc-ic:#12B76A;}
+  #toast-box.nt-warning{--nc-bg:#FFFAEB;--nc-bd:#FEDF89;--nc-tx:#93370D;--nc-ic:#F79009;}
+  #toast-box.nt-error{--nc-bg:#FEF3F2;--nc-bd:#FDA29B;--nc-tx:#912018;--nc-ic:#F04438;}
+  #toast-box.nt-info{--nc-bg:#EFF8FF;--nc-bd:#B2DDFF;--nc-tx:#175CD3;--nc-ic:#2E90FA;}
+  #toast-box .nt-ic{flex:none;width:20px;height:20px;border-radius:50%;background:var(--nc-ic);display:flex;align-items:center;justify-content:center;margin-top:1px;}
+  #toast-box .nt-ic svg{width:12px;height:12px;stroke:#fff;fill:none;stroke-width:2.4;stroke-linecap:round;stroke-linejoin:round;}
+  #toast-box .nt-b{min-width:0;} #toast-box .kb-undo{margin-left:8px;background:none;border:0;padding:0;font:inherit;font-weight:700;color:inherit;text-decoration:underline;cursor:pointer;}
+  #toast-box .kb-why{color:inherit;}
+  #canvas-work-area,#plus-context-menu,.fl-km,.fl-pill,.fl-node{user-select:none;-webkit-user-select:none;} #canvas-work-area input,#canvas-work-area textarea{user-select:text;-webkit-user-select:text;}
+  .fl-km{user-select:none;} .fl-km .fl-dis{opacity:.5;}
 </style>
 </head>
 <body>
@@ -1885,13 +1933,13 @@ body.role-user #g-set{display:none}
     <svg class="plus-menu-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="12" y1="8" x2="12" y2="16"/><line x1="8" y1="12" x2="16" y2="12"/></svg>
     <span>Thêm khối</span>
   </div>
-  <div class="plus-menu-item" onclick="handleMenuCreateLink()">
-    <svg class="plus-menu-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>
-    <span>Nối tới khối khác</span>
-  </div>
   <div class="plus-menu-item" onclick="handleMenuAddParallelBranch()">
     <svg class="plus-menu-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
     <span>Thêm nhánh song song</span>
+  </div>
+  <div class="plus-menu-item" onclick="flLinkPick(event)">
+    <svg class="plus-menu-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 14L4 9l5-5"/><path d="M20 20v-7a4 4 0 0 0-4-4H4"/></svg>
+    <span>Nối tới khối có sẵn (quay lại)</span>
   </div>
 </div>
 
@@ -1958,11 +2006,11 @@ body.role-user #g-set{display:none}
         </div>
         <div class="picker-item" onclick="addBlockFromPicker('webhook_in', 'Nhận webhook', 'Nhận API', 'color-teal', '📥')">
           <div class="picker-item-icon color-teal">📥</div>
-          <span>Nhận webhook</span>
+          <span>Webhook đầu vào</span>
         </div>
         <div class="picker-item" onclick="addBlockFromPicker('webhook_out', 'Gửi webhook', 'Bắn API bên ngoài', 'color-orange', '📤')">
           <div class="picker-item-icon color-orange">📤</div>
-          <span>Gửi webhook</span>
+          <span>Webhook đầu ra</span>
         </div>
         <div class="picker-item" onclick="addBlockFromPicker('join', 'Hợp nhất', 'Đợi 100% hoàn thành', 'color-cyan', '🔗')">
           <div class="picker-item-icon color-cyan">🔗</div>
@@ -2141,7 +2189,7 @@ body.role-user #g-set{display:none}
 </div>
 
 <!-- Toast Container -->
-<div id="toast-box" class="hidden" role="status" aria-live="polite"></div>
+<div id="toast-box" class="hidden" aria-live="polite"></div>
 
 <script>
 /* ============================================================
@@ -3080,6 +3128,13 @@ function handleMenuAddBlock() {
   if (drawer) drawer.classList.remove('hidden');
 }
 
+// nối đầu ra này tới một khối đã có, gồm quay về bước trước; khối không nối được bị làm mờ kèm lý do
+function flLinkPick(e) {
+  const { o, k } = FL.pend, cur = flGet(o, k);
+  const its = Object.values(FL.B).filter(b => b.id !== o && b.id !== cur).map(b => { const c = flConnCheck(o, k, b.id); return [b.title + (c.ok ? '' : ' (không nối được)'), () => (c.ok ? flCnApply(o, k, c.plan) : flCnFail(c.reasons)), c.ok ? '' : 'fl-dis']; });
+  if (!its.length) { showToast('Chưa có khối nào khác để nối.'); return; }
+  flMenu(e, its, 0, 0); FL.ancKm = true; document.getElementById('fl-km').style.overflowY = 'auto'; flAncPos();
+}
 function handleMenuCreateLink() {
   closePlusMenu();
   if (activeTargetConnection) {
@@ -3091,39 +3146,10 @@ function handleMenuCreateLink() {
 }
 
 function handleMenuAddParallelBranch() {
-  closePlusMenu();
-  if (!activeTargetConnection) return;
-  const fromNode = canvasState.nodes.find(n => n.id === activeTargetConnection.from);
-  if (!fromNode) return;
-
-  const newBranchId = `node-dyn-branch-${Date.now()}`;
-  const newBranch = {
-    id: newBranchId,
-    type: 'task',
-    title: 'Nhánh mới (Song song)',
-    subtitle: 'Chạy đồng thời',
-    category: 'color-orange',
-    icon: '📋',
-    x: fromNode.x + 320,
-    y: fromNode.y + 160,
-    w: 260,
-    h: 96,
-    slaHours: 4
-  };
-
-  canvasState.nodes.push(newBranch);
-  canvasState.connections.push({
-    id: `c-branch-${Date.now()}`,
-    from: fromNode.id,
-    to: newBranchId,
-    type: 'horizontal',
-    label: 'Song song',
-    color: '#B54708'
-  });
-
-  showToast('Đã thêm một nhánh song song');
-  renderApp();
-  selectCanvasNode(newBranchId);
+  closePlusMenu(); flSnap(); const { o, k } = FL.pend, old = flGet(o, k), id = flId(), jid = flId();
+  FL.B[id] = { id, type: 'parallel', title: 'Đồng thời', sla: 0, lanes: [jid, jid], join: jid };
+  FL.B[jid] = { id: jid, type: 'join', title: 'Đồng thời', sla: 0, next: old };
+  flSet(o, k, id); flPlaceNew(FL.B[id], o, k, null); flResolve(FL.B[jid], FL.B[id].x, FL.B[id].y + 420); FL.fresh = id; flRender(); showToast('Đã thêm nhánh song song');
 }
 
 function closeActionPicker() {
@@ -3574,18 +3600,23 @@ function closeModal(id) {
   if (el) el.classList.add('hidden');
 }
 
-function showToast(msg) {
-  const box = document.getElementById('toast-box');
-  if (box) {
-    box.innerText = msg;
-    box.classList.remove('hidden');
-    box.style.opacity = '1';
-    setTimeout(() => {
-      box.style.opacity = '0';
-      setTimeout(() => box.classList.add('hidden'), 200);
-    }, 2800);
-  }
+const NT_IC = { success: '<path d="M2.5 6.5l2.5 2.5 4.5-5"/>', warning: '<path d="M6 3v3.5M6 9h.01"/>', error: '<path d="M3.5 3.5l5 5M8.5 3.5l-5 5"/>', info: '<path d="M6 5.5V9M6 3h.01"/>' };
+let flNT = 0;
+function flNote(type, content, ms) {
+  const box = document.getElementById('toast-box'); if (!box) return;
+  box.className = 'nt-' + type; box.setAttribute('role', type === 'error' || type === 'warning' ? 'alert' : 'status'); box.innerHTML = `<span class="nt-ic"><svg viewBox="0 0 12 12" aria-hidden="true">${NT_IC[type]}</svg></span>`;
+  const bd = document.createElement('div'); bd.className = 'nt-b'; bd.append(content); box.append(bd); box.style.opacity = '1';
+  clearTimeout(flNT); flNT = setTimeout(() => { box.style.opacity = '0'; setTimeout(() => box.classList.add('hidden'), 200); }, ms || 2800);
 }
+// shortcut: loại suy ra từ lời mở đầu thông báo, đổi sang tham số type nếu thêm nhiều thông báo mới
+function ntType(m) {
+  if (/^(Không còn|Đã hủy các thay đổi|Đang|Chọn khối|Chế độ)/.test(m)) return 'info';
+  if (/^(Không|Bạn chưa)/.test(m)) return 'error';
+  if (/^(Chưa|Cần|Điều kiện|Tên .* đã có|Thả đầu dây|Phiếu chỉ|Khối)/.test(m)) return 'warning';
+  if (/^(Đã|Toàn bộ|Bước \d+ hoàn thành|Trưởng phòng)/.test(m)) return 'success';
+  return 'info';
+}
+function showToast(msg, type) { flNote(type || ntType(msg), msg); }
 
 // Global exports
 window.state = state;
@@ -3696,7 +3727,7 @@ const FT = {
   form:{l:'Điền thông tin',i:'📝',t:'warn',perf:1}, approval:{l:'Phê duyệt',i:'✔',t:'ok'}, sign:{l:'Ký tài liệu',i:'✍',t:'err',perf:1},
   task:{l:'Giao việc',i:'📋',t:'neu',perf:1}, form_public:{l:'Nhận thông tin từ bên ngoài',i:'🌐',t:'info',perf:1},
   branch:{l:'Rẽ nhánh đúng hoặc sai',i:'🔀',t:'neu'}, switch:{l:'Rẽ nhiều nhánh',i:'🌿',t:'neu'}, transform:{l:'Tự tính toán',i:'🔄',t:'neu'}, auto:{l:'Gửi email',i:'✉',t:'info'},
-  webhook_in:{l:'Nhận webhook',i:'📥',t:'info'}, webhook_out:{l:'Gửi webhook',i:'📤',t:'info'},
+  webhook_in:{l:'Webhook đầu vào',i:'📥',t:'info'}, webhook_out:{l:'Webhook đầu ra',i:'📤',t:'info'},
   parallel:{l:'Làm cùng lúc',i:'≡',t:'neu'}, join:{l:'Chờ làm xong',i:'🔗',t:'neu'}, end:{l:'Kết thúc',i:'🏁',t:'ok'}
 };
 const FDESC = {
@@ -3711,10 +3742,11 @@ const FDESC = {
   auto: 'Hệ thống tự gửi email khi phiếu đến bước này. Không cần ai thao tác.',
   parallel: 'Chia phiếu thành nhiều nhánh để làm cùng một lúc, ví dụ vừa đặt hàng vừa báo kế toán.',
   join: 'Chờ tất cả các nhánh làm cùng lúc xong rồi mới đi tiếp.',
+  webhook_in: 'Hệ thống ngoài gửi dữ liệu vào phiếu qua một đường dẫn. Dữ liệu nhận được ghi vào trường bạn chọn.',
+  webhook_out: 'Hệ thống tự gửi dữ liệu của phiếu tới một địa chỉ bên ngoài, ví dụ phần mềm kế toán.',
   end: 'Kết thúc phiếu. Chọn kết quả cuối là Hoàn tất hoặc Hủy phiếu.'
 };
 Object.keys(FDESC).forEach(k => { if (FT[k]) FT[k].d = FDESC[k]; });
-delete FT.webhook_in; delete FT.webhook_out;
 document.querySelectorAll('.picker-item').forEach(el => {
   const m = /addBlockFromPicker\('([a-z_]+)'/.exec(el.getAttribute('onclick') || ''); if (!m) return;
   const t = FT[m[1]]; if (!t) { el.remove(); return; } const sp = el.querySelector('span'); if (sp) sp.innerHTML = `<b>${t.l}</b><small>${t.d}</small>`;
@@ -3741,98 +3773,253 @@ const flOuts = b => b.type === 'approval' ? [{ k: 'ok', l: 'Đã duyệt', c: 'o
 const flGet = (o, k) => (o === 'start' ? FL.start[k] : /^lane/.test(k) ? FL.B[o].lanes[+k.slice(4)] : FL.B[o][k]) ?? null;
 const flSet = (o, k, v) => { if (o === 'start') FL.start[k] = v; else if (/^lane/.test(k)) FL.B[o].lanes[+k.slice(4)] = v; else FL.B[o][k] = v; };
 
-function flHtml() {
-  const NW = 256, NH = 116, VG = 60, HG = 40, PG = 72, PW = 150, P = [], N = [], C = [], F = [];
-  const ln = (x1, y1, x2, y2, arrow) => P.push(`<path d="M${x1} ${y1}L${x2} ${y2}"${arrow ? ' marker-end="url(#fl-arr)"' : ''}/>`);
-  const el = (x1, y1, x2, y2, my, arrow) => {
-    if (x1 === x2) return ln(x1, y1, x2, y2, arrow);
-    const sg = Math.sign(x2 - x1), r = Math.max(0, Math.min(14, Math.abs(x2 - x1) / 2, (my - y1), (y2 - my)));
-    P.push(`<path d="M${x1} ${y1}L${x1} ${my - r}Q${x1} ${my} ${x1 + sg * r} ${my}L${x2 - sg * r} ${my}Q${x2} ${my} ${x2} ${my + r}L${x2} ${y2}"${arrow ? ' marker-end="url(#fl-arr)"' : ''}/>`);
-  };
-  const fm = v => {
-    if (v == null) return 150; if (typeof v === 'object') return 256; const b = FL.B[v]; if (!b) return 150; const o = flOuts(b);
-    if (o) return Math.max(NW, o.map(x => fm(flGet(b.id, x.k))).reduce((a, c) => a + c, 0) + HG * (o.length - 1));
-    if (b.type === 'parallel') { const w = b.lanes.map(l => fm(l ?? null)); return Math.max(NW, w.reduce((a, c) => a + c, 0) + PG * (w.length - 1) + 2 * 40, fm(b.join)); }
-    return b.type === 'end' ? NW : Math.max(NW, fm(b.next ?? null));
-  };
-  const btn = (cls, x, y, oc, inner, label) => `<button class="${cls}" style="left:${x}px;top:${y}px" onclick="${oc}" aria-label="${label}" title="${label}">${inner}</button>`;
-  const ctl = (cx, y, o, k) => C.push(btn('fl-plus fl-mid', cx, y, `flPlus(event,'${o}','${k}')`, '+', 'Thêm khối vào giữa').replace('<button ', `<button data-src="${o}" `));
-  const nodeH = (b, x, y) => { const t = FT[b.type]; return `<div data-id="${b.id}" role="button" tabindex="0" aria-label="${t.l}: ${flE(b.title)}" title="${flE(t.l)}: ${flE(t.d || '')}" ondblclick="flRename(event,'${b.id}')" onkeydown="flNodeKey(event,'${b.id}')" class="fl-node t-${t.t}${FL.sel === b.id ? ' on' : ''}${FL.fresh === b.id ? ' new' : ''}" style="left:${x}px;top:${y}px;width:${NW}px" onclick="flNodeClick(event,'${b.id}')"><div class="fl-nh"><span class="wf-node-icon fl-ic">${t.i}</span><span class="fl-nl">${t.l}</span><button class="fl-kb" onclick="flKebab(event,'${b.id}')" aria-label="Tùy chọn">⋮</button></div><div class="fl-nt" title="${flE(b.title)}">${flE(b.title)}</div><div class="fl-nf"><span>${flE(flFoot(b))}</span><span>—</span></div></div>`; };
-  const pill = (c, y, x, o) => `<div class="fl-pill c-${x.c}" role="button" tabindex="0" title="Bấm để thêm khối vào nhánh này" onclick="flPillClick(event,'${o}','${x.k}')" onkeydown="if(event.key==='Enter')flPillClick(event,'${o}','${x.k}')" style="left:${c}px;top:${y}px;min-width:${PW}px">${x.i === '?' || x.i === '1' || x.i === '2' || x.i === '•' ? x.i + ' ' : x.i + ' '}${flE(x.l)}</div>`;
-  const slot = (o, k, cx, fy) => {
-    const v = flGet(o, k);
-    if (v == null) { ln(cx, fy, cx, fy + 28); C.push(btn('fl-plus', cx, fy + 28, `flPlus(event,'${o}','${k}')`, '+', 'Thêm khối')); return fy + 40; }
-    const y = fy + VG;
-    if (typeof v === 'object') { ln(cx, fy, cx, y, 1); ctl(cx, fy + VG / 2, o, k); const t = FL.B[v.link]; N.push(`<div class="fl-ghost" role="button" tabindex="0" onclick="flGhostClick(event,'${o}','${k}','${v.link}')" onkeydown="if(event.key==='Enter')flGhostClick(event,'${o}','${k}','${v.link}')" style="left:${cx - 128}px;top:${y}px;width:256px" title="Bấm để đi tới khối hoặc gỡ liên kết">${'Nối tới “' + flE(t.title) + '”'}</div>`); return y + 30; }
-    const nb = FL.B[v], tx = cx + (nb.dx || 0), ty = y + (nb.dy || 0);
-    el(cx, fy, tx, ty, (fy + ty) / 2, 1); ctl(tx, Math.max(fy + 12, ty - VG / 2), o, k);
-    return place(nb, tx, ty);
-  };
-  const place = (b, cx, y) => {
-    N.push(nodeH(b, cx - NW / 2, y)); const by = y + NH, o = flOuts(b);
-    if (o) {
-      const w = o.map(x => fm(flGet(b.id, x.k))), tot = w.reduce((a, c) => a + c, 0) + HG * (o.length - 1), bar = by + 18, py = by + 34; let x0 = cx - tot / 2; const cs = [];
-      o.forEach((x, i) => { cs.push(x0 + w[i] / 2); x0 += w[i] + HG; });
-      let bot = py + 26;
-      o.forEach((x, i) => { el(cx, by, cs[i], py, bar); N.push(pill(cs[i], py, x, b.id)); bot = Math.max(bot, slot(b.id, x.k, cs[i], py + 26)); });
-      return bot;
-    }
-    if (b.type === 'parallel') {
-      const lw = b.lanes.map(l => fm(l ?? null)), W = lw.reduce((a, c) => a + c, 0) + PG * (lw.length - 1), fT = by + 56, pad = 40, bot = []; let x0 = cx - W / 2;
-      ln(cx, by, cx, fT, 1); C.push(btn('fl-addln', cx + W / 2 + pad, fT - 34, `flAddLane('${b.id}')`, '+ Thêm nhánh', 'Thêm nhánh song song'));
-      b.lanes.forEach((l, i) => {
-        const c = x0 + lw[i] / 2, k = 'lane' + i;
-        if ((l ?? null) == null) { N.push(`<button class="fl-lane" style="left:${c}px;top:${fT + pad}px" onclick="flPlus(event,'${b.id}','${k}')">+ Thêm khối</button>`); bot.push(fT + pad + 34); }
-        else bot.push(slot(b.id, k, c, fT));
-        if (b.lanes.length > 1) C.push(btn('fl-lx', c + 36, fT + 12, `flDelLane('${b.id}',${i})`, '×', 'Xóa nhánh ' + (i + 1)));
-        x0 += lw[i] + PG;
-      });
-      const fb = Math.max(...bot) + pad;
-      F.push(`<div class="fl-frame" style="left:${cx - W / 2 - pad}px;top:${fT}px;width:${W + 2 * pad}px;height:${fb - fT}px"><span class="fl-frl">Làm cùng lúc · ${b.lanes.length} nhánh</span></div>`);
-      const jb = FL.B[b.join], jx = cx + (jb.dx || 0), jy = fb + 56 + (jb.dy || 0);
-      el(cx, fb, jx, jy, (fb + jy) / 2, 1); return place(jb, jx, jy);
-    }
-    return b.type === 'end' ? by : slot(b.id, 'next', cx, by);
-  };
-  N.push(`<div class="fl-node fl-start" role="button" tabindex="0" title="Mở thông tin chung của dịch vụ" onclick="location.hash='#/info'" onkeydown="if(event.key==='Enter')location.hash='#/info'" style="left:${-NW / 2}px;top:0;width:${NW}px"><div class="fl-nh"><span class="wf-node-icon fl-ic">🏁</span><span class="fl-nl">Bắt đầu</span></div><div class="fl-nt">${flE(FL.svc)}</div><div class="fl-nf"><span></span><span class="fl-av">AD</span></div></div>`);
-  slot('start', 'next', 0, NH);
-  return `<svg class="fl-svg" width="1" height="1"><defs><marker id="fl-arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 1L10 5L0 9z"/></marker></defs>${P.join('')}</svg>${F.join('')}${N.join('')}${C.join('')}`;
+const FMODE = { form: 'm', approval: 'm', sign: 'm', task: 'm', form_public: 'm', branch: 'a', switch: 'a', transform: 'a', auto: 'a', webhook_in: 'a', webhook_out: 'a' }, PORTS = new Set(['form', 'sign', 'form_public', 'transform', 'auto', 'join']);
+/* ===== Kiểm tra lỗi: cấu hình khối thiếu, dây nối vô lý. Dây lỗi thì cả hai khối ở hai đầu hiện lỗi ===== */
+function flCfg(b, labels) {
+  const m = [], bad = f => f && !labels.has(f);
+  if (b.type === 'approval' && (b.apMode || 'Người duyệt cố định') !== 'Quản lý trực tiếp' && !(b.approvers || []).length) m.push('Chưa chọn người duyệt.');
+  if (b.type === 'branch') { if (!b.cField) m.push('Chưa chọn trường để so sánh.'); else if (bad(b.cField)) m.push(`Trường “${b.cField}” không còn tồn tại.`); if (b.cField && (b.cVal == null || String(b.cVal).trim() === '')) m.push('Chưa nhập giá trị so sánh.'); }
+  if (b.type === 'switch') { if (!b.cField) m.push('Chưa chọn trường để rẽ nhánh.'); else if (bad(b.cField)) m.push(`Trường “${b.cField}” không còn tồn tại.`); }
+  if (b.type === 'transform') { if (!String(b.formula || '').trim()) m.push('Chưa nhập công thức.'); if (!b.target) m.push('Chưa chọn trường ghi kết quả.'); else if (bad(b.target)) m.push(`Trường “${b.target}” không còn tồn tại.`); }
+  if (b.type === 'webhook_in' && b.target && bad(b.target)) m.push(`Trường “${b.target}” không còn tồn tại.`);
+  if (b.type === 'webhook_out' && !/^https?:\/\/\S+/.test(b.url || '')) m.push('Địa chỉ nhận (URL) chưa đúng, phải bắt đầu bằng http:// hoặc https://.');
+  if (b.type === 'join' && !Object.values(FL.B).some(x => x.join === b.id)) m.push('Khối Hợp nhất này không thuộc khối “Làm cùng lúc” nào.');
+  return m;
 }
-function flRender() { const L = document.getElementById('canvas-transform-layer'); if (L) { L.innerHTML = flHtml(); if (FL.sel) L.querySelectorAll('.fl-mid[data-src="' + FL.sel + '"]').forEach(b => b.classList.add('show')); } flUndoUI(); if (FL.fresh) setTimeout(() => { FL.fresh = null; }, 400); }
+function flValidate() {
+  const B = FL.B, N = {}, W = {}, WARN = {}, add = (o, id, m) => { (o[id] = o[id] || []).push(m); }, nm = id => (id === 'start' ? 'Bắt đầu' : B[id].title), labels = new Set(FL.fields.map(f => f.label)), BACK = ['more', 'rej', 'fail'];
+  Object.values(B).forEach(b => flCfg(b, labels).forEach(x => add(N, b.id, x)));
+  const edges = [], adj = {}; [['start', FL.start], ...Object.entries(B)].forEach(([id, b]) => {
+    if (b.type === 'end') return; (id === 'start' ? [{ k: 'next', l: 'Bắt đầu' }] : flPorts(b) || [{ k: 'next' }]).forEach(p => { const t = flGet(id, p.k); if (t && B[t]) { edges.push([id, p.k, t]); (adj[id] = adj[id] || []).push([p.k, t]); } else if (id !== 'start' && b.type !== 'parallel' && !BACK.includes(p.k) && !/^lane/.test(p.k)) add(WARN, id, p.l ? `Đầu ra “${p.l}” chưa nối dây, phiếu sẽ kết thúc ở đây.` : 'Chưa nối tiếp tới khối nào, phiếu sẽ kết thúc ở đây.'); });
+  });
+  const wire = (u, k, v, why) => { const m = `Dây từ “${nm(u)}” tới “${nm(v)}”: ${why}`; W[u + ':' + k] = m; add(N, v, m); if (u !== 'start') add(N, u, m); };
+  { const st = {}, dfs = u => { st[u] = 1; (adj[u] || []).filter(([k]) => !BACK.includes(k)).forEach(([k, v]) => { if (st[v] === 1) { if (!flBack(B[u], k)) wire(u, k, v, 'tạo vòng lặp không có lối ra. Chỉ đầu ra rẽ nhánh (Điều kiện, Lựa chọn) và “Từ chối”, “Cần bổ sung”, “Không hoàn thành” mới được quay về bước trước.'); } else if (!st[v]) dfs(v); }); st[u] = 2; }; dfs('start'); Object.keys(B).forEach(id => { if (!st[id]) dfs(id); }); }
+  const prod = {}; Object.values(B).forEach(b => { if (b.type === 'transform' && b.target) (prod[b.target] = prod[b.target] || []).push(b.id); });
+  Object.values(B).forEach(r => { const need = r.type === 'branch' || r.type === 'switch' ? (r.cField ? [r.cField] : []) : r.type === 'transform' ? Object.keys(prod).filter(f => f !== r.target && (r.formula || '').includes(f)) : [];
+    need.forEach(f => { if (!prod[f]) return; const seen = new Set(), q = ['start']; while (q.length) { const u = q.shift(); if (seen.has(u)) continue; seen.add(u); if (u !== 'start' && prod[f].includes(u)) continue; (adj[u] || []).forEach(([, v]) => q.push(v)); }
+      if (seen.has(r.id)) edges.filter(([u, , v]) => v === r.id && seen.has(u)).forEach(([u, k, v]) => wire(u, k, v, `khối “${r.title}” cần “${f}” nhưng đường này chưa đi qua bước “${nm(prod[f][0])}” là bước tính “${f}”.`)); }); });
+  const reach = (from, stop) => { const seen = new Set(), q = [...from]; while (q.length) { const u = q.shift(); if (seen.has(u) || u === stop || !B[u]) continue; seen.add(u); (adj[u] || []).forEach(([, v]) => q.push(v)); } return seen; };
+  Object.values(B).filter(b => b.type === 'parallel' && B[b.join]).forEach(P => {
+    const S = P.lanes.map(l => reach([l], P.join)), after = reach([P.join], '');
+    S.forEach((si, i) => { si.forEach(v => { if (S.some((sj, j) => j !== i && sj.has(v))) edges.filter(([u, , w]) => w === v && S.filter(x => x.has(u)).length === 1 && si.has(u)).forEach(([u, k, w]) => wire(u, k, w, 'hai nhánh song song gặp nhau ở đây trước khối Hợp nhất. Mỗi nhánh phải đi riêng tới Hợp nhất.')); if (after.has(v) && v !== P.join) edges.filter(([u, , w]) => w === v && si.has(u)).forEach(([u, k, w]) => wire(u, k, w, 'đi thẳng qua khối Hợp nhất, bỏ qua bước chờ các nhánh.')); }); });
+  });
+  return { N, W, WARN };
+}
+/* lỗi khi chạy thử: cấu hình sai, dây sai, hoặc dữ liệu mẫu không đủ */
+function flRunCheck(b, t) {
+  const V = FL._val || flValidate(), e = V.N[b.id]; if (e && e.length) return e[0];
+  const d = t.data || {};
+  if (b.type === 'transform' && b.formula && flFormula(b.formula, d) === null) { const miss = FL.fields.map(f => f.label).filter(l => b.formula.includes(l) && flEmpty(d[l])); return `Không tính được “${b.target}”: ${miss.length ? 'thiếu dữ liệu ' + miss.map(x => '“' + x + '”').join(', ') : 'công thức “' + b.formula + '” không hợp lệ'}.`; }
+  if ((b.type === 'branch' || b.type === 'switch') && b.cField && flEmpty(d[b.cField])) return `Phiếu chưa có dữ liệu “${b.cField}” để ${b.type === 'branch' ? 'so sánh' : 'chọn nhánh'}.`;
+  return null;
+}
+const GNW = 256, GNH = 116, GPW = 150, FK_OUT = ['next', 'ok', 'rej', 'more', 'done', 'fail', 'c1', 'c2', 'def'];
+const flPorts = b => flOuts(b) || (b.type === 'parallel' ? b.lanes.map((l, i) => ({ k: 'lane' + i, l: 'Nhánh ' + (i + 1), c: 'neu', i: '•' })) : null);
+/* chuẩn hóa dữ liệu cũ: dây nối chỉ là mã khối đích, mỗi khối có toạ độ riêng */
+function flNorm(F) {
+  const fix = v => (v && typeof v === 'object' ? v.link : v) ?? null;
+  F.start.next = fix(F.start.next);
+  Object.values(F.B).forEach(b => { FK_OUT.forEach(k => { if (k in b) b[k] = fix(b[k]); }); if (b.lanes) b.lanes = b.lanes.map(fix); });
+  if (!F.start.gv) { /* lần đầu: nối rõ đầu mỗi nhánh song song tới khối Hợp nhất */
+    F.start.gv = 1;
+    Object.values(F.B).filter(b => b.type === 'parallel').forEach(P => {
+      const J = P.join, seen = new Set([J]); P.lanes = P.lanes.map(l => l ?? J); const q = P.lanes.filter(l => l !== J);
+      while (q.length) { const id = q.shift(), b = F.B[id]; if (seen.has(id) || !b) continue; seen.add(id); if (b.type === 'end') continue; if (b.type === 'parallel') { q.push(b.join); continue; }
+        (flPorts(b) || [{ k: 'next' }]).forEach(p => { const v = b[p.k]; if (v == null) b[p.k] = J; else q.push(v); }); }
+    });
+  }
+  if (F.start.x == null || Object.values(F.B).some(b => b.x == null)) flLayout(F);
+}
+/* xếp tự động lần đầu: theo tầng (đường dài nhất), con nằm dưới trung bình vị trí cha */
+function flLayout(F) {
+  const GAP = 50, B = F.B, fw = id => { const o = id === 'start' ? null : flPorts(B[id]); return Math.max(GNW, o ? o.length * (GPW + 14) : 0); };
+  const succ = id => (id === 'start' ? [F.start.next] : flSucc(B[id])).filter(v => v && B[v]);
+  const order = [], post = [], st = {}, back = new Set();
+  const dfs = u => { st[u] = 1; order.push(u); succ(u).forEach(v => { if (st[v] === 1) back.add(u + '>' + v); else if (!st[v]) dfs(v); }); st[u] = 2; post.push(u); };
+  dfs('start');
+  const depth = { start: 0 };
+  for (let pass = 0; pass <= order.length; pass++) { let ch = false; post.slice().reverse().forEach(u => succ(u).forEach(v => { if (back.has(u + '>' + v)) return; const d = (depth[u] || 0) + 1; if ((depth[v] ?? -1) < d) { depth[v] = d; ch = true; } })); if (!ch) break; }
+  const maxD = Math.max(0, ...Object.values(depth)); Object.keys(B).forEach(id => { if (!(id in depth)) depth[id] = maxD + 1; });
+  const idx = {}; order.forEach((id, i) => { idx[id] = i; }); Object.keys(B).forEach(id => { if (!(id in idx)) idx[id] = 1e6 + Object.keys(idx).length; });
+  const layers = {}; Object.keys(depth).forEach(id => { (layers[depth[id]] = layers[depth[id]] || []).push(id); });
+  const X = { start: 0 }, ids = ['start', ...Object.keys(B)];
+  Object.keys(layers).map(Number).sort((a, b) => a - b).forEach(d => {
+    if (d === 0) return; const L = layers[d].slice().sort((a, b) => idx[a] - idx[b]);
+    const want = L.map(id => { const ps = ids.filter(u => u in X && succ(u).includes(id) && !back.has(u + '>' + id)); return ps.length ? ps.reduce((a, u) => a + X[u], 0) / ps.length : 0; });
+    const ord = L.map((_, i) => i).sort((a, b) => want[a] - want[b] || a - b), xs = []; let right = -Infinity;
+    ord.forEach(i => { const f = fw(L[i]), x = Math.max(want[i], right + f / 2 + GAP); xs[i] = x; right = x + f / 2; });
+    const shift = want.reduce((a, c) => a + c, 0) / L.length - xs.reduce((a, c) => a + c, 0) / L.length; L.forEach((id, i) => { X[id] = xs[i] + shift; });
+  });
+  if (F.start.x == null) { F.start.x = 0; F.start.y = 0; }
+  const Y = [0], maxL = Math.max(...Object.keys(layers).map(Number)); for (let d = 1; d <= maxL; d++) Y[d] = Y[d - 1] + GNH + ((layers[d - 1] || []).some(id => id !== 'start' && flPorts(B[id])) ? 150 : 80);
+  Object.keys(B).forEach(id => { if (B[id].x == null) { B[id].x = Math.round(X[id] / 10) * 10; B[id].y = Y[depth[id]]; } });
+}
+const flPortPt = (o, k) => { const b = o === 'start' ? FL.start : FL.B[o], ps = o === 'start' ? null : flPorts(b); if (!ps) return { x: b.x, y: b.y + GNH }; const n = ps.length, i = Math.max(0, ps.findIndex(p => p.k === k)); return { x: b.x + (i - (n - 1) / 2) * (GPW + 14), y: b.y + GNH + 56 }; };
+function flResolve(b, x, y) {
+  const hit = (X, Y) => Object.values(FL.B).concat([FL.start]).some(n => n !== b && Math.abs(n.x - X) < GNW + 30 && Math.abs(n.y - Y) < GNH + 50); let i = 0;
+  while (hit(x, y) && i < 30) { i++; x += (i % 2 ? 1 : -1) * Math.ceil(i / 2) * (GNW + 40); } b.x = Math.round(x / 10) * 10; b.y = Math.round(y / 10) * 10;
+}
+function flPlaceNew(b, o, k, old) {
+  if (FL.pend && FL.pend.free) { flResolve(b, FL.pend.at.x, FL.pend.at.y); return; }
+  const po = flPortPt(o, k), at = FL.pend && FL.pend.at; let x = po.x, y = po.y + 60;
+  if (at) { x = at.x; y = at.y; } else if (old && FL.B[old] && FL.B[old].y - po.y > GNH + 120) { x = (po.x + FL.B[old].x) / 2; y = (po.y + FL.B[old].y) / 2 - GNH / 2; }
+  flResolve(b, x, y);
+}
+const flRp = (pts, r = 16) => { let d = `M${pts[0][0]} ${pts[0][1]}`; for (let i = 1; i < pts.length - 1; i++) { const [x0, y0] = pts[i - 1], [x1, y1] = pts[i], [x2, y2] = pts[i + 1], l1 = Math.hypot(x1 - x0, y1 - y0) || 1, l2 = Math.hypot(x2 - x1, y2 - y1) || 1, k1 = Math.min(r, l1 / 2) / l1, k2 = Math.min(r, l2 / 2) / l2; d += `L${x1 - (x1 - x0) * k1} ${y1 - (y1 - y0) * k1}Q${x1} ${y1} ${x1 + (x2 - x1) * k2} ${y1 + (y2 - y1) * k2}`; } const L = pts[pts.length - 1]; return d + `L${L[0]} ${L[1]}`; };
+const flRoute = (px, py, tx, ty) => {
+  if (ty > py + 30) { const d = Math.min(160, Math.max(50, (ty - py) / 2)); return { d: `M${px} ${py}C${px} ${py + d} ${tx} ${ty - d} ${tx} ${ty}`, mx: (px + tx) / 2, my: (py + ty) / 2 }; }
+  const xs = Math.min(px, tx) - GNW / 2 - 70; return { d: flRp([[px, py], [px, py + 34], [xs, py + 34], [xs, ty - 34], [tx, ty - 34], [tx, ty]]), mx: xs, my: (py + ty) / 2 };
+};
+const flSP = b => !flPorts(b) && b.type !== 'end';
+function flHtml() {
+  flNorm(FL); const V = FL._val = flValidate();
+  const NW = GNW, NH = GNH, PW = GPW, P = [], N = [], C = [], SP = flSP, RC = new Set(['start']);
+  [FL.start.next, ...Object.values(FL.B).flatMap(b => flSucc(b))].forEach(v => v && RC.add(v)); /* khối có ít nhất một dây nối vào */
+  const nodeH = (b, x, y) => { const t = FT[b.type]; return `<div data-id="${b.id}" role="button" tabindex="0" aria-label="${t.l}: ${flE(b.title)}" title="${flE(t.l)}: ${flE(t.d || '')}" ondblclick="flRename(event,'${b.id}')" onkeydown="flNodeKey(event,'${b.id}')" class="fl-node t-${t.t}${RC.has(b.id) ? '' : ' fl-orphan'}${V.N[b.id] ? ' fl-err' : V.WARN[b.id] ? ' fl-warnn' : ''}${FMODE[b.type] === 'a' ? ' fl-auto' : ''}${FL.sel === b.id ? ' on' : ''}${FL.fresh === b.id ? ' new' : ''}" style="left:${x}px;top:${y}px;width:${NW}px" onclick="flNodeClick(event,'${b.id}')"><div class="fl-nh"><span class="wf-node-icon fl-ic">${t.i}</span><span class="fl-nl">${t.l}</span><button class="fl-kb" onclick="flKebab(event,'${b.id}')" aria-label="Tùy chọn">⋮</button></div><div class="fl-nt" title="${flE(b.title)}">${flE(b.title)}</div><div class="fl-nf"><span>${flE(flFoot(b))}</span>${FMODE[b.type] ? `<span class="fl-md ${FMODE[b.type]}">${FMODE[b.type] === 'm' ? 'Người xử lý' : 'Tự động'}</span>` : ''}</div>${SP(b) ? `<span class="fl-port" data-o="${b.id}" data-k="next" title="Kéo để nối tới khối khác"></span>` : ''}${V.N[b.id] ? `<span class="fl-eflag" title="${flE(V.N[b.id].join('\n'))}">⚠ Lỗi${V.N[b.id].length > 1 ? ' (' + V.N[b.id].length + ')' : ''}</span>` : V.WARN[b.id] ? `<span class="fl-eflag w" title="${flE(V.WARN[b.id].join('\n'))}">Lưu ý</span>` : ''}</div>`; };
+  const pill = (cx, top, x, o) => `<div class="fl-pill c-${x.c}" data-n="${o}" role="button" tabindex="0" title="Bấm để thêm khối vào nhánh này" onclick="flPillClick(event,'${o}','${x.k}')" onkeydown="if(event.key==='Enter')flPillClick(event,'${o}','${x.k}')" style="left:${cx}px;top:${top}px;min-width:${PW}px"><span class="fl-pt">${x.i} ${flE(x.l)}</span><span class="fl-port" data-o="${o}" data-k="${x.k}" title="Kéo để nối tới khối khác"></span></div>`;
+  const svg = (x) => P.push(x), inc = {}, ports = [];
+  [['start', FL.start], ...Object.entries(FL.B)].forEach(([id, b]) => {
+    if (b.type === 'end') return; const ps = id === 'start' ? null : flPorts(b), list = ps || [{ k: 'next' }];
+    list.forEach((p, i) => { const pt = flPortPt(id, p.k), t = flGet(id, p.k); ports.push({ id, b, p, i, n: list.length, pt, t, multi: !!ps }); if (t && FL.B[t]) (inc[t] = inc[t] || []).push(id + ':' + p.k); });
+  });
+  ports.forEach(({ id, b, p, i, n, pt, t, multi }) => {
+    const e = id + ':' + p.k;
+    if (multi) { const bx = b.x, by = b.y + NH, top = b.y + NH + 30; svg(`<path d="${bx === pt.x ? `M${bx} ${by}L${bx} ${top}` : flRp([[bx, by], [bx, by + 14], [pt.x, by + 14], [pt.x, top]], 12)}"/>`); N.push(pill(pt.x, top, p, id)); }
+    if (t && FL.B[t]) {
+      const tg = FL.B[t], list = inc[t], off = (list.indexOf(e) - (list.length - 1) / 2) * 20, tx = tg.x + off, ty = tg.y, r = flRoute(pt.x, pt.y, tx, ty);
+      P.push(`<path class="fl-ep${V.W[e] ? ' bad' : ''}${FL.selEdge === e ? ' sel' : ''}" data-e="${e}" d="${r.d}" marker-end="url(#fl-arr)"/><path class="fl-hit" data-e="${e}" d="${r.d}"><title>${flE(V.W[e] || '')}</title></path>`);
+      C.push(`<div class="fl-eb" data-e="${e}" style="left:${r.mx}px;top:${r.my}px"><button class="fl-plus fl-mid" onclick="flPlus(event,'${id}','${p.k}')" aria-label="Chèn khối vào giữa dây" title="Chèn khối vào giữa">+</button><button class="fl-cut" onclick="flCut(event,'${id}','${p.k}')" aria-label="Xóa dây nối" title="Xóa dây nối"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M3 6h18M8 6V4h8v2M6 6l1 14h10l1-14"/></svg></button></div>`);
+      C.push(`<span class="fl-eh g" data-e="${e}" data-o="${id}" data-k="${p.k}" style="left:${tx}px;top:${ty - 4}px" title="Kéo đầu dây sang khối khác"></span>`);
+    } else { svg(`<path d="M${pt.x} ${pt.y}L${pt.x} ${pt.y + 20}"/>`); C.push(`<button class="fl-plus" style="left:${pt.x}px;top:${pt.y + 30}px" onclick="flPlus(event,'${id}','${p.k}')" aria-label="Thêm khối" title="Thêm khối">+</button>`); }
+    if (multi && b.type === 'parallel' && i === n - 1) C.push(`<button class="fl-addln" style="left:${pt.x + PW / 2 + 14}px;top:${b.y + NH + 43}px" onclick="flAddLane('${id}')" aria-label="Thêm nhánh song song" title="Thêm một nhánh song song nữa">+ Nhánh</button>`);
+  });
+  [...Object.values(FL.B)].forEach(b => N.push(nodeH(b, b.x - NW / 2, b.y)));
+  N.push(`<div class="fl-node fl-start" role="button" tabindex="0" title="Mở thông tin chung của dịch vụ" onclick="location.hash='#/info'" onkeydown="if(event.key==='Enter')location.hash='#/info'" style="left:${-NW / 2}px;top:0;width:${NW}px"><div class="fl-nh"><span class="wf-node-icon fl-ic">🏁</span><span class="fl-nl">Bắt đầu</span></div><div class="fl-nt">${flE(FL.svc)}</div><div class="fl-nf"><span></span><span class="fl-av">AD</span></div><span class="fl-port" data-o="start" data-k="next" title="Kéo để nối tới khối khác"></span></div>`);
+  return `<svg class="fl-svg" width="1" height="1"><defs><marker id="fl-arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 1L10 5L0 9z"/></marker></defs>${P.join('')}</svg>${N.join('')}${C.join('')}`;
+}
+function flRender() { const L = document.getElementById('canvas-transform-layer'); if (L) { L.innerHTML = flHtml(); if (FL.run) flRunPaint(); if (FL.sel) L.querySelectorAll('.fl-mid[data-src="' + FL.sel + '"]').forEach(b => b.classList.add('show')); } flUndoUI(); flMiniDraw(); if (FL.fresh) setTimeout(() => { FL.fresh = null; }, 400); }
+document.addEventListener('mouseover', e => { const h = e.target.closest && e.target.closest('.fl-hit,.fl-eb,.fl-eh'), k = h && h.dataset.e; document.querySelectorAll('.fl-eb.show,.fl-eh.show').forEach(x => { if (x.dataset.e !== k) x.classList.remove('show'); }); if (k) document.querySelectorAll(`.fl-eb[data-e="${k}"],.fl-eh[data-e="${k}"]`).forEach(x => x.classList.add('show')); });
+/* ===== nối khối bằng cách kéo từ cổng nối ===== */
+const flSucc = b => { const o = flOuts(b), v = []; if (o) o.forEach(x => v.push(b[x.k])); else if (b.type === 'parallel') { v.push(...b.lanes, b.join); } else v.push(b.next); return v.map(x => x && typeof x === 'object' ? x.link : x).filter(Boolean); };
+const flSetIn = (St, o, k, v) => { if (o === 'start') St.start.next = v; else if (/^lane\d+$/.test(k)) St.B[o].lanes[+k.slice(4)] = v; else St.B[o][k] = v; };
+const flGetIn = (St, o, k) => o === 'start' ? St.start.next : /^lane\d+$/.test(k) ? St.B[o].lanes[+k.slice(4)] : St.B[o][k];
+/* mỗi trường được tính bởi khối Tự tính toán thì mọi đường tới khối đọc nó phải đi qua khối tính; trả về câu báo lỗi hoặc null */
+function flDeps(St) {
+  const prod = {}, out = []; Object.values(FL.B).forEach(b => { if (b.type === 'transform' && b.target) (prod[b.target] = prod[b.target] || []).push(b.id); });
+  for (const r of Object.values(St.B)) {
+    const need = r.type === 'branch' || r.type === 'switch' ? (r.cField ? [r.cField] : []) : r.type === 'transform' ? Object.keys(prod).filter(f => f !== r.target && (r.formula || '').includes(f)) : [];
+    for (const f of need) { if (!prod[f]) continue;
+      const seen = new Set(), q = [St.start.next]; let hit = false;
+      while (q.length && !hit) { const id = q.shift(); const x = id && typeof id === 'object' ? id.link : id; if (!x || seen.has(x) || !St.B[x]) continue; seen.add(x); if (x === r.id) { hit = true; break; } if (prod[f].includes(x)) continue; q.push(...flSucc(St.B[x])); }
+      if (hit) out.push(`Thiếu dữ liệu: “${r.title}” cần “${f}”, nhưng đường đi mới không còn qua bước “${FL.B[prod[f][0]].title}” là bước tính “${f}”.`);
+    }
+  }
+  return out;
+}
+/* kiểm tra nối từ ô (o,k) tới khối toId; trả {ok, msg, plan} */
+// được quay về bước trước: đầu ra rẽ nhánh/thất bại, không phải đường đi thẳng
+const flBack = (b, k) => !!b && (['more', 'rej', 'fail'].includes(k) || b.type === 'branch' || b.type === 'switch');
+function flConnCheck(o, k, toId) {
+  const to = FL.B[toId]; if (!to) return { ok: false, reasons: [], msg: '' };
+  const why = [], res = () => ({ ok: !why.length, reasons: why, msg: why.join(' '), plan: { t: 'link', to: toId } });
+  if (toId === o) { why.push('Không nối một khối với chính nó.'); return res(); }
+  if (flGetIn(FL, o, k) === toId) { why.push('Hai khối này đã nối với nhau rồi.'); return res(); }
+  const seen = new Set(), q = [toId]; let loop = false;
+  const fwd = x => { const ps = flPorts(x); return ps ? ps.filter(p => !['more', 'rej', 'fail'].includes(p.k)).map(p => x[p.k] ?? (/^lane/.test(p.k) ? x.lanes[+p.k.slice(4)] : null)).filter(Boolean) : [x.next].filter(Boolean); };
+  while (q.length) { const id = q.shift(); if (seen.has(id) || !FL.B[id]) continue; seen.add(id); if (id === o) { loop = true; break; } q.push(...fwd(FL.B[id])); }
+  if (loop && !flBack(FL.B[o], k)) why.push('Tạo vòng lặp: đường này quay lại bước phía trước. Chỉ đầu ra rẽ nhánh (Điều kiện, Lựa chọn) và “Từ chối”, “Cần bổ sung”, “Không hoàn thành” mới được quay về.');
+  const St = JSON.parse(JSON.stringify({ start: FL.start, B: FL.B })); flSetIn(St, o, k, toId); why.push(...flDeps(St));
+  return res();
+}
+function flCnApply(o, k, plan) {
+  const old = flGetIn(FL, o, k); flSnap(); flSet(o, k, plan.to); FL.sel = null; flRender();
+  const orphan = old && old !== plan.to && FL.start.next !== old && !Object.values(FL.B).some(x => flSucc(x).includes(old));
+  showToast(`Đã nối tới “${FL.B[plan.to].title}”.${orphan ? ` “${FL.B[old].title}” không còn dây nào nối vào, hãy nối lại hoặc xóa.` : ''}`);
+}
+function flCnMove(e) {
+  const c = FL.cn, a = document.getElementById('canvas-work-area'), r = a.getBoundingClientRect(), pr = c.el.getBoundingClientRect(); c.moved = true;
+  let ln = document.getElementById('fl-cnl'); if (!ln) { ln = document.createElementNS('http://www.w3.org/2000/svg', 'svg'); ln.id = 'fl-cnl'; ln.setAttribute('class', 'fl-cnl'); ln.innerHTML = '<path/>'; a.appendChild(ln); }
+  const x1 = pr.left + pr.width / 2 - r.left, y1 = pr.top + pr.height / 2 - r.top;
+  ln.firstChild.setAttribute('d', `M${x1} ${y1}L${e.clientX - r.left} ${e.clientY - r.top}`);
+  const t = document.elementFromPoint(e.clientX, e.clientY), nd = t && t.closest && t.closest('.fl-node:not(.fl-start)');
+  document.querySelectorAll('.fl-node.cn-ok,.fl-node.cn-bad').forEach(x => x.classList.remove('cn-ok', 'cn-bad'));
+  c.tip = null; const tip = document.getElementById('fl-cntip'); if (tip) tip.remove();
+  if (nd && nd.dataset.id !== c.o) { const res = flConnCheck(c.o, c.k, nd.dataset.id, c.edit); c.res = res; c.to = nd.dataset.id; nd.classList.add(res.ok ? 'cn-ok' : 'cn-bad');
+    if (!res.ok && res.reasons.length) { const d = document.createElement('div'); d.id = 'fl-cntip'; d.className = 'fl-cntip'; d.innerHTML = `<b>Không nối được vì:</b><ul>${res.reasons.map(x => `<li>${flE(x)}</li>`).join('')}</ul>`; d.style.left = Math.min(e.clientX - r.left + 14, r.width - 330) + 'px'; d.style.top = (e.clientY - r.top + 14) + 'px'; a.appendChild(d); if (d.offsetTop + d.offsetHeight > r.height - 8) d.style.top = Math.max(8, r.height - d.offsetHeight - 8) + 'px'; } }
+  else { c.res = null; c.to = null; }
+}
+function flCnFail(rs) {
+  const w = document.createElement('div'); w.innerHTML = '<b>Không nối được vì:</b>'; const ul = document.createElement('ul'); ul.className = 'kb-why'; rs.forEach(x => { const li = document.createElement('li'); li.textContent = x; ul.append(li); }); w.append(ul); flNote('error', w, 9000);
+}
+function flCnEnd(e) {
+  const c = FL.cn; FL.cn = null; document.body.classList.remove('fl-cning'); ['fl-cnl', 'fl-cntip'].forEach(i => { const x = document.getElementById(i); if (x) x.remove(); });
+  document.querySelectorAll('.fl-node.cn-ok,.fl-node.cn-bad').forEach(x => x.classList.remove('cn-ok', 'cn-bad'));
+  if (!c.moved) return; FL.noClick = true; setTimeout(() => { FL.noClick = false; }, 0);
+  if (!c.to || !c.res) {
+    if (c.edit) { showToast('Thả đầu dây lên một khối để đổi đích. Muốn xóa dây, rê vào dây rồi bấm thùng rác.'); return; }
+    const a = document.getElementById('canvas-work-area'), r = a.getBoundingClientRect(); FL.pend = { o: c.o, k: c.k, at: { x: (e.clientX - r.left - canvasState.panX) / canvasState.zoom, y: (e.clientY - r.top - canvasState.panY) / canvasState.zoom - 20 } }; handleMenuAddBlock(); return;
+  }
+  if (!c.res.ok) { flCnFail(c.res.reasons); return; }
+  flCnApply(c.o, c.k, c.res.plan);
+}
+function flZoomMenu(e) { flMenu(e, [['Vừa màn hình (Ctrl+0)', () => flFit(1)], ['Thu phóng 100%', () => zoomTo(1)], ['Thu phóng 75%', () => zoomTo(0.75)], ['Thu phóng 50%', () => zoomTo(0.5)], ['Thu phóng 150%', () => zoomTo(1.5)]]); }
+function zoomTo(z) { const a = document.getElementById('canvas-work-area'); flZoomAt(z / canvasState.zoom, a.clientWidth / 2, a.clientHeight / 2, 1); }
+document.addEventListener('keydown', e => { if ((e.ctrlKey || e.metaKey) && e.key === '0' && document.getElementById('canvas-work-area')) { e.preventDefault(); flFit(1); } });
+// menu dấu cộng và danh sách nối bám theo nút “+” khi kéo/thu phóng canvas; nút ra ngoài khung thì đóng menu
+function flAncPos() {
+  const pm = document.getElementById('plus-context-menu'), km = document.getElementById('fl-km'), pv = pm && !pm.classList.contains('hidden'), kv = km && FL.ancKm;
+  if (!pv && !kv) return; const a = FL.pend && document.querySelector(`.fl-plus[onclick^="flPlus(event,'${FL.pend.o}','${FL.pend.k}')"]`), w = document.getElementById('canvas-work-area');
+  const r = a && a.getBoundingClientRect(), v = w && w.getBoundingClientRect();
+  if (!r || !v || r.bottom < v.top || r.top > v.bottom || r.right < v.left || r.left > v.right) { closePlusMenu(); flKmClose(); return; }
+  const x = r.right + 8, y = r.top - 12;
+  if (pv) { pm.style.left = x + 'px'; pm.style.top = y + 'px'; }
+  if (kv) { const t = Math.max(8, Math.min(y, innerHeight - 320)); km.style.left = Math.min(x, innerWidth - 270) + 'px'; km.style.top = t + 'px'; km.style.maxHeight = Math.min(360, innerHeight - t - 12) + 'px'; }
+}
 function flApply() {
   const L = document.getElementById('canvas-transform-layer'); if (L) L.style.transform = `translate(${canvasState.panX}px,${canvasState.panY}px) scale(${canvasState.zoom})`;
   const z = document.getElementById('fl-zoom'); if (z) z.textContent = Math.round(canvasState.zoom * 100) + '%';
+  flAncPos();
+  if (FL.mini) { cancelAnimationFrame(FL.mraf); FL.mraf = requestAnimationFrame(flMiniDraw); }
 }
 function flStudioBody() {
   return `
     ${FLUI.guide ? '' : flGuideHtml()}
-    <div class="canvas-controls-overlay">
-      <div class="toggle-autosave" onclick="toggleAutoSave()"><div class="switch-dot" style="${canvasState.autoSave ? '' : 'background:#C1C2C2'}"></div><span>Tự động lưu</span></div>
-      <div style="height:14px;width:1px;background:#E4E6E6"></div>
-      <button class="fl-zb" onclick="zoomCanvas(-0.1)" aria-label="Thu nhỏ" title="Thu nhỏ">−</button>
-      <span id="fl-zoom" style="font-size:12px;font-weight:600;min-width:40px;text-align:center">${Math.round(canvasState.zoom * 100)}%</span>
-      <button class="fl-zb" onclick="zoomCanvas(0.1)" aria-label="Phóng to" title="Phóng to">+</button>
-      <button class="fl-zb" id="fl_undo" onclick="flUndo()" title="Hoàn tác (Ctrl+Z)" aria-label="Hoàn tác" disabled>↶</button><button class="fl-zb" id="fl_redo" onclick="flRedo()" title="Làm lại (Ctrl+Shift+Z)" aria-label="Làm lại" disabled>↷</button>
-      <div style="height:14px;width:1px;background:#E4E6E6"></div>
-      <button class="fl-tidy fl-sumb" onclick="flSumToggle()" title="Đọc quy trình này bằng lời">Tóm tắt bằng lời</button><button class="fl-tidy" onclick="flGuideShow()" title="Xem lại hướng dẫn nhanh" aria-label="Xem hướng dẫn nhanh">?</button>
-      <div style="height:14px;width:1px;background:#E4E6E6"></div>
-      <button class="fl-tidy" onclick="resetCanvasView()" title="Thu phóng để thấy cả lưu đồ">Vừa màn hình</button>
-      <button class="fl-tidy" onclick="flTidy()" title="Đưa các khối về vị trí mặc định">Xếp lại</button>
+    <div class="fl-tools" role="toolbar" aria-label="Công cụ lưu đồ" aria-orientation="vertical">
+      <button id="ft_add" onclick="flAddFree()" title="Thêm khối mới vào giữa màn hình" aria-label="Thêm khối"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg></button>
+      <button id="ft_select" class="on" onclick="flTool('select')" title="Chọn và di chuyển khối (V)" aria-label="Chọn và di chuyển"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 3l14 8-6 2-2 6z"/></svg></button>
+      <button id="ft_hand" onclick="flTool('hand')" title="Kéo canvas (H)" aria-label="Kéo canvas"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 12V6a1.5 1.5 0 0 1 3 0v5m0-1V4.5a1.5 1.5 0 0 1 3 0V11m0-4a1.5 1.5 0 0 1 3 0v6c0 4-2 7-6 7-3 0-4.5-1.5-6-4l-1.500-3a1.400 1.400 0 0 1 2.400-1.400L8 14"/></svg></button>
+      <button id="ft_cut" onclick="flTool('cut')" title="Cắt dây: bấm vào dây để xóa (X)" aria-label="Cắt dây"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="6" cy="6" r="2.5"/><circle cx="6" cy="18" r="2.5"/><path d="M8 7.500 20 17M8 16.500 20 7"/></svg></button>
+      <i class="fl-tsep"></i>
+      <button id="fl_undo" onclick="flUndo()" title="Hoàn tác (Ctrl+Z)" aria-label="Hoàn tác" disabled><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 14 4 9l5-5"/><path d="M4 9h11a5 5 0 0 1 0 10h-3"/></svg></button>
+      <button id="fl_redo" onclick="flRedo()" title="Làm lại (Ctrl+Shift+Z)" aria-label="Làm lại" disabled><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m15 14 5-5-5-5"/><path d="M20 9H9a5 5 0 0 0 0 10h3"/></svg></button>
     </div>
+    <div class="fl-hudr">
+      <button class="fl-hb" onclick="flGuideShow()" title="Xem lại hướng dẫn nhanh" aria-label="Xem hướng dẫn nhanh">?</button>
+      <button class="fl-hb" id="ft_mini" onclick="flMiniToggle()" title="Bản đồ thu nhỏ" aria-label="Bản đồ thu nhỏ" aria-pressed="false"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 4 3 6v14l6-2 6 2 6-2V4l-6 2z"/><path d="M9 4v14M15 6v14"/></svg></button>
+      <div class="fl-zg"><button class="fl-zb" onclick="zoomCanvas(-0.1)" aria-label="Thu nhỏ" title="Thu nhỏ">−</button><button class="fl-zv" id="fl-zoom" onclick="flZoomMenu(event)" aria-label="Thu phóng và vừa màn hình" aria-haspopup="menu">${Math.round(canvasState.zoom * 100)}%</button><button class="fl-zb" onclick="zoomCanvas(0.1)" aria-label="Phóng to" title="Phóng to">+</button></div>
+    </div>
+    <div class="fl-mini" id="fl-mini" hidden aria-label="Bản đồ thu nhỏ"><svg width="200" height="150"></svg></div>
     <div class="fl-bn" id="fl-bn"></div>
-    <div class="canvas-work-area" id="canvas-work-area" onclick="handleCanvasBgClick(event)">
+    <div class="fl-legend" aria-label="Chú giải"><span><i class="m"></i>Khối cần người xử lý</span><span><i class="a"></i>Khối tự động chạy</span></div>
+    <div class="canvas-work-area tool-${FL.tool || 'select'}" id="canvas-work-area" onclick="handleCanvasBgClick(event)">
       <div id="canvas-transform-layer" class="fl-layer" style="transform:translate(${canvasState.panX}px,${canvasState.panY}px) scale(${canvasState.zoom})">${flHtml()}</div>
     </div>
     <aside id="node-config-drawer" class="hidden"></aside>
-    <aside id="fl-sum" class="hidden" aria-label="Tóm tắt quy trình"></aside>`;
+    <aside id="fl-run" class="hidden" aria-label="Chạy thử"></aside>`;
 }
 function renderStudioView() { return flShell('#/studio', flStudioBody()); }
 function initCanvasDrag() {
-  const a = document.getElementById('canvas-work-area'); if (!a) return;
+  const a = document.getElementById('canvas-work-area'); if (!a) return; flDirtyUI(); flGuidePos();
   if (!FL.centered) { FL.centered = true; const a0 = document.getElementById('canvas-work-area'); canvasState.zoom = 0.85; canvasState.panX = a0.clientWidth / 2; canvasState.panY = 80; flApply(); }
   a.addEventListener('mousedown', e => {
+    const eh = e.target.closest('.fl-eh');
+    if (eh && e.button === 0) { e.stopPropagation(); e.preventDefault(); FL.cn = { o: eh.dataset.o, k: eh.dataset.k, edit: true, el: document.querySelector(`.fl-port[data-o="${eh.dataset.o}"][data-k="${eh.dataset.k}"]`) || eh }; document.body.classList.add('fl-cning'); return; }
+    const pt = e.target.closest('.fl-port');
+    if (pt && e.button === 0) { e.stopPropagation(); e.preventDefault(); FL.cn = { o: pt.dataset.o, k: pt.dataset.k, el: pt }; document.body.classList.add('fl-cning'); return; }
+    const pl = e.target.closest('.fl-pill');
+    if (pl && e.button === 0 && !e.target.closest('.fl-port') && FL.B[pl.dataset.n]) { const bb = FL.B[pl.dataset.n]; FL.nd = { id: pl.dataset.n, x0: e.clientX, y0: e.clientY, dx0: bb.x, dy0: bb.y, moved: false }; return; } /* nhãn nhánh cũng kéo được khối */
     const nd = e.target.closest('.fl-node:not(.fl-start)');
-    if (nd && e.button === 0 && !FL.link && !e.target.closest('.fl-kb')) { const bb = FL.B[nd.dataset.id]; FL.nd = { id: nd.dataset.id, x0: e.clientX, y0: e.clientY, dx0: bb.dx || 0, dy0: bb.dy || 0, moved: false }; return; }
+    if (nd && e.button === 0 && !FL.link && !e.target.closest('.fl-kb')) { const bb = FL.B[nd.dataset.id]; FL.nd = { id: nd.dataset.id, x0: e.clientX, y0: e.clientY, dx0: bb.x, dy0: bb.y, moved: false }; return; }
     if (e.target.closest('.fl-node,.fl-plus,.fl-gear,.fl-lane,.fl-pill,.fl-ghost')) return; FL.drag = { x: e.clientX, y: e.clientY, px: canvasState.panX, py: canvasState.panY }; a.classList.add('grabbing'); });
   a.addEventListener('wheel', e => { e.preventDefault(); if (e.ctrlKey || e.metaKey) { const r = a.getBoundingClientRect(); flZoomAt(Math.exp(-e.deltaY * 0.01), e.clientX - r.left, e.clientY - r.top, 0); } else { canvasState.panX -= e.deltaX; canvasState.panY -= e.deltaY; flApply(); } }, { passive: false });
   flBanner();
@@ -3840,12 +4027,13 @@ function initCanvasDrag() {
 if (!window.__flPan) {
   window.__flPan = 1;
   window.addEventListener('mousemove', e => {
-    if (FL.nd) { const d = FL.nd, dx = e.clientX - d.x0, dy = e.clientY - d.y0; if (!d.moved && Math.hypot(dx, dy) < 4) return; if (!d.moved) flSnap(); d.moved = true; const bb = FL.B[d.id]; if (!bb) return; bb.dx = d.dx0 + dx / canvasState.zoom; bb.dy = d.dy0 + dy / canvasState.zoom; if (!FL.raf) FL.raf = requestAnimationFrame(() => { FL.raf = 0; flRender(); }); return; }
+    if (FL.cn) { flCnMove(e); return; }
+    if (FL.nd) { const d = FL.nd, dx = e.clientX - d.x0, dy = e.clientY - d.y0; if (!d.moved && Math.hypot(dx, dy) < 4) return; if (!d.moved) flSnap(); d.moved = true; const bb = FL.B[d.id]; if (!bb) return; const g = e.altKey ? 1 : 10; bb.x = Math.round((d.dx0 + dx / canvasState.zoom) / g) * g; bb.y = Math.round((d.dy0 + dy / canvasState.zoom) / g) * g; if (!FL.raf) FL.raf = requestAnimationFrame(() => { FL.raf = 0; flRender(); }); return; }
     if (FL.drag) { canvasState.panX = FL.drag.px + e.clientX - FL.drag.x; canvasState.panY = FL.drag.py + e.clientY - FL.drag.y; flApply(); } });
-  window.addEventListener('mouseup', () => { if (FL.nd) { if (FL.nd.moved) { FL.noClick = true; setTimeout(() => { FL.noClick = false; }, 0); } FL.nd = null; } FL.drag = null; const a = document.getElementById('canvas-work-area'); if (a) a.classList.remove('grabbing'); });
+  window.addEventListener('mouseup', e => { if (FL.cn) { flCnEnd(e); return; } if (FL.nd) { if (FL.nd.moved) { FL.noClick = true; setTimeout(() => { FL.noClick = false; }, 0); } FL.nd = null; } FL.drag = null; const a = document.getElementById('canvas-work-area'); if (a) a.classList.remove('grabbing'); });
 }
 function flZoomAt(f, px, py, anim) {
-  const z0 = canvasState.zoom, z1 = Math.min(1.6, Math.max(0.4, z0 * f)), k = z1 / z0, L = document.getElementById('canvas-transform-layer');
+  const z0 = canvasState.zoom, z1 = Math.min(2, Math.max(0.25, z0 * f)), k = z1 / z0, L = document.getElementById('canvas-transform-layer');
   if (anim && L) { L.classList.add('fl-anim'); setTimeout(() => L.classList.remove('fl-anim'), 240); }
   canvasState.panX = px - (px - canvasState.panX) * k; canvasState.panY = py - (py - canvasState.panY) * k; canvasState.zoom = z1; flApply();
 }
@@ -3855,18 +4043,17 @@ function flFit(anim) {
   let x0 = 1e9, y0 = 1e9, x1 = -1e9, y1 = -1e9;
   L.querySelectorAll('.fl-node,.fl-pill,.fl-ghost,.fl-frame,.fl-lane,.fl-plus').forEach(e => { const pl = e.classList.contains('fl-plus') ? e.offsetWidth / 2 : 0, pt = e.classList.contains('fl-plus') ? e.offsetHeight / 2 : 0, l = e.offsetLeft - pl, t = e.offsetTop - pt; x0 = Math.min(x0, l); y0 = Math.min(y0, t); x1 = Math.max(x1, l + e.offsetWidth); y1 = Math.max(y1, t + e.offsetHeight); });
   if (x0 > x1) return;
-  const bw = x1 - x0, bh = y1 - y0, z = Math.max(0.55, Math.min(1, (a.clientWidth - 80) / bw, (a.clientHeight - 80) / bh));
+  const bw = x1 - x0, bh = y1 - y0, z = Math.max(0.25, Math.min(1, (a.clientWidth - 80) / bw, (a.clientHeight - 80) / bh));
   if (anim) { L.classList.add('fl-anim'); setTimeout(() => L.classList.remove('fl-anim'), 240); }
   canvasState.zoom = Math.round(z * 100) / 100; canvasState.panX = a.clientWidth / 2 - (x0 + bw / 2) * canvasState.zoom; canvasState.panY = Math.max(24, (a.clientHeight - bh * canvasState.zoom) / 2) - y0 * canvasState.zoom; flApply();
 }
 function resetCanvasView() { flFit(1); }
-function handleCanvasBgClick() { closePlusMenu(); const k = document.getElementById('fl-km'); if (k) k.remove(); }
+function handleCanvasBgClick(e) { closePlusMenu(); const k = document.getElementById('fl-km'); if (k) k.remove(); if (FL.selEdge && !(e && e.target.closest && e.target.closest('.fl-hit'))) { FL.selEdge = null; flRender(); } }
 
 /* menu dấu cộng: Thêm khối / Tạo liên kết / Thêm nhánh song song */
 function flPlus(e, o, k) {
   e.stopPropagation(); const km = document.getElementById('fl-km'); if (km) km.remove();
-  FL.pend = { o, k }; const r = e.currentTarget.getBoundingClientRect(), m = document.getElementById('plus-context-menu');
-  m.style.left = (r.right + 8) + 'px'; m.style.top = (r.top - 12) + 'px'; m.classList.remove('hidden');
+  FL.pend = { o, k }; const m = document.getElementById('plus-context-menu'); m.classList.remove('hidden'); flAncPos();
 }
 function handleMenuAddBlock() { closePlusMenu(); document.getElementById('action-picker-drawer').classList.remove('hidden'); }
 function handleMenuCreateLink() {
@@ -3880,7 +4067,7 @@ function handleMenuAddParallelBranch() {
   FL.B[jid] = { id: jid, type: 'join', title: 'Đồng thời', sla: 0, next: old };
   flSet(o, k, id); FL.fresh = id; flRender(); showToast('Đã thêm nhánh song song');
 }
-function flAddLane(id) { flSnap(); FL.B[id].lanes.push(null); flRender(); }
+function flAddLane(id) { flSnap(); FL.B[id].lanes.push(FL.B[id].join); flRender(); }
 function flDelLane(id, i) { const b = FL.B[id]; if (b.lanes.length <= 1) { showToast('Cần ít nhất một nhánh'); return; } flSnap(); b.lanes.splice(i, 1); flRender(); showToast(`Đã xóa nhánh ${i + 1}. Nhấn Ctrl+Z để hoàn tác.`); }
 
 /* liên kết */
@@ -3900,22 +4087,25 @@ function flNodeClick(e, id) {
 }
 function flKebab(e, id) {
   const bb = FL.B[id];
-  flMenu(e, [['Sửa', () => flOpenDrawer(id)], ['Đổi tên', () => flRename({ stopPropagation() {} }, id)], ...((bb.dx || bb.dy) ? [['Đặt lại vị trí', () => { flSnap(); delete bb.dx; delete bb.dy; flRender(); }]] : []), ['Xóa', () => flDel(id), 'del']], e.currentTarget.getBoundingClientRect().right - 250);
+  flMenu(e, [['Sửa', () => flOpenDrawer(id)], ['Đổi tên', () => flRename({ stopPropagation() {} }, id)], ['Nhân đôi', () => flDup(id)], ['Xóa', () => flDel(id), 'del']], e.currentTarget.getBoundingClientRect().right - 250);
 }
-function flKmClose() { const k = document.getElementById('fl-km'); if (k) k.remove(); }
+function flDup(id) {
+  const b = FL.B[id]; if (!b) return;
+  if (b.type === 'parallel' || b.type === 'join') { showToast('Khối “Làm cùng lúc” và “Hợp nhất” đi thành cặp nên chưa nhân đôi riêng được.'); return; }
+  flSnap(); const n = JSON.parse(JSON.stringify(b)); n.id = flId(); n.title = b.title + ' (bản sao)'; FK_OUT.forEach(k => { if (k in n) n[k] = null; });
+  flResolve(n, b.x + 60, b.y + GNH + 60); FL.B[n.id] = n; FL.fresh = n.id; FL.sel = n.id; flRender(); flLog(`Nhân đôi khối “${b.title}”`); showToast(`Đã nhân đôi “${b.title}”. Khối mới chưa nối dây, kéo từ cổng để nối.`);
+}
+function flKmClose() { FL.ancKm = false; const k = document.getElementById('fl-km'); if (k) k.remove(); }
 function flDel(id) {
   const b = FL.B[id]; if (!b) return;
   if (b.type === 'join' && Object.values(FL.B).some(x => x.join === id)) { showToast('Khối Hợp nhất đi cùng khối Đồng thời. Xóa khối Đồng thời để gỡ cả hai.'); return; }
-  flSnap(); let ref = null;
-  if (FL.start.next === id) ref = ['start', 'next'];
-  Object.values(FL.B).forEach(x => { ['next', 'ok', 'rej', 'more', 'done', 'fail', 'c1', 'c2', 'def'].forEach(k => { if (x[k] === id) ref = [x.id, k]; }); (x.lanes || []).forEach((l, i) => { if (l === id) ref = [x.id, 'lane' + i]; }); });
-  const o = flOuts(b), rest = (b.type === 'parallel' ? FL.B[b.join].next : o ? flGet(id, o[0].k) : b.next) ?? null;
-  if (ref) flSet(ref[0], ref[1], rest);
-  if (b.type === 'parallel') delete FL.B[b.join];
-  delete FL.B[id];
-  Object.values(FL.B).forEach(x => { ['next', 'ok', 'rej', 'more', 'done', 'fail', 'c1', 'c2', 'def'].forEach(k => { if (x[k] && x[k].link === id) x[k] = null; }); });
-  FL.sel = null; flRender(); flLog(`Xóa khối “${b.title}”`); showToast(`Đã xóa khối “${b.title}”. Nhấn Ctrl+Z để hoàn tác.`);
+  flSnap(); const o = flOuts(b), rest = (b.type === 'parallel' ? FL.B[b.join].next : o ? flGet(id, o[0].k) : b.next) ?? null, gone = new Set([id]); if (b.type === 'parallel') gone.add(b.join);
+  const rep = v => (gone.has(v) ? rest : v);
+  FL.start.next = rep(FL.start.next);
+  Object.values(FL.B).forEach(x => { if (gone.has(x.id)) return; FK_OUT.forEach(k => { if (k in x) x[k] = rep(x[k]); }); if (x.lanes) x.lanes = x.lanes.map(rep); });
+  gone.forEach(g => delete FL.B[g]); FL.sel = null; flRender(); flLog(`Xóa khối “${b.title}”`); showToast(`Đã xóa khối “${b.title}”. Nhấn Ctrl+Z để hoàn tác.`);
 }
+function flCut(e, o, k) { e.stopPropagation(); flSnap(); flSet(o, k, null); flRender(); showToast('Đã xóa dây nối. Nhấn Ctrl+Z để hoàn tác.'); }
 
 /* thêm / sửa khối bằng drawer bên phải */
 function addBlockFromPicker(type) { closeActionPicker(); flOpenDrawer(null, FT[type] ? type : 'form'); }
@@ -3949,6 +4139,7 @@ function flDrawer(b, isNew, t) {
     acc('Danh sách việc cần làm cố định', sw('needTodo', 'Yêu cầu hoàn thành tất cả việc cần làm trước khi kết thúc bước', 0) + flRows('todos', b.todos || [], 'Thêm dòng mới'), nTodo ? nTodo + ' việc' : ''),
     acc('Danh mục báo cáo', flRows('reports', b.reports || [], 'Thêm dòng mới'), nRep ? nRep + ' dòng' : ''),
     acc('Mô tả và người theo dõi khối', ta('desc', 'Mô tả') + `<div id="fl_fol">${flFolHtml()}</div>`, nFol ? nFol + ' mục theo dõi' : '')];
+  const addF = `<button type="button" class="fl-link" onclick="flFieldModal(null,'svc')">+ Thêm trường mới</button>`;
   const FLD = FL.fields.length ? FL.fields.map(f => f.label) : ['(Chưa có trường)'];
   /* mỗi loại khối: basic = thông tin cơ bản, sla = thời hạn, adv = nâng cao */
   const SPEC = {
@@ -3961,16 +4152,19 @@ function flDrawer(b, isNew, t) {
     sign: { basic: [fld('Người ký', sel('signer', ['Người tạo phiếu', 'Người duyệt ở khối trước', 'Chọn người ký cố định']), 1), fld('Kiểu chữ ký', sel('signKind', ['Ký số bằng thiết bị bảo mật', 'Ký hình ảnh', 'Ký tay trên màn hình']), 1), fld('Tài liệu cần ký', inp('signTpl', 'Tải lên tệp PDF mẫu')), fld('Hạn ký (giờ)', inp('sla', 'Không giới hạn', 0, 'number')), sw('signOrder', 'Ký lần lượt theo thứ tự', 0), sw('needNote', 'Cho phép ghi chú khi ký', 0)], adv: tail },
     task: { basic: [perf, sw('defOuts', 'Có hai kết quả: hoàn thành và không hoàn thành', 1), `<div class="fl-2">${inp('outDone', 'Tên kết quả khi hoàn thành', 'Hoàn thành')}${inp('outFail', 'Tên kết quả khi không hoàn thành', 'Không hoàn thành')}</div>`], sla: slaBody(), adv: tail },
     form_public: { basic: [fld('Liên kết để chia sẻ', `<input class="fl-in" readonly value="https://service.sevago.vn/public/${flE(b.id || 'moi')}">`), sw('anon', 'Cho phép gửi mà không cần đăng nhập', 1), fld('Số lần gửi tối đa', inp('maxSub', 'Để trống nếu không giới hạn', '', 'number')), fld('Đóng biểu mẫu vào ngày', inp('openTo', '', '', 'date')), fld('Thông báo sau khi gửi', ta('thanks', 'Cảm ơn bạn. Chúng tôi đã nhận thông tin.', '', 56))], adv: tail },
-    branch: { basic: [fld('Nếu trường', sel('cField', FLD), 1), fld('Phép so sánh', sel('cOp', ['Bằng', 'Khác', 'Lớn hơn', 'Nhỏ hơn', 'Chứa'])), fld('Giá trị', inp('cVal', 'Nhập giá trị so sánh'))] },
-    switch: { basic: [fld('Rẽ nhánh theo trường', sel('cField', FLD), 1), fld('Nhánh 1: khi giá trị bằng', inp('case1', 'Ví dụ: Khẩn')), fld('Nhánh 2: khi giá trị bằng', inp('case2', 'Ví dụ: Thường')), mu('Các giá trị khác đi nhánh “Mặc định”.')] },
-    transform: { basic: [fld('Công thức', ta('formula', 'Ví dụ: Đơn giá * Số lượng', '', 90), 1), fld('Ghi kết quả vào trường', sel('target', FLD))] },
+    branch: { basic: [fld('Nếu trường', sel('cField', FLD) + addF, 1), fld('Phép so sánh', sel('cOp', ['Bằng', 'Khác', 'Lớn hơn', 'Nhỏ hơn', 'Chứa'])), fld('Giá trị', inp('cVal', 'Nhập giá trị so sánh'))] },
+    switch: { basic: [fld('Rẽ nhánh theo trường', sel('cField', FLD) + addF, 1), fld('Nhánh 1: khi giá trị bằng', inp('case1', 'Ví dụ: Khẩn')), fld('Nhánh 2: khi giá trị bằng', inp('case2', 'Ví dụ: Thường')), mu('Các giá trị khác đi nhánh “Mặc định”.')] },
+    transform: { basic: [fld('Công thức', ta('formula', 'Ví dụ: Đơn giá * Số lượng', '', 90), 1), fld('Ghi kết quả vào trường', sel('target', FLD) + addF)] },
+    webhook_in: { basic: [fld('Đường dẫn nhận dữ liệu', `<input class="fl-in" readonly value="https://service.sevago.vn/hook/${flE(b.id || 'moi')}">`), sw('hookKey', 'Yêu cầu khóa bảo mật khi gửi vào', 1), fld('Ghi dữ liệu nhận được vào trường', sel('target', FLD) + addF)] },
+    webhook_out: { basic: [fld('Địa chỉ nhận (URL)', inp('url', 'https://ketoan.congty.vn/api/phieu'), 1), fld('Cách gửi', sel('method', ['POST', 'PUT', 'GET'])), fld('Nội dung gửi đi', ta('payload', '{ "ma_phieu": "{{mã phiếu}}", "tong_tien": "{{Tổng tiền}}" }', '', 90))] },
     auto: { basic: [fld('Gửi tới', sel('mailTo', ['Người tạo phiếu', 'Người duyệt', 'Người theo dõi', 'Địa chỉ email cụ thể']), 1), fld('Tiêu đề', inp('subject', 'Tiêu đề email', 'Cập nhật phiếu {{mã phiếu}}')), fld('Nội dung', ta('body', 'Nội dung email. Gõ {{tên trường}} để chèn dữ liệu của phiếu', '', 110))] },
     join: { basic: [fld('Khi nào đi tiếp', sel('joinMode', ['Khi tất cả nhánh xong', 'Khi một nhánh xong']), 1)] },
     end: { basic: [fld('Kết quả của phiếu', sel('endResult', ['Hoàn tất', 'Hủy phiếu']), 1), sw('notifyOwner', 'Thông báo cho người tạo phiếu', 1)] },
     parallel: { basic: [mu('Thêm khối vào từng ô trống trên lưu đồ. Các nhánh gặp nhau ở khối Hợp nhất.')] }
   }[b.type] || { basic: [] };
   const o = flOuts({ type: b.type, defOuts: b.defOuts == null ? true : b.defOuts, outDone: b.outDone, outFail: b.outFail }), outs = o ? o.map(x => x.l).join(', ') : '';
-  const body = `<div class="fl-intro t-${t.t}"><span class="wf-node-icon fl-ic">${t.i}</span><div><span>${t.d || ''}</span>${outs ? `<span class="fl-io">Kết quả: ${flE(outs)}</span>` : ''}</div></div>`
+  const errs = (FL._val && b.id && FL._val.N[b.id]) || [], warns = (FL._val && b.id && FL._val.WARN[b.id]) || [];
+  const body = (errs.length ? `<div class="fl-errbox"><b>⚠ Khối này đang lỗi</b><ul>${errs.map(x => `<li>${flE(x)}</li>`).join('')}</ul></div>` : '') + (warns.length ? `<div class="fl-errbox w"><b>Lưu ý</b><ul>${warns.map(x => `<li>${flE(x)}</li>`).join('')}</ul></div>` : '') + `<div class="fl-intro t-${t.t}"><span class="wf-node-icon fl-ic">${t.i}</span><div><span>${t.d || ''}</span>${outs ? `<span class="fl-io">Kết quả: ${flE(outs)}</span>` : ''}</div></div>`
     + sec('Cần điền <em class="fl-badge">Bắt buộc</em>', '', fld('Tên khối', inp('title', 'Ví dụ: Trưởng phòng duyệt', b.title || '').replace('data-f="title"', 'id="fl_t" data-f="title"'), 1) + SPEC.basic.join(''))
     + (SPEC.sla ? `<details class="fl-sec fl-secd"><summary><b>Hạn xử lý</b><span class="fl-sum">${b.sla && +b.sla ? flE(b.sla) + ' giờ' : 'Không giới hạn'}</span></summary><p>Quá hạn, phiếu sẽ hiện cảnh báo. Có thể cho phiếu tự đi tiếp.</p><div class="fl-sg">${SPEC.sla}</div></details>` : '')
     + (SPEC.adv ? `<details class="fl-sec fl-secd"><summary><b>Thiết lập thêm</b><span class="fl-sum">Không bắt buộc</span></summary><div class="fl-adv">${SPEC.adv.join('')}</div></details>` : '');
@@ -3986,6 +4180,8 @@ function flFoot(b) {
     case 'branch': return b.cField ? `${b.cField} ${(b.cOp || 'Bằng').toLowerCase()} ${b.cVal || '…'}` : 'Đúng hoặc sai';
     case 'switch': return b.cField ? 'Theo: ' + b.cField : '2 trường hợp và mặc định';
     case 'transform': return b.target ? '→ ' + b.target : 'Công thức';
+    case 'webhook_in': return b.target ? '→ ' + b.target : 'Nhận qua đường dẫn';
+    case 'webhook_out': return b.url ? 'Gửi tới ' + String(b.url).replace(/^https?:\/\//, '').split('/')[0] : 'Chưa nhập địa chỉ';
     case 'auto': return 'Tới: ' + (b.mailTo || 'Người tạo phiếu');
     case 'join': return /1 nhánh/.test(b.joinMode || '') ? 'Chờ 1 nhánh xong' : 'Chờ mọi nhánh xong';
     case 'end': return b.endResult || 'Hoàn tất';
@@ -4004,9 +4200,9 @@ function flSave() {
   flSnap(); const isNew = !FL.draft.id;
   let b;
   if (isNew) {
-    const { o, k } = FL.pend, old = flGet(o, k), id = flId(); b = { id, type: FL.draft.type, next: null }; FL.B[id] = b; Object.assign(b, vals);
+    const fr = FL.pend.free, { o, k } = FL.pend, old = fr ? null : flGet(o, k), id = flId(); b = { id, type: FL.draft.type, next: null }; FL.B[id] = b; Object.assign(b, vals);
     if (b.type === 'end') { /* khối cuối: bỏ phần phía sau */ } else if (flOuts(b)) flSet(id, flOuts(b)[0].k, old); else b.next = old;
-    flSet(o, k, id); FL.fresh = id;
+    if (!fr) flSet(o, k, id); flPlaceNew(b, o, k, old); FL.fresh = id;
   } else b = Object.assign(FL.B[FL.draft.id], vals);
   if (b.type === 'task') {
     if (b.defOuts && b.next != null && b.done == null) { b.done = b.next; b.next = null; }
@@ -4017,13 +4213,13 @@ function flSave() {
 }
 
 /* sắp xếp lại, nhiều dịch vụ, tạo dịch vụ trống, kéo thả khối từ panel */
-function flTidy() { flSnap(); Object.values(FL.B).forEach(b => { delete b.dx; delete b.dy; }); flRender(); flFit(1); showToast('Đã xếp lại các khối'); }
 function flLoad(name) {
+  FL.run = null; FL.saved = null;
   FLS[FL.svc] = { start: FL.start, B: FL.B, n: FL.n, fields: FL.fields, info: FL.info, log: FL.log };
   const d = FLS[name]; FL.svc = name;
   if (d) { FL.start = d.start; FL.B = d.B; FL.n = d.n; FL.fields = d.fields || []; FL.info = d.info; FL.log = d.log; } else { FL.start = { next: null }; FL.B = {}; FL.n = 10; FL.fields = []; const z = n => String(n).padStart(2, '0'), t = new Date(); FL.info = { group: 'Nhóm mặc định', desc: '', viewers: [], managers: [], followers: [], by: 'Admin', at: `${z(t.getDate())}-${z(t.getMonth() + 1)}-${t.getFullYear()} ${z(t.getHours())}:${z(t.getMinutes())}` }; FL.log = [{ at: Date.now(), by: 'Admin', text: 'Tạo dịch vụ' }]; }
   FL.undo = []; FL.redo = [];
-  FL.centered = false; FL.sel = null; FL.pend = null; FL.link = null; FL.draft = null;
+  flNorm(FL); FL.centered = false; FL.sel = null; FL.pend = null; FL.link = null; FL.draft = null;
 }
 function openStudio(name) { flLoad(name || FL.svc); window.location.hash = '#/studio'; }
 function openCreateServiceModal() {
@@ -4108,10 +4304,10 @@ function flAtKey(e, inp) {
 function flPermSync() { const d = document.getElementById('node-config-drawer'); if (!d || !FL.draft) return; const perm = {}; d.querySelectorAll('[data-p]').forEach(e => { const [f, k] = e.dataset.p.split(':'); (perm[f] = perm[f] || {})[k] = e.checked; }); if (Object.keys(perm).length) FL.draft.perm = perm; }
 function flFieldsBody(b) {
   const perm = (FL.draft && FL.draft.perm) || b.perm || {}, L = FL.fields, nm = id => id === 'svc' ? 'Dịch vụ' : (FL.B[id] ? FL.B[id].title : 'Khối đã xóa');
-  return `<small class="fl-mu">Chọn trường khối này được xem hoặc sửa. Thêm hoặc sửa trường ở tab <a href="#/fields" onclick="flTryClose()">Trường tùy chỉnh</a>.</small>`
+  return `<div class="fl-fhead"><small class="fl-mu">Chọn trường khối này được xem hoặc sửa.</small><button type="button" class="btn btn-secondary btn-sm" onclick="flFieldModal(null,'svc')">+ Thêm trường</button></div>`
     + (L.length ? L.map(f => `<div class="fl-pf"><div class="fl-fi"><b>${flE(f.label)}${f.req ? ' <em>*</em>' : ''}</b><span>${flE(nm(f.scope || 'svc'))} · ${f.type === 'int' ? 'Số nguyên' : 'Văn bản'}</span></div><label class="fl-sw"><input type="checkbox" data-p="${f.id}:v" ${(perm[f.id] ? perm[f.id].v : true) ? 'checked' : ''}><i></i><span>Được xem</span></label><label class="fl-sw"><input type="checkbox" data-p="${f.id}:e" ${(perm[f.id] ? perm[f.id].e : true) ? 'checked' : ''}><i></i><span>Được sửa</span></label></div>`).join('') : '<small class="fl-mu">Chưa có trường nào.</small>');
 }
-function flFieldsRefresh() { flPermSync(); const w = document.getElementById('fl_fields'); if (w) w.innerHTML = flFieldsBody(FL.draft && FL.draft.id ? FL.B[FL.draft.id] : {}); const f = document.getElementById('fl_fol'); if (f) { flFolSync(); f.innerHTML = flFolHtml(); } }
+function flFieldsRefresh() { flPermSync(); document.querySelectorAll('#node-config-drawer select[data-f="cField"],#node-config-drawer select[data-f="target"]').forEach(sl => FL.fields.forEach(f => { if (![...sl.options].some(o => o.value === f.label)) sl.add(new Option(f.label, f.label)); })); const w = document.getElementById('fl_fields'); if (w) w.innerHTML = flFieldsBody(FL.draft && FL.draft.id ? FL.B[FL.draft.id] : {}); const f = document.getElementById('fl_fol'); if (f) { flFolSync(); f.innerHTML = flFolHtml(); } }
 function flFieldDel(i) {
   flSnap(); const lb = FL.fields[i].label; FL.fields.splice(i, 1); FL.fields.forEach(f => { if (f.cond && f.cond.f === lb) f.cond = null; });
   Object.values(FL.B).forEach(b => { if (b.fol) b.fol.cond = b.fol.cond.filter(c => c.f !== lb); }); if (FL.draft && FL.draft.fol) FL.draft.fol.cond = FL.draft.fol.cond.filter(c => c.f !== lb);
@@ -4217,6 +4413,9 @@ function flEnter(F, t, val, j) {
   if (val != null && typeof val === 'object') val = val.link;
   const b = val == null ? null : F.B[val];
   if (!b) { if (j.length) return flEnter(F, t, j[j.length - 1], j); return; }
+  (t.trace || (t.trace = [])).push(b.id);
+  if (t.trace.length > 300) { t.err = { b: b.id, msg: 'Phiếu quay vòng quá nhiều lần mà không có bước nào chờ người xử lý. Hãy kiểm tra điều kiện quay lại.' }; t.status = 'error'; t.tokens = []; return; }
+  if (t.sim) { const er = flRunCheck(b, t); if (er) { t.err = { b: b.id, msg: er }; t.status = 'error'; t.tokens = []; return; } }
   if (b.type === 'parallel') { t.jn[b.join] = { need: b.lanes.length, got: 0 }; const j2 = [...j, b.join]; b.lanes.forEach(l => flEnter(F, t, l, j2)); return; }
   if (b.type === 'join') { const st = t.jn[b.id]; if (st) { st.got++; if (st.got < st.need) return; delete t.jn[b.id]; } return flEnter(F, t, b.next ?? null, j.filter(x => x !== b.id)); }
   if (b.type === 'end') { t.tokens = []; t.status = b.endResult === 'Hủy phiếu' ? 'cancel' : 'done'; return; }
@@ -4241,7 +4440,7 @@ function flAct(name, tid, idx, key) {
 function flSweep(F, list) { list.forEach(t => { t.tokens = t.tokens.filter(k => F.B[k.b]); flSettle(t); }); }
 function flKActs(b) {
   const o = flOuts(b); if (!o) return [{ k: 'done', l: 'Hoàn thành', c: 'ok' }];
-  return o.map(x => ({ k: x.k, l: b.type === 'approval' ? ({ ok: 'Phê duyệt', rej: 'Từ chối', more: 'Yêu cầu bổ sung' })[x.k] : x.l, c: x.c }));
+  return o.filter(x => !['more', 'fail'].includes(x.k) || b[x.k]).map(x => ({ k: x.k, l: b.type === 'approval' ? ({ ok: 'Phê duyệt', rej: 'Từ chối', more: 'Yêu cầu bổ sung' })[x.k] : x.l, c: x.c }));
 }
 function flAgo(t) { const m = Math.floor((Date.now() - t) / 60000); return m < 1 ? 'vừa xong' : m < 60 ? m + ' phút trước' : m < 1440 ? Math.floor(m / 60) + ' giờ trước' : Math.floor(m / 1440) + ' ngày trước'; }
 function renderKanbanView() {
@@ -4277,7 +4476,7 @@ function flKDrop(e) {
 let flKT = 0;
 function flKFilter(v) { FK.kq = v; clearTimeout(flKT); flKT = setTimeout(() => { renderApp(); const i = document.getElementById('kb_q'); if (i) { i.focus(); i.setSelectionRange(v.length, v.length); } }, 150); }
 function flKUndo() { const u = FK.undo; if (!u) return; const l = flTk(FL.svc), i = l.findIndex(x => x.id === u.tid); if (i >= 0) l[i] = JSON.parse(u.snap); FK.undo = null; renderApp(); showToast('Đã hoàn tác'); }
-function flUndoToast(msg) { const box = document.getElementById('toast-box'); if (!box) return; box.innerHTML = ''; box.append(msg + ' '); const b = document.createElement('button'); b.className = 'kb-undo'; b.textContent = 'Hoàn tác'; b.onclick = flKUndo; box.append(b); box.classList.remove('hidden'); box.style.opacity = '1'; clearTimeout(flKT2); flKT2 = setTimeout(() => { box.style.opacity = '0'; setTimeout(() => box.classList.add('hidden'), 200); }, 6000); }
+function flUndoToast(msg) { const w = document.createElement('span'); w.append(msg + ' '); const b = document.createElement('button'); b.className = 'kb-undo'; b.textContent = 'Hoàn tác'; b.onclick = flKUndo; w.append(b); flNote('success', w, 6000); }
 let flKT2 = 0;
 function flKAct(tid, idx, key) {
   const t0 = flTk(FL.svc).find(x => x.id === tid), k0 = t0 && t0.tokens[idx]; if (k0 && FL.B[k0.b] && flLocked(FL.B[k0.b])) { showToast('Bạn chưa có quyền duyệt phiếu này. Hãy nhờ người duyệt xử lý.'); return; } FK.undo = { tid, snap: JSON.stringify(t0) }; flAct(FL.svc, tid, idx, key); const t = flTk(FL.svc).find(x => x.id === tid); renderApp(); flUndoToast(t && t.status === 'done' ? `Phiếu ${tid} đã hoàn tất.` : t && t.status === 'cancel' ? `Phiếu ${tid} đã bị hủy.` : `Đã chuyển phiếu ${tid} sang bước kế tiếp.`); }
@@ -4310,7 +4509,7 @@ function flShell(tab, body) {
   const set = FSET.some(x => x[0] === tab);
   return `<div id="canvas-studio-view"><h1 class="sr-only">${flE(FL.svc)}${(FTABS.find(x => x[0] === tab) || [0, tab === '#/kanban' ? 'Kanban' : ''])[1] ? ' – ' + (FTABS.find(x => x[0] === tab) || [0, 'Kanban'])[1] : ''}</h1><div class="canvas-top-bar"><div class="canvas-top-left">${ROLE !== 'admin' || !set ? '' : `<button class="btn-back-arrow" onclick="backToSettingsList()" title="Quay lại danh sách dịch vụ" aria-label="Quay lại danh sách dịch vụ"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg></button>`}
     <div class="canvas-service-title"><select class="fl-svsel" onchange="flSwitchSvc(this.value)" aria-label="Chọn dịch vụ">${state.services.map(x => `<option ${x.name === FL.svc ? 'selected' : ''}>${flE(x.name)}</option>`).join('')}</select><span class="canvas-status-pill">● Đang hoạt động</span></div></div>
-    <div class="canvas-top-right">${set ? '' : `<button class="btn btn-blue btn-sm" onclick="flTicketModal(FL.svc)">Tạo phiếu</button>`}</div></div>
+    <div class="canvas-top-right">${tab === '#/studio' ? `<span class="fl-dirty" id="fl_dirty" hidden>Chưa lưu</span><button class="btn btn-secondary btn-sm" id="fl_run" onclick="flRunOpen()" title="Chạy thử lưu đồ với dữ liệu mẫu">▶ Chạy thử</button><button class="btn btn-secondary btn-sm" id="fl_cancel" onclick="flDiscard()" disabled title="Bỏ các thay đổi chưa lưu">Hủy</button><button class="btn btn-blue btn-sm" id="fl_save" onclick="flCommit()" disabled title="Lưu lưu đồ">Lưu</button>` : set ? '' : `<button class="btn btn-blue btn-sm" onclick="flTicketModal(FL.svc)">Tạo phiếu</button>`}</div></div>
     ${!set ? '' : `<nav class="fl-tabs" aria-label="Thiết lập dịch vụ">${(set ? FSET : FWORK).filter(([h]) => ROLE === 'admin' || !ADMIN_ONLY.includes(h)).map(([h, l]) => `<a href="${h}" class="${h === tab ? 'on' : ''}"${h === tab ? ' aria-current="page"' : ''}>${l}</a>`).join('')}</nav>`}${body}</div>`;
 }
 function flTabStat() { const l = flTk(FL.svc), r = l.filter(t => !t.status).length, d = l.filter(t => t.status === 'done').length;
@@ -4374,7 +4573,13 @@ function flFieldsPage() {
 /* ===================== TƯƠNG TÁC CANVAS: hoàn tác, đổi tên, menu nhánh, liên kết, phím tắt ===================== */
 const flSnapShot = () => JSON.stringify({ start: FL.start, B: FL.B, n: FL.n, fields: FL.fields });
 function flSnap() { FL.undo.push(flSnapShot()); if (FL.undo.length > 50) FL.undo.shift(); FL.redo = []; flUndoUI(); }
-function flUndoUI() { const u = document.getElementById('fl_undo'), r = document.getElementById('fl_redo'); if (u) u.disabled = !FL.undo.length; if (r) r.disabled = !FL.redo.length; }
+function flDirtyUI() {
+  if (FL.saved == null) FL.saved = flSnapShot();
+  const d = flSnapShot() !== FL.saved; ['fl_cancel', 'fl_save'].forEach(i => { const b = document.getElementById(i); if (b) b.disabled = !d; }); const t = document.getElementById('fl_dirty'); if (t) t.hidden = !d;
+}
+function flCommit() { FL.saved = flSnapShot(); flLog('Lưu lưu đồ'); flDirtyUI(); showToast('Đã lưu lưu đồ.'); }
+function flDiscard() { if (flSnapShot() === FL.saved) return; FL.undo.push(flSnapShot()); FL.redo = []; flRestore(FL.saved); flRender(); showToast('Đã hủy các thay đổi chưa lưu. Nhấn Ctrl+Z để lấy lại.'); }
+function flUndoUI() { flDirtyUI(); const u = document.getElementById('fl_undo'), r = document.getElementById('fl_redo'); if (u) u.disabled = !FL.undo.length; if (r) r.disabled = !FL.redo.length; }
 function flRestore(js) { const d = JSON.parse(js); FL.start = d.start; FL.B = d.B; FL.n = d.n; FL.fields = d.fields; FL.sel = null; FL.draft = null; const dr = document.getElementById('node-config-drawer'); if (dr) dr.classList.add('hidden'); }
 function flHist(from, to, msg) { if (!from.length) { showToast(to === FL.redo ? 'Không còn thao tác để hoàn tác' : 'Không còn thao tác để làm lại'); return; } to.push(flSnapShot()); flRestore(from.pop()); if (['#/studio', ''].includes(window.location.hash)) flRender(); else renderApp(); flUndoUI(); showToast(msg); }
 function flUndo() { flHist(FL.undo, FL.redo, 'Đã hoàn tác'); }
@@ -4385,12 +4590,11 @@ function flMenu(e, items, x, y) {
   m.innerHTML = items.map((it, i) => `<div role="menuitem" tabindex="0" class="${it[2] || ''}" onclick="flKmClose();FL._mi[${i}][1]()">${flE(it[0])}</div>`).join(''); document.body.appendChild(m);
 }
 function flPillClick(e, o, k) {
-  const v = flGet(o, k), at = () => { FL.pend = { o, k }; };
-  flMenu(e, [['Thêm khối vào nhánh này', () => { at(); handleMenuAddBlock(); }], ['Nối tới khối khác', () => { at(); handleMenuCreateLink(); }], ['Thêm nhánh song song', () => { at(); handleMenuAddParallelBranch(); }], ...(v != null ? [['Xóa nhánh này và các khối phía sau', () => { flSnap(); flSet(o, k, null); flRender(); showToast('Đã xóa nhánh. Nhấn Ctrl+Z để hoàn tác.'); }, 'del']] : [])]);
+  if (FL.noClick) return;
+  const v = flGet(o, k), at = () => { FL.pend = { o, k }; }, lane = /^lane\d+$/.test(k), bb = FL.B[o];
+  flMenu(e, [['Thêm khối vào nhánh này', () => { at(); handleMenuAddBlock(); }], ['Thêm nhánh song song', () => { at(); handleMenuAddParallelBranch(); }], ...(v != null ? [['Xóa dây nối của nhánh này', () => flCut({ stopPropagation() {} }, o, k), 'del']] : []), ...(lane && bb.lanes.length > 1 ? [['Xóa nhánh này', () => flDelLane(o, +k.slice(4)), 'del']] : [])]);
 }
-function flGhostClick(e, o, k, id) {
-  flMenu(e, [[`Đi tới khối “${FL.B[id] ? FL.B[id].title : ''}”`, () => flFocus(id)], ['Gỡ liên kết', () => { flSnap(); flSet(o, k, null); flRender(); showToast('Đã gỡ liên kết. Nhấn Ctrl+Z để hoàn tác.'); }, 'del']]);
-}
+
 function flFocus(id) {
   const a = document.getElementById('canvas-work-area'), L = document.getElementById('canvas-transform-layer'), n = L && L.querySelector(`.fl-node[data-id="${id}"]`); if (!a || !n) return;
   L.classList.add('fl-anim'); setTimeout(() => L.classList.remove('fl-anim'), 240);
@@ -4419,14 +4623,14 @@ document.addEventListener('keydown', e => {
   const fld = (id, label, type, req, desc, cond, scope) => ({ id, scope: scope || 'svc', label, type, req, desc: desc || '', cond: cond || null });
   m('p1', 'form', 'Phiếu đề xuất mua hàng', { next: 'p2', sla: 24, performer: 'Mở cho mọi người trong danh sách cố định', desc: 'Người có nhu cầu mua điền hàng hóa, số lượng, đơn giá và lý do.' });
   m('p2', 'transform', 'Tính tổng tiền', { next: 'p3', formula: 'Số lượng * Đơn giá', target: 'Tổng tiền' });
-  m('p3', 'approval', 'Trưởng bộ phận duyệt', { apMode: 'Quản lý trực tiếp', sla: 24, needNote: true, slaAuto: true, ok: 'p4', rej: 'e1', more: { link: 'p1' } });
+  m('p3', 'approval', 'Trưởng bộ phận duyệt', { apMode: 'Quản lý trực tiếp', sla: 24, needNote: true, slaAuto: true, ok: 'p4', rej: 'e1', more: null });
   m('p4', 'branch', 'Tổng tiền trên 20 triệu?', { cField: 'Tổng tiền', cOp: 'Lớn hơn', cVal: '20000000', ok: 'p5', rej: { link: 'p6' } });
-  m('p5', 'approval', 'Giám đốc duyệt', { apMode: 'Người duyệt cố định', approvers: ['Lê Hoàng'], sla: 48, needNote: true, fol: { fixed: ['Phạm Thị Thu Hường'], cond: [], mode: 0 }, ok: 'p6', rej: 'e2', more: { link: 'p1' } });
+  m('p5', 'approval', 'Giám đốc duyệt', { apMode: 'Người duyệt cố định', approvers: ['Lê Hoàng'], sla: 48, needNote: true, fol: { fixed: ['Phạm Thị Thu Hường'], cond: [], mode: 0 }, ok: 'p6', rej: 'e2', more: null });
   m('p6', 'parallel', 'Đặt hàng và báo kế toán', { lanes: ['p7', 'p8'], join: 'p9' });
   m('p7', 'task', 'Phòng mua hàng đặt hàng', { defOuts: true, outDone: 'Đã đặt hàng', outFail: 'Nhà cung cấp không giao được', sla: 24, performer: 'Chọn một người từ danh sách cố định', done: null, fail: 'e3' });
   m('p8', 'auto', 'Báo kế toán chuẩn bị thanh toán', { mailTo: 'Người theo dõi', subject: 'Phiếu {{mã phiếu}} đã được duyệt mua hàng', body: 'Phiếu mua hàng đã được duyệt. Kế toán chuẩn bị thanh toán cho nhà cung cấp.' });
   m('p9', 'join', 'Hợp nhất', { next: 'p10' });
-  m('p10', 'task', 'Nhận hàng và kiểm tra', { defOuts: true, outDone: 'Hàng đạt', outFail: 'Hàng không đạt', sla: 72, performer: 'Người đã xử lý khối trước', todos: [{ t: 'Đối chiếu số lượng với phiếu', who: 'Người xử lý khối', due: '24' }, { t: 'Kiểm tra chất lượng hàng', who: 'Người xử lý khối', due: '48' }], done: 'e4', fail: { link: 'p7' } });
+  m('p10', 'task', 'Nhận hàng và kiểm tra', { defOuts: true, outDone: 'Hàng đạt', outFail: 'Hàng không đạt', sla: 72, performer: 'Người đã xử lý khối trước', todos: [{ t: 'Đối chiếu số lượng với phiếu', who: 'Người xử lý khối', due: '24' }, { t: 'Kiểm tra chất lượng hàng', who: 'Người xử lý khối', due: '48' }], done: 'e4', fail: null });
   m('e1', 'end', 'Từ chối mua hàng', { endResult: 'Hủy phiếu' }); m('e2', 'end', 'Giám đốc từ chối', { endResult: 'Hủy phiếu' }); m('e3', 'end', 'Hủy do nhà cung cấp', { endResult: 'Hủy phiếu' }); m('e4', 'end', 'Hoàn tất mua hàng', { endResult: 'Hoàn tất' });
   FLS[name] = { start: { next: 'p1' }, B, n: 100, undo: [], redo: [],
     info: { group: 'Nhóm mặc định', desc: 'Đề xuất mua hàng: duyệt theo giá trị, đặt hàng và nhận hàng.', viewers: [], managers: ['Trần Minh Tuấn'], followers: ['Phạm Thị Thu Hường'], by: 'Trần Minh Tuấn', at: '29-10-2026 09:00' },
@@ -4443,42 +4647,88 @@ document.addEventListener('keydown', e => {
 /* ===================== DỄ HIỂU CHO NGƯỜI KHÔNG RÀNH CÔNG NGHỆ: tóm tắt bằng lời + hướng dẫn nhanh ===================== */
 const FLUI = { guide: false };
 function flGuideHtml() {
-  return `<div class="fl-guide" id="fl-guide" role="region" aria-label="Cách dùng nhanh"><b>Cách dùng nhanh</b><ol><li>Bấm dấu <span class="fl-gp">+</span> giữa hai khối để thêm một khối mới.</li><li>Bấm vào một khối để chọn người xử lý và thời hạn.</li><li>Sang tab <b>Kanban</b>, bấm <b>Tạo phiếu</b> để chạy thử.</li></ol><div><button class="btn btn-primary btn-sm" onclick="flGuideHide()">Đã hiểu</button><button class="btn btn-secondary btn-sm" onclick="flSumToggle(true)">Xem tóm tắt bằng lời</button></div></div>`;
+  return `<div class="fl-guide" id="fl-guide" role="region" aria-label="Cách dùng nhanh"><b>Cách dùng nhanh</b><ol><li>Bấm dấu <span class="fl-gp">+</span> giữa hai khối để thêm một khối mới.</li><li>Bấm vào một khối để chọn người xử lý và thời hạn.</li><li>Sang tab <b>Kanban</b>, bấm <b>Tạo phiếu</b> để chạy thử.</li></ol><div><button class="btn btn-primary btn-sm" onclick="flGuideHide()">Đã hiểu</button></div></div>`;
 }
 function flGuideHide() { FLUI.guide = true; const g = document.getElementById('fl-guide'); if (g) g.remove(); }
-function flGuideShow() { FLUI.guide = false; if (!document.getElementById('fl-guide')) document.getElementById('canvas-studio-view').insertAdjacentHTML('beforeend', flGuideHtml()); }
-const flWho = b => b.type === 'approval' ? (b.apMode === 'Quản lý trực tiếp' ? 'Quản lý trực tiếp' : (b.approvers || []).length ? b.approvers.join(', ') : 'Người duyệt (chưa chọn)') : /Mở cho mọi người/.test(b.performer || '') ? 'Người có nhu cầu' : /cố định/.test(b.performer || '') ? 'Người được giao' : 'Người xử lý';
-function flNarrate(F) {
-  const order = flOrder(F), num = {}; order.forEach((b, i) => { num[b.id] = i + 1; });
-  const go = v => { if (v == null) return 'phiếu kết thúc'; const id = typeof v === 'object' ? v.link : v, t = F.B[id]; return t ? `chuyển tới bước ${num[id]} “${t.title}”` : 'phiếu kết thúc'; };
-  const due = b => b.sla ? ` Hạn xử lý: ${b.sla} giờ.` : '';
-  return order.map(b => {
-    let t = '';
-    switch (b.type) {
-      case 'form': t = `${flWho(b)} điền thông tin vào phiếu.${due(b)} Xong thì ${go(b.next)}.`; break;
-      case 'transform': t = `Hệ thống tự tính ${b.target || 'kết quả'} = ${b.formula || '…'}. Rồi ${go(b.next)}.`; break;
-      case 'approval': t = `${flWho(b)} duyệt phiếu.${due(b)} Nếu đồng ý thì ${go(b.ok)}. Nếu từ chối thì ${go(b.rej)}. Nếu cần bổ sung thì ${go(b.more)}.`; break;
-      case 'branch': t = `Hệ thống kiểm tra: ${b.cField || '…'} ${(b.cOp || 'bằng').toLowerCase()} ${b.cVal || '…'}. Nếu đúng thì ${go(b.ok)}. Nếu sai thì ${go(b.rej)}.`; break;
-      case 'switch': t = `Hệ thống chọn hướng theo ${b.cField || '…'}: “${b.case1 || '…'}” thì ${go(b.c1)}; “${b.case2 || '…'}” thì ${go(b.c2)}; còn lại thì ${go(b.def)}.`; break;
-      case 'parallel': t = `Chia thành ${b.lanes.length} nhánh làm cùng lúc: ${b.lanes.map((l, i) => `nhánh ${i + 1} ${l == null ? 'để trống' : go(l)}`).join('; ')}. Khi cả hai xong thì ${go(F.B[b.join] ? F.B[b.join].next : null)}.`.replace('cả hai', b.lanes.length > 2 ? 'tất cả' : 'cả hai'); break;
-      case 'join': t = `Chờ các nhánh làm xong rồi mới đi tiếp.`; break;
-      case 'task': t = b.defOuts ? `${flWho(b)} thực hiện công việc.${due(b)} Nếu “${b.outDone || 'Hoàn thành'}” thì ${go(b.done)}. Nếu “${b.outFail || 'Không hoàn thành'}” thì ${go(b.fail)}.` : `${flWho(b)} thực hiện công việc.${due(b)} Xong thì ${go(b.next)}.`; break;
-      case 'sign': t = `${b.signer || 'Người tạo phiếu'} ký tài liệu. Xong thì ${go(b.next)}.`; break;
-      case 'form_public': t = `Người bên ngoài gửi thông tin qua đường dẫn. Xong thì ${go(b.next)}.`; break;
-      case 'auto': t = `Hệ thống tự gửi email tới ${(b.mailTo || 'người tạo phiếu').toLowerCase()}: “${b.subject || ''}”. Rồi ${go(b.next)}.`; break;
-      case 'end': t = `Kết thúc phiếu với kết quả: ${b.endResult || 'Hoàn tất'}.`; break;
-    }
-    return { id: b.id, n: num[b.id], title: b.title, type: FT[b.type].l, t };
-  });
+function flGuideShow() { if (document.getElementById('fl-guide')) { flGuideHide(); return; } FLUI.guide = false; document.getElementById('canvas-studio-view').insertAdjacentHTML('beforeend', flGuideHtml()); flGuidePos(); }
+/* thẻ hướng dẫn nằm ngay trên nút “?”, mũi tên chỉ xuống nút */
+function flGuidePos() {
+  const g = document.getElementById('fl-guide'), b = document.querySelector('.fl-hudr .fl-hb'); if (!g || !b) return; const r = b.getBoundingClientRect(), left = Math.max(12, r.right - g.offsetWidth);
+  g.style.cssText += `;position:fixed;right:auto;bottom:auto;left:${left}px;top:${Math.max(12, r.top - g.offsetHeight - 14)}px;--ax:${r.left + r.width / 2 - left}px`;
 }
-function flSumToggle(on) {
-  const a = document.getElementById('fl-sum'); if (!a) return; const open = on == null ? a.classList.contains('hidden') : on;
-  if (!open) { a.classList.add('hidden'); return; }
-  const d = document.getElementById('node-config-drawer'); if (d && !d.classList.contains('hidden')) flCloseDrawer();
-  const st = flNarrate(FL), rows = st.map(x => `<li><button type="button" onclick="flFocus('${x.id}')"><span class="fl-sn">${x.n}</span><span class="fl-st2"><b>${flE(x.title)}</b><em>${flE(x.type)}</em><span>${flE(x.t)}</span></span></button></li>`).join('');
-  a.innerHTML = `<div class="fl-dh"><div class="fl-dt"><small>Dành cho người mới</small><b>Quy trình này chạy thế nào?</b></div><button class="fl-x" onclick="flSumToggle(false)" aria-label="Đóng">✕</button></div><div class="fl-db" style="padding:16px 20px">${st.length ? `<p class="fl-mu" style="margin:0 0 12px">Phiếu đi lần lượt qua các bước dưới đây. Bấm một bước để tìm nó trên lưu đồ.</p><ol class="fl-sl">${rows}</ol>` : '<p class="fl-mu">Quy trình chưa có bước nào. Bấm dấu + dưới khối Bắt đầu để thêm bước đầu tiên.</p>'}</div>`;
+window.addEventListener('resize', flGuidePos);
+/* ===== Chạy thử: đưa một phiếu mẫu chạy qua lưu đồ, khối nào đang chạy thì sáng lên trên canvas ===== */
+function flRunSample(f) { return f.type === 'int' ? (/giá|tiền/i.test(f.label) ? 3000000 : 10) : 'Mẫu ' + f.label.toLowerCase(); }
+function flRunClose() { if (FL.run) clearTimeout(FL.run.timer); FL.run = null; const a = document.getElementById('fl-run'); if (a) a.classList.add('hidden'); flRender(); }
+function flRunOpen() {
+  const a = document.getElementById('fl-run'); if (!a) return; if (!FL.start.next) { showToast('Chưa chạy thử được. Lưu đồ chưa có khối nào.'); return; }
+  const d = document.getElementById('node-config-drawer'); if (d && !d.classList.contains('hidden')) flTryClose(); if (FL.run) clearTimeout(FL.run.timer); FL.run = null; flRender();
+  const fs = flTicketFields(FL).filter(f => !f.cond);
+  a.innerHTML = `<div class="fl-dh"><div class="fl-dt"><small>Chạy thử</small><b>Nhập dữ liệu mẫu</b></div><button class="fl-x" onclick="flRunClose()" aria-label="Đóng">✕</button></div><div class="fl-db"><p class="fl-mu">Phiếu thử chạy qua lưu đồ này, không lưu vào danh sách phiếu thật. Khối đang chạy sẽ sáng lên.</p>${Object.keys((FL._val || {}).N || {}).length ? `<div class="fl-errbox"><b>⚠ Lưu đồ đang có ${Object.keys(FL._val.N).length} khối lỗi</b><ul>${Object.keys(FL._val.N).map(id => `<li>“${flE(FL.B[id] ? FL.B[id].title : id)}”: ${flE(FL._val.N[id][0])}</li>`).join('')}</ul><span>Chạy thử sẽ dừng tại khối lỗi đầu tiên mà phiếu đi qua.</span></div>` : ''}${fs.map(f => `<div class="fl-f"><label>${flE(f.label)}</label><input class="fl-in" data-rf="${flE(f.label)}" type="${f.type === 'int' ? 'number' : 'text'}" value="${flE(flRunSample(f))}" autocomplete="off"></div>`).join('') || '<p class="fl-mu">Dịch vụ chưa có trường dữ liệu. Phiếu thử sẽ chạy với dữ liệu trống.</p>'}</div><div class="fl-df"><button class="btn btn-secondary" onclick="flRunClose()">Đóng</button><button class="btn btn-primary" onclick="flRunStart()">▶ Chạy</button></div>`;
   a.classList.remove('hidden');
 }
+function flRunStart() {
+  const data = {}; document.querySelectorAll('#fl-run [data-rf]').forEach(i => { const v = i.value.trim(); if (v !== '') data[i.dataset.rf] = i.type === 'number' ? Number(v) : v; });
+  const t = { id: 'THỬ', title: 'Phiếu chạy thử', at: Date.now(), by: ROLE_NAME[ROLE], data, tokens: [], jn: {}, hist: [], trace: [], status: null, sim: true };
+  flEnter(FL, t, FL.start.next ?? null, []); flSettle(t);
+  if (t.tokens.length === 1 && t.tokens[0].b === FL.start.next && FL.B[FL.start.next].type === 'form') flRunStep(t, 0, 'done'); /* dữ liệu mẫu chính là bước điền phiếu đầu tiên */
+  FL.run = { t, shown: 0, timer: 0 }; flRunPlay();
+}
+function flRunPlay() {
+  const r = FL.run; if (!r) return; clearTimeout(r.timer);
+  if (r.shown < r.t.trace.length) { r.shown++; flRunPaint(); flRunPanel(); r.timer = setTimeout(flRunPlay, 480); } else { flRunPaint(); flRunPanel(); }
+}
+function flRunStep(t, idx, key) { const tok = t.tokens[idx]; if (!tok) return; const b = FL.B[tok.b]; t.tokens.splice(idx, 1); t.hist.push({ at: Date.now(), block: b.title, act: key }); flEnter(FL, t, flOuts(b) ? (b[key] ?? null) : (b.next ?? null), tok.j); flSettle(t); }
+function flRunAct(idx, key) { flRunStep(FL.run.t, idx, key); flRunPlay(); }
+function flRunPaint() {
+  const r = FL.run, L = document.getElementById('canvas-transform-layer'); if (!r || !L) return;
+  L.querySelectorAll('.run-done,.run-now,.run-wait,.run-err').forEach(e => e.classList.remove('run-done', 'run-now', 'run-wait', 'run-err'));
+  const seen = r.t.trace.slice(0, r.shown), anim = r.shown < r.t.trace.length, wait = new Set(r.t.tokens.map(k => k.b));
+  seen.forEach((id, i) => { const n = L.querySelector(`.fl-node[data-id="${id}"]`); if (!n) return; n.classList.add(r.t.err && r.t.err.b === id && !anim && i === seen.length - 1 ? 'run-err' : anim && i === seen.length - 1 ? 'run-now' : wait.has(id) && !anim ? 'run-wait' : 'run-done'); });
+  const st = L.querySelector('.fl-start'); if (st) st.classList.add('run-done');
+  L.querySelectorAll('.fl-ep.taken').forEach(e => e.classList.remove('taken')); const vis = new Set(seen), key = { auto_ok: 'ok', auto_rej: 'rej', auto_c1: 'c1', auto_c2: 'c2', auto_def: 'def' };
+  const mark = (o, k) => { const e = L.querySelector(`.fl-ep[data-e="${o}:${k}"]`); if (e) e.classList.add('taken'); };
+  if (vis.size && FL.start.next) mark('start', 'next');
+  vis.forEach(id => { const b = FL.B[id]; if (!b) return; const t = flGet(id, 'next'); const o = flPorts(b);
+    if (!o) { if (t && vis.has(t)) mark(id, 'next'); return; }
+    if (b.type === 'parallel') { o.forEach(p => { if (vis.has(flGet(id, p.k))) mark(id, p.k); }); return; }
+    r.t.hist.filter(h => h.block === b.title).forEach(h => { const k = key[h.act] || h.act; if (vis.has(flGet(id, k))) mark(id, k); }); });
+}
+function flRunFix() { const id = FL.run && FL.run.t.err && FL.run.t.err.b; if (!id) return; flFocus(id); flOpenDrawer(id); }
+function flRunPanel() {
+  const r = FL.run, a = document.getElementById('fl-run'); if (!r || !a) return; const t = r.t, anim = r.shown < t.trace.length;
+  const note = (b, i) => b.type === 'webhook_in' ? 'Nhận dữ liệu từ hệ thống ngoài (giả lập)' : b.type === 'webhook_out' ? 'Đã gửi dữ liệu tới ' + (b.url || 'địa chỉ bên ngoài') + ' (giả lập)' : b.type === 'transform' && b.target && t.data[b.target] !== undefined ? `${b.target} = ${Number(t.data[b.target]).toLocaleString('vi-VN')}` : b.type === 'branch' || b.type === 'switch' ? (() => { const nx = FL.B[t.trace[i + 1]]; return nx ? 'Đi tiếp tới “' + nx.title + '”' : ''; })() : '';
+  const rows = t.trace.slice(0, r.shown).map((id, i) => { const b = FL.B[id]; if (!b) return ''; const last = i === r.shown - 1, isE = t.err && t.err.b === id && last && !anim, cls = isE ? 'err' : anim && last ? 'now' : !anim && last && t.tokens.some(k => k.b === id) ? 'wait' : 'done'; return `<li class="${cls}"><span class="fl-rd"></span><div><b>${flE(b.title)}</b><small>${FT[b.type].l}${FMODE[b.type] === 'a' ? ' · tự động' : ''}</small>${isE ? `<em class="e">${flE(t.err.msg)}</em>` : note(b, i) ? `<em>${flE(note(b, i))}</em>` : ''}</div></li>`; }).join('');
+  const acts = anim ? '' : t.err ? `<div class="fl-rw err"><b>Dừng vì lỗi ở “${flE(FL.B[t.err.b].title)}”</b><span>${flE(t.err.msg)}</span><div class="kb-acts"><button class="kb-act c-info" onclick="flRunFix()">Mở khối để sửa</button></div></div>` : t.tokens.length ? t.tokens.map((k, idx) => { const b = FL.B[k.b]; return `<div class="fl-rw"><b>Đang chờ “${flE(b.title)}”</b><div class="kb-acts">${flKActs(b).map(x => `<button class="kb-act c-${x.c}" onclick="flRunAct(${idx},'${x.k}')">${flE(x.l)}</button>`).join('')}</div></div>`; }).join('') : `<div class="fl-rw ok"><b>${t.status === 'cancel' ? 'Phiếu bị hủy' : 'Phiếu đã hoàn tất'}</b><span>Chạy xong ${t.trace.length} bước.</span></div>`;
+  const data = Object.keys(t.data).length ? `<h5 class="fl-rh">Dữ liệu phiếu</h5><dl class="fl-rdl">${Object.entries(t.data).map(([k, v]) => `<dt>${flE(k)}</dt><dd>${flE(typeof v === 'number' ? v.toLocaleString('vi-VN') : v)}</dd>`).join('')}</dl>` : '';
+  a.innerHTML = `<div class="fl-dh"><div class="fl-dt"><small>Chạy thử</small><b>${anim ? 'Đang chạy…' : t.err ? 'Dừng vì lỗi' : t.tokens.length ? 'Đang chờ bạn' : 'Đã chạy xong'}</b></div><button class="fl-x" onclick="flRunClose()" aria-label="Đóng">✕</button></div><div class="fl-db"><ol class="fl-rl">${rows}</ol>${acts}${data}</div><div class="fl-df"><button class="btn btn-secondary" onclick="flRunOpen()">Chạy lại</button><button class="btn btn-primary" onclick="flRunClose()">Đóng</button></div>`;
+}
+/* ===== HUD: công cụ chọn / kéo canvas / cắt dây, thêm khối tự do, bản đồ thu nhỏ ===== */
+function flTool(t) {
+  FL.tool = t; const a = document.getElementById('canvas-work-area'); if (a) a.className = 'canvas-work-area tool-' + t;
+  ['select', 'hand', 'cut'].forEach(k => { const b = document.getElementById('ft_' + k); if (b) b.classList.toggle('on', k === t); });
+  if (t === 'cut') showToast('Chế độ cắt dây: bấm vào dây để xóa. Nhấn V để quay lại chọn khối.');
+}
+function flAddFree() { const a = document.getElementById('canvas-work-area'); FL.pend = { free: true, at: { x: (a.clientWidth / 2 - canvasState.panX) / canvasState.zoom, y: (a.clientHeight / 2 - canvasState.panY) / canvasState.zoom - GNH / 2 } }; handleMenuAddBlock(); }
+function flMiniToggle() { const m = document.getElementById('fl-mini'), b = document.getElementById('ft_mini'); if (!m) return; m.hidden = !m.hidden; if (b) b.setAttribute('aria-pressed', String(!m.hidden)); FL.mini = !m.hidden; flMiniDraw(); }
+function flMiniDraw() {
+  const m = document.getElementById('fl-mini'), a = document.getElementById('canvas-work-area'); if (!m || m.hidden || !a) return;
+  const ns = [FL.start, ...Object.values(FL.B)], V = FL._val || { N: {} }, z = canvasState.zoom, vx = -canvasState.panX / z, vy = -canvasState.panY / z, vw = a.clientWidth / z, vh = a.clientHeight / z;
+  const x0 = Math.min(vx, ...ns.map(n => n.x - GNW / 2)) - 30, y0 = Math.min(vy, ...ns.map(n => n.y)) - 30, x1 = Math.max(vx + vw, ...ns.map(n => n.x + GNW / 2)) + 30, y1 = Math.max(vy + vh, ...ns.map(n => n.y + GNH)) + 30;
+  const k = Math.min(200 / (x1 - x0), 150 / (y1 - y0)), ox = (200 - (x1 - x0) * k) / 2, oy = (150 - (y1 - y0) * k) / 2, X = x => ox + (x - x0) * k, Y = y => oy + (y - y0) * k;
+  m._m = { x0, y0, k, ox, oy };
+  const line = (u, v) => `<line x1="${X(u.x)}" y1="${Y(u.y + GNH)}" x2="${X(v.x)}" y2="${Y(v.y)}"/>`, ed = [];
+  if (FL.start.next && FL.B[FL.start.next]) ed.push(line(FL.start, FL.B[FL.start.next])); Object.values(FL.B).forEach(b => flSucc(b).forEach(t => FL.B[t] && ed.push(line(b, FL.B[t]))));
+  m.firstChild.innerHTML = `<g stroke="#9B9C9C" stroke-width="1">${ed.join('')}</g>` + ns.map(n => { const id = n === FL.start ? 'start' : n.id; return `<rect x="${X(n.x - GNW / 2)}" y="${Y(n.y)}" width="${GNW * k}" height="${GNH * k}" rx="2" fill="${id === 'start' ? '#064D44' : V.N[id] ? '#F04438' : FMODE[n.type] === 'a' ? '#B9C8DA' : '#7FC8B3'}"/>`; }).join('') + `<rect x="${X(vx)}" y="${Y(vy)}" width="${vw * k}" height="${vh * k}" fill="rgba(7,85,75,.08)" stroke="#07554B" stroke-width="1.5"/>`;
+}
+document.addEventListener('pointerdown', e => {
+  const m = e.target.closest && e.target.closest('#fl-mini'); if (!m || !m._m) return; const a = document.getElementById('canvas-work-area'), mv = ev => { const r = m.getBoundingClientRect(), { x0, y0, k, ox, oy } = m._m, cx = x0 + (ev.clientX - r.left - ox) / k, cy = y0 + (ev.clientY - r.top - oy) / k; canvasState.panX = a.clientWidth / 2 - cx * canvasState.zoom; canvasState.panY = a.clientHeight / 2 - cy * canvasState.zoom; flApply(); };
+  mv(e); const up = () => { window.removeEventListener('pointermove', mv); window.removeEventListener('pointerup', up); }; window.addEventListener('pointermove', mv); window.addEventListener('pointerup', up);
+});
+document.addEventListener('click', e => { const h0 = e.target.closest && e.target.closest('.fl-hit'); if ((FL.tool || 'select') === 'select' && h0) { FL.selEdge = h0.dataset.e; FL.sel = null; flRender(); return; } if (FL.tool !== 'cut') return; const h = h0; if (!h) return; const [o, k] = h.dataset.e.split(':'); flCut({ stopPropagation() {} }, o, k); });
+document.addEventListener('mouseover', e => { if (FL.tool !== 'cut') return; const h = e.target.closest && e.target.closest('.fl-hit'); document.querySelectorAll('.fl-ep.hot').forEach(x => x.classList.remove('hot')); if (h) { const p = document.querySelector(`.fl-ep[data-e="${h.dataset.e}"]`); if (p) p.classList.add('hot'); } });
+document.addEventListener('keydown', e => { if (e.ctrlKey || e.metaKey || e.altKey || !document.getElementById('canvas-work-area')) return; const t = e.target; if (t && (/^(INPUT|TEXTAREA|SELECT)$/.test(t.tagName) || t.isContentEditable)) return; if (e.key === 'Delete' || e.key === 'Backspace') { if (FL.selEdge) { const [o, k] = FL.selEdge.split(':'); FL.selEdge = null; e.preventDefault(); flCut({ stopPropagation() {} }, o, k); } else if (FL.sel && FL.B[FL.sel]) { e.preventDefault(); flDel(FL.sel); } return; }
+  const k = e.key.toLowerCase(); if (k === 'v') flTool('select'); else if (k === 'h') flTool('hand'); else if (k === 'x') flTool('cut'); });
 </script>
 </body>
 </html>
