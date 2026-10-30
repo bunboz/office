@@ -1911,6 +1911,13 @@ body.role-user #g-set{display:none}
   .sc-erp .MuiOutlinedInput-root{min-height:36px;border-radius:6px;font-size:13px;background:#FAFBFA;} .sc-erp .MuiOutlinedInput-root.Mui-focused{background:#fff;} .sc-erp .MuiOutlinedInput-input{padding:8px 10px;font-size:13px;} .sc-erp .MuiOutlinedInput-multiline{padding:0;} .sc-erp textarea{padding:8px 10px;line-height:20px;}
   .sc-erp .MuiAutocomplete-inputRoot{min-height:36px;padding:0 30px 0 6px !important;} .sc-erp .MuiAutocomplete-input{padding:4px 4px !important;} .sc-erp .MuiSelect-select{min-height:0 !important;}
   .sc-erp .MuiFormControlLabel-label{font-size:13px;color:#262727;}
+  .sc-cu{display:flex;flex-direction:column;gap:10px;padding:12px;border:1px solid #E4E6E6;border-radius:6px;background:#fff;} .sc-cu1{display:flex;align-items:center;gap:8px;font-size:13px;color:#262727;} .sc-wdp{display:flex;gap:6px;} .sc-wdp button{width:34px;height:30px;border:1px solid #E4E6E6;border-radius:6px;background:#fff;font:inherit;font-size:12px;font-weight:500;color:#4C4D4D;cursor:pointer;} .sc-wdp button.on{background:#E6EEED;border-color:#07554B;color:#07554B;font-weight:600;} .sc-wdp button:focus-visible{outline:2px solid #07554B;outline-offset:1px;}
+  .sc-col.we,.sc-col.today{background-color:#fff;} .sc-past{background:rgba(115,118,118,.09);}
+  .sc-dh.we small{color:#737676;} .sc-dh.we b{color:#262727;} .sc-dh.today small{color:#07554B;} .sc-dh.today b{color:#fff;}
+  /* CRUD: tách lớp rõ bằng màu (nền trang > thẻ > đầu bảng > dòng) */
+  .sc-mast,.sc-cal{background:#EEF0F0;} .sc-card{border:1px solid #DADCDC;box-shadow:0 1px 3px rgba(16,24,40,.08);}
+  .sc-mast .erp-toolbar{background:#fff;} .sc-mast .erp-table thead th{background:#F0F2F2;color:#4C4D4D;border-bottom:1px solid #D5D7D7;} .sc-mast .erp-table tbody td{border-bottom:1px solid #E4E6E6;} .sc-mast .erp-table tbody tr:nth-child(even){background:#FAFBFB;} .sc-mast .erp-table tbody tr:hover{background:#EAF2F0;}
+  .sc-erp .MuiDialogTitle-root{background:#F5F6F6;border-radius:12px 12px 0 0;} .sc-erp .MuiDialogActions-root{background:#F5F6F6;border-radius:0 0 12px 12px;} .sc-erp .MuiDialogContent-root{background:#fff;}
 </style>
 </head>
 <body>
@@ -4972,12 +4979,29 @@ function scFindSlots(ppl, room, dur, skip) { // 3 khung giờ hành chính mà m
     }
   } return out;
 }
+const SC_WDL = ['Chủ nhật', 'thứ Hai', 'thứ Ba', 'thứ Tư', 'thứ Năm', 'thứ Sáu', 'thứ Bảy'];
+function scRepOpts(from) { const d = new Date(from), dm = d.getDate(), w = SC_WDL[d.getDay()], last = dm + 7 > new Date(d.getFullYear(), d.getMonth() + 1, 0).getDate();
+  return [['none', 'Không lặp lại'], ['day', 'Hàng ngày'], ['week', 'Hàng tuần vào ' + w], ['month', 'Hàng tháng vào ngày ' + dm], ['mnth', `Hàng tháng vào ${w} ${['đầu tiên', 'thứ hai', 'thứ ba', 'thứ tư', 'thứ năm'][Math.ceil(dm / 7) - 1]}`], ...(last ? [['mlast', `Hàng tháng vào ${w} cuối cùng`]] : []), ['year', `Hàng năm vào ngày ${dm} tháng ${d.getMonth() + 1}`], ['wkd', 'Mọi ngày trong tuần (từ thứ Hai tới thứ Sáu)'], ['custom', 'Tùy chỉnh…']]; }
+// lặp lại: sinh các buổi; shortcut: tối đa 200 buổi, "không bao giờ kết thúc" = 8 tuần (tháng/năm 400 ngày), thêm khi cần
+function scSlots(v, from, to, room, now) {
+  const rp = v.rep, C = v.custom || {}, d0 = new Date(from), dm = d0.getDate(), wd = d0.getDay(), nth = Math.ceil(dm / 7), cu = rp === 'custom' ? C.u : '', N = Math.max(1, +C.n || 1);
+  let hz = rp === 'none' ? 0 : ['month', 'mnth', 'mlast', 'year'].includes(rp) || cu === 'month' || cu === 'year' ? 400 : 56;
+  if (rp === 'custom' && C.end === 'date' && C.date) hz = Math.min(800, Math.max(0, Math.floor((scAt(C.date, '23:59') - from) / SC_DAY)));
+  if (rp === 'custom' && C.end === 'count') hz = 800;
+  if (room) hz = Math.min(hz, Math.max(0, Math.floor(((room.hall ? 90 : 30) * SC_DAY + now - from) / SC_DAY)));
+  const out = [];
+  for (let k = 0; k <= hz && out.length < 200; k++) {
+    const d = new Date(from + k * SC_DAY), dd = d.getDate(), w = d.getDay(), mo = d.getMonth(), md = (d.getFullYear() - d0.getFullYear()) * 12 + mo - d0.getMonth(), last = dd + 7 > new Date(d.getFullYear(), mo + 1, 0).getDate();
+    const ok = k === 0 || ({ day: 1, week: k % 7 === 0, wkd: w > 0 && w < 6, month: dd === dm, mnth: w === wd && Math.ceil(dd / 7) === nth, mlast: w === wd && last, year: md % 12 === 0 && dd === dm,
+      custom: cu === 'day' ? k % N === 0 : cu === 'week' ? Math.floor(k / 7) % N === 0 && (C.days && C.days.length ? C.days : [wd]).includes(w) : cu === 'month' ? md % N === 0 && dd === dm : md % (12 * N) === 0 && dd === dm })[rp];
+    if (ok) out.push([from + k * SC_DAY, to + k * SC_DAY]);
+  }
+  return rp === 'custom' && C.end === 'count' ? out.slice(0, Math.max(1, +C.cnt || 1)) : out;
+}
 function scSaveEv(v0, id) { // trả { err } hoặc { msg, warn }
   const v = { ...v0, ppl: scExpand(v0.ppl) };
-  const from = scAt(v.d, v.f), to = scAt(v.d, v.e), now = Date.now(), err = [], room = v.room && scRoom(v.room), ed = id && SCD.ev.find(x => x.id === id), t = v.t.trim(), rp = id ? 'none' : v.rep;
-  // lặp lại: sinh các buổi trong tầm đặt được (phòng: 30/90 ngày, không phòng: 8 tuần); shortcut: không có ngày kết thúc tuỳ chọn, thêm khi cần
-  const hz = rp === 'none' ? 0 : Math.max(0, Math.floor(((room ? (room.hall ? 90 : 30) * SC_DAY + now : from + 56 * SC_DAY) - from) / SC_DAY)), d1 = new Date(from).getDate();
-  const sl = Array.from({ length: hz + 1 }, (_, k) => k).filter(k => !k || rp === 'day' || (rp === 'week' && k % 7 === 0) || (rp === 'wkd' && [1, 2, 3, 4, 5].includes(new Date(from + k * SC_DAY).getDay())) || (rp === 'month' && new Date(from + k * SC_DAY).getDate() === d1)).map(k => [from + k * SC_DAY, to + k * SC_DAY]), n = sl.length;
+  const from = scAt(v.d, v.f), to = scAt(v.d, v.e), now = Date.now(), err = [], room = v.room && scRoom(v.room), ed = id && SCD.ev.find(x => x.id === id), t = v.t.trim();
+  const sl = scSlots(id ? { ...v, rep: 'none' } : v, from, to, room, now), n = sl.length;
   if (!t) err.push('Chưa có tiêu đề. Nhập tiêu đề để tạo lịch.');
   if (v.mode === 'room' && !room) err.push('Chưa chọn phòng. Chọn một phòng để đặt.');
   if (v.mode === 'ppl' && !v.ppl.length) err.push('Chưa chọn người. Mời ít nhất một người.');
@@ -5133,10 +5157,15 @@ function scBuild() {
   /* --- hộp thoại đặt và sửa lịch: form bên trái, tóm tắt và kiểm tra trực tiếp bên phải --- */
   // bộ phận hiện thành nhãn bấm được: @SevaTech [3]
   const GBdg = ({ id, on, onClick }) => html`<button type="button" className=${'sc-gb2' + (on ? ' on' : '')} style=${{ '--c': scGrp('@' + id).c }} onMouseDown=${x => x.preventDefault()} aria-pressed=${on} title=${`${on ? 'Bỏ' : 'Thêm'} cả bộ phận ${id}`} onClick=${onClick}>@${id}<b>${scExpand(['@' + id]).length}</b></button>`;
+  const scCustom = (v, set) => { const c = v.custom, up = q => set({ custom: { ...c, ...q } }), ds = c.days.length ? c.days : [new Date(scAt(v.d, v.f)).getDay()];
+    return html`<div className="sc-cu"><div className="sc-cu1"><span>Lặp lại mỗi</span><${Fld} type="number" hideLabel label="Số lần lặp" value=${c.n} onChange=${x => up({ n: x.target.value })} inputProps=${{ min: 1 }} sx=${{ width: 80 }} /><${Fld} select hideLabel label="Đơn vị" value=${c.u} onChange=${x => up({ u: x.target.value })} sx=${{ width: 120 }}>${[['day', 'ngày'], ['week', 'tuần'], ['month', 'tháng'], ['year', 'năm']].map(([k, l]) => html`<${MenuItem} key=${k} value=${k}>${l}<//>`)}<//></div>
+      ${c.u === 'week' ? html`<div className="sc-wdp" role="group" aria-label="Lặp vào các thứ">${[1, 2, 3, 4, 5, 6, 0].map(w => html`<button key=${w} type="button" aria-pressed=${ds.includes(w)} className=${ds.includes(w) ? 'on' : ''} onClick=${() => up({ days: ds.includes(w) ? ds.filter(x => x !== w) : [...ds, w] })}>${w ? 'T' + (w + 1) : 'CN'}</button>`)}</div>` : null}
+      <div className="sc-cu1"><span>Kết thúc</span><${Fld} select hideLabel label="Kết thúc" value=${c.end} onChange=${x => up({ end: x.target.value })} sx=${{ width: 150 }}>${[['never', 'Không bao giờ'], ['date', 'Vào ngày'], ['count', 'Sau số lần']].map(([k, l]) => html`<${MenuItem} key=${k} value=${k}>${l}<//>`)}<//>${c.end === 'date' ? html`<${Fld} type="date" hideLabel label="Ngày kết thúc" value=${c.date} onChange=${x => up({ date: x.target.value })} sx=${{ width: 160 }} />` : c.end === 'count' ? html`<${Fld} type="number" hideLabel label="Số lần" value=${c.cnt} onChange=${x => up({ cnt: x.target.value })} inputProps=${{ min: 1 }} sx=${{ width: 80 }} /><span>lần</span>` : null}</div>
+      ${c.end === 'never' ? html`<small className="sc-note">Không kết thúc: tạo trước 8 tuần (tháng, năm: 400 ngày); phòng thì theo hạn đặt phòng.</small>` : null}</div>`; };
   const Row = ({ label, req, children }) => html`<div className="sc-fd"><label className="sc-lb">${label}${req ? html` <em>*</em>` : null}</label>${children}</div>`;
   const BookDlg = ({ o }) => {
     const ed = o.id && SCD.ev.find(x => x.id === o.id), mode = ed ? 'any' : o.mode || 'any';
-    const [v, setV] = React.useState(() => { const from = ed ? ed.from : o.from, to = ed ? ed.to : from + 36e5, rm = ed ? ed.room : o.room || ''; return { t: ed ? ed.title : '', d: scISO(from), f: scHM(from), e: scHM(to), rep: 'none', desc: ed ? ed.desc || '' : '', ppl: ed ? ed.ppl.map(p => p.n) : (o.ppl || []), room: rm, br: rm ? scRoom(rm).branch : SC.br !== 'all' ? SC.br : SCD.branches[0].id }; });
+    const [v, setV] = React.useState(() => { const from = ed ? ed.from : o.from, to = ed ? ed.to : from + 36e5, rm = ed ? ed.room : o.room || ''; return { t: ed ? ed.title : '', d: scISO(from), f: scHM(from), e: scHM(to), rep: 'none', custom: { n: 1, u: 'week', days: [], end: 'never', date: '', cnt: 10 }, desc: ed ? ed.desc || '' : '', ppl: ed ? ed.ppl.map(p => p.n) : (o.ppl || []), room: rm, br: rm ? scRoom(rm).branch : SC.br !== 'all' ? SC.br : SCD.branches[0].id }; });
     const [err, setErr] = React.useState([]), [fr, setFr] = React.useState(null), set = p => setV(s => ({ ...s, ...p }));
     const gref = React.useRef(), GPaper = React.useMemo(() => pr => html`<${Paper} ...${pr}>${gref.current()}${pr.children}<//>`, []);
     gref.current = () => html`<div className="sc-gbs sc-gbp"><small>Mời cả bộ phận</small>${SCD.groups.map(g => html`<${GBdg} key=${g.id} id=${g.id} on=${v.ppl.includes('@' + g.id)} onClick=${() => set({ ppl: v.ppl.includes('@' + g.id) ? v.ppl.filter(x => x !== '@' + g.id) : [...v.ppl, '@' + g.id] })} />`)}</div>`;
@@ -5159,7 +5188,7 @@ function scBuild() {
         <${Row} label="Tiêu đề" req><${Fld} label="Tiêu đề" hideLabel required autoFocus value=${v.t} onChange=${x => set({ t: x.target.value })} placeholder="Ví dụ: Họp kế hoạch tuần" /><//>
         <${Row} label="Mô tả"><${Fld} label="Mô tả" hideLabel multiline minRows=${2} maxRows=${5} value=${v.desc} onChange=${x => set({ desc: x.target.value })} placeholder="Nội dung, chương trình họp, tài liệu cần chuẩn bị (không bắt buộc)" /><//>
         <${Row} label="Thời gian" req><div className="sc-tm"><${Fld} type="date" hideLabel label="Ngày" required value=${v.d} onChange=${x => set({ d: x.target.value })} sx=${{ width: 160 }} /><${Fld} type="time" hideLabel label="Giờ bắt đầu" value=${v.f} onChange=${x => set({ f: x.target.value })} inputProps=${{ step: 900 }} sx=${{ width: 120 }} /><span>–</span><${Fld} type="time" hideLabel label="Giờ kết thúc" value=${v.e} onChange=${x => set({ e: x.target.value })} inputProps=${{ step: 900 }} sx=${{ width: 120 }} />${ok ? html`<small>${fmtDur(dur)}</small>` : null}</div>
-          ${ed ? null : html`<${Fld} select hideLabel label="Lặp lại" value=${v.rep} onChange=${x => set({ rep: x.target.value })} sx=${{ width: '100%' }}>${[['none', 'Không lặp lại'], ['day', 'Hàng ngày'], ['week', 'Hàng tuần vào ' + ['Chủ nhật', 'thứ Hai', 'thứ Ba', 'thứ Tư', 'thứ Năm', 'thứ Sáu', 'thứ Bảy'][new Date(from).getDay()]], ['wkd', 'Mọi ngày trong tuần (từ thứ Hai tới thứ Sáu)'], ['month', 'Hàng tháng vào ngày ' + new Date(from).getDate()]].map(([k, l]) => html`<${MenuItem} key=${k} value=${k}>${l}<//>`)}<//>`}<//>
+          ${ed ? null : html`<${Fld} select hideLabel label="Lặp lại" value=${v.rep} onChange=${x => set({ rep: x.target.value })} sx=${{ width: '100%' }}>${scRepOpts(from).map(([k, l]) => html`<${MenuItem} key=${k} value=${k}>${l}<//>`)}<//>${v.rep === 'custom' ? scCustom(v, set) : null}`}<//>
         ${mode === 'room' ? [roomRow, pplRow] : [pplRow, roomRow]}
         ${err.length ? html`<${Alert} severity="error" role="alert"><b>Chưa tạo được lịch vì:</b><ul className="sc-ul">${err.map(x => html`<li key=${x}>${x}</li>`)}</ul><//>` : null}
       <//><${DialogActions}><${Button} onClick=${scShut}>Hủy bỏ<//><${Button} variant="contained" onClick=${save}>${ed ? 'Lưu thay đổi' : room && room.appr ? 'Gửi yêu cầu duyệt phòng' : mode === 'room' ? 'Đặt phòng' : mode === 'ppl' ? (room ? 'Gửi lời mời và giữ phòng' : 'Gửi lời mời') : !room ? 'Tạo lịch' : 'Tạo lịch và giữ phòng'}<//><//><//>`;
@@ -5185,7 +5214,7 @@ function scBuild() {
         ${e.cancel ? html`<${Alert} severity="info" sx=${{ py: 0 }}>Lý do: ${e.cancel}<//>` : null}
         <div className="sd-cards"><div className="sd-card">${Mi(MP.room, 18)}<span><small>Phòng</small><b>${r ? r.name : 'Không dùng phòng'}</b><em>${r ? `${br.name}${r.cap ? ' · ' + r.cap + ' người' : ''}${r.appr ? ' · HRM duyệt' : ''}` : 'Họp không cần phòng'}</em></span></div>
           <div className="sd-card"><${Av} n=${e.org} /><span><small>Chủ trì</small><b>${e.org}</b><em>Người tổ chức</em></span></div></div>
-        ${e.desc ? html`<section aria-label="Mô tả"><div className="sd-sh"><b>Mô tả</b></div><p className="sd-desc">${e.desc}</p></section>` : null}
+        <section aria-label="Mô tả"><div className="sd-sh"><b>Mô tả</b></div><p className="sd-desc" style=${e.desc ? null : { color: '#9B9C9C' }}>${e.desc || 'Chưa có mô tả.'}</p></section>
         <section aria-label="Người tham gia"><div className="sd-sh"><b>Người tham gia</b><span>${cnt('yes')}/${tot} xác nhận · ${pct}%</span></div>
           <div className="sd-bar" role="img" aria-label=${`${cnt('yes')} xác nhận, ${cnt('maybe')} chưa chắc, ${cnt('no')} từ chối, ${cnt('wait')} chưa phản hồi`}>${['yes', 'maybe', 'no', 'wait'].map(k => cnt(k) ? html`<i key=${k} style=${{ flex: cnt(k), background: RC[k] }}></i>` : null)}</div>
           <ul className="sd-pl">${all.map((p, i) => html`<li key=${p.n} style=${{ animationDelay: i * 40 + 'ms' }}><${Av} n=${p.n} rc=${RC[p.r]} /><span><b>${p.n}</b>${p.org ? html`<small>Chủ trì</small>` : p.note ? html`<small>${p.note}</small>` : null}</span>${p.org ? html`<${Bdg} label="Chủ trì" k="default" />` : html`<${Bdg} label=${RS[p.r][0]} k=${RS[p.r][1]} />`}</li>`)}</ul></section>
