@@ -4869,6 +4869,7 @@ const SCD = {
   [1, 14, 0, 16, 0, 'Đào tạo an toàn lao động', 'r5', 'Phạm Thị Thu Hường', [['Lê Minh', 'yes']]],
   [1, 14, 0, 15, 0, 'Họp dự án Alpha', 'r2', 'Nguyễn Văn An', [['Lê Hoàng', 'yes']]],
   [1, 14, 30, 16, 0, 'Khảo sát khách hàng', '', 'Lê Hoàng', [['Nguyễn Văn An', 'wait']]]].forEach(a => SCD.ev.push({ id: 'e' + SCD.n, code: 'LH-' + SCD.n++, from: scT(a[0], a[1], a[2]), to: scT(a[0], a[3], a[4]), title: a[5], room: a[6], org: a[7], ppl: a[8].map(p => ({ n: p[0], r: p[1] })), st: a[9] || 'approved' }));
+{ const d = new Date(); d.setDate(d.getDate() + (6 - d.getDay() + 7) % 7); d.setHours(9, 0, 0, 0); SCD.ev.push({ id: 'e' + SCD.n, code: 'LH-' + SCD.n++, from: d.getTime(), to: d.getTime() + 36e5, title: 'Họp rà soát công việc', desc: '', room: '', org: 'Lê Hoàng', ppl: [], st: 'approved' }); } // thứ Bảy sắp tới 9h
 SCD.ev.find(e => e.title === 'Họp ban giám đốc').desc = 'Chốt ngân sách quý 4 và kế hoạch mở cơ sở mới.\nMang theo báo cáo doanh thu tháng 10.';
 const SC = { v: 'week', on: { me: true, ppl: true, room: true }, mm: null, d: Date.now(), br: 'all', me: true, rm: {}, pp: {}, rt: 'all', tab: 'rooms', dlg: null, drag: null, bump: () => { } };
 [...SCD.rooms, ...SCD.cars, ...SCD.equip].forEach(r => { SC.rm[r.id] = true; }); SC.pp = { 'Lê Hoàng': true, 'Trần Hải': true };
