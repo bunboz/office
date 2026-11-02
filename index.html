@@ -1361,82 +1361,23 @@
   .sorter-handle { color: #94a3b8; cursor: grab; }
 
   /* ================= 6. NOTIFICATION CENTER POPUP (CARD 1 FIGMA) ================= */
-  #notification-dropdown {
-    position: absolute;
-    top: var(--header-h);
-    right: 70px;
-    width: 360px;
-    background: #ffffff;
-    border: 1px solid var(--border);
-    border-radius: var(--r-md);
-    box-shadow: var(--shadow-popup);
-    z-index: 150;
-    display: flex;
-    flex-direction: column;
-    overflow: hidden;
-  }
-  .notif-head {
-    padding: 12px 16px;
-    border-bottom: 1px solid var(--border);
-    font-size: 14px;
-    font-weight: 700;
-    color: #0f172a;
-  }
-  .notif-tabs {
-    display: flex;
-    border-bottom: 1px solid var(--border);
-  }
-  .notif-tab {
-    flex: 1;
-    padding: 8px;
-    text-align: center;
-    font-size: 12px;
-    font-weight: 500;
-    color: #64748b;
-    cursor: pointer;
-    border-bottom: 2px solid transparent;
-  }
-  .notif-tab.active {
-    color: var(--primary-600);
-    border-bottom-color: var(--primary-600);
-    font-weight: 600;
-  }
-  .notif-list {
-    padding: 12px;
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    max-height: 380px;
-    overflow-y: auto;
-  }
-  .notif-card {
-    padding: 10px 12px;
-    border: 1px solid var(--border);
-    border-radius: var(--r-sm);
-    background: #ffffff;
-    display: flex;
-    flex-direction: column;
-    gap: 6px;
-  }
-  .notif-card-title {
-    font-size: 12.5px;
-    font-weight: 600;
-    color: #0f172a;
-    display: flex;
-    align-items: center;
-    gap: 6px;
-  }
-  .notif-card-desc {
-    font-size: 11.5px;
-    color: #64748b;
-    line-height: 1.4;
-  }
-  .notif-card-actions {
-    display: flex;
-    gap: 6px;
-    margin-top: 4px;
-  }
-
+  .hd-pop{position:fixed;z-index:150;background:#fff;border:1px solid var(--border);box-shadow:var(--shadow-popup);display:flex;flex-direction:column;font-size:13px;color:#0f172a;}
+  .hd-r{top:var(--header-h);right:0;bottom:0;width:min(400px,100vw);} .hd-l{top:var(--header-h);left:0;bottom:0;width:min(320px,100vw);} .hd-a{top:calc(var(--header-h) + 6px);right:12px;width:min(300px,calc(100vw - 24px));border-radius:var(--r-md);max-height:calc(100vh - var(--header-h) - 16px);overflow:auto;}
+  .hd-h{display:flex;align-items:center;justify-content:space-between;padding:12px 16px;border-bottom:1px solid var(--border);font-size:15px;} .hd-h>div{display:flex;gap:4px;}
+  .hd-x{border:0;background:transparent;width:28px;height:28px;border-radius:var(--r-xs);cursor:pointer;color:#64748b;font-size:14px;display:inline-flex;align-items:center;justify-content:center;} .hd-x:hover{background:#f1f5f9;color:#0f172a;} .hd-x svg{width:16px;height:16px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;}
+  .hd-tabs{display:flex;border-bottom:1px solid var(--border);} .hd-tabs button{flex:1;padding:9px 4px;border:0;border-bottom:2px solid transparent;background:transparent;font:inherit;font-size:12px;color:#64748b;cursor:pointer;} .hd-tabs button.on{color:var(--primary-600);border-bottom-color:var(--primary-600);font-weight:600;}
+  .hd-f{display:flex;gap:8px;padding:10px 16px 0;} .hd-f select{height:30px;border:1px solid var(--border);border-radius:var(--r-xs);background:#fff;font:inherit;font-size:12px;padding:0 6px;}
+  .hd-s{display:flex;align-items:center;justify-content:space-between;padding:10px 16px;} .hd-s button{border:0;background:transparent;color:var(--primary-600);font:inherit;font-size:12px;cursor:pointer;}
+  .hd-ls{flex:1;overflow-y:auto;border-top:1px solid var(--border);} .hd-i{display:flex;gap:10px;padding:12px 16px;border-bottom:1px solid var(--border);cursor:pointer;} .hd-i:hover{background:#f8fafc;} .hd-i>div{flex:1;min-width:0;}
+  .hd-d{flex:none;width:8px;height:8px;border-radius:50%;background:var(--primary-600);margin-top:5px;} .hd-i.rd .hd-d{background:transparent;} .hd-i.rd .hd-t{font-weight:400;color:#475569;}
+  .hd-a1{font-size:11px;color:#64748b;margin-bottom:2px;} .hd-t{font-weight:600;line-height:1.4;overflow-wrap:anywhere;} .hd-ds{color:#64748b;margin-top:2px;} .hd-ac{display:flex;gap:8px;margin-top:8px;}
+  .hd-st{flex:none;border:0;background:transparent;color:#cbd5e1;font-size:16px;cursor:pointer;height:24px;} .hd-st.on{color:#F79009;} .hd-em{padding:32px 16px;text-align:center;color:#64748b;}
+  .hd-me{display:flex;flex-direction:column;align-items:center;gap:4px;padding:20px 16px 12px;text-align:center;} .hd-av{position:relative;width:64px;height:64px;border-radius:50%;background:var(--sevago-dark);color:#fff;display:flex;align-items:center;justify-content:center;font-size:22px;font-weight:700;background-size:cover;background-position:center;} .hd-av i{position:absolute;right:0;bottom:2px;width:14px;height:14px;border-radius:50%;border:2px solid #fff;}
+  .hd-lk{border:0;background:transparent;color:var(--primary-600);font:inherit;font-size:12px;cursor:pointer;padding:2px;}
+  .hd-sec{padding:8px 16px;border-top:1px solid var(--border);} .hd-sec small{display:block;color:#64748b;margin-bottom:4px;font-size:11px;} .hd-sec label{display:flex;align-items:center;gap:8px;padding:5px 0;cursor:pointer;}
+  .hd-mi{display:flex;align-items:center;gap:8px;width:100%;padding:10px 16px;border:0;border-top:1px solid var(--border);background:transparent;font:inherit;text-align:left;cursor:pointer;} .hd-mi:hover{background:#f8fafc;} .hd-mi.dg{color:#dc2626;}
+  .hd-un{display:flex;align-items:center;justify-content:space-between;width:100%;padding:12px 16px;border:0;border-bottom:1px solid var(--border);background:transparent;font:inherit;text-align:left;cursor:pointer;} .hd-un:hover{background:#f8fafc;} .hd-un small{display:block;color:#64748b;} .hd-un b{color:var(--primary-600);}
+  .hd-g{padding:12px 16px 4px;font-size:11px;font-weight:600;color:#64748b;letter-spacing:.04em;} .hd-ap{display:flex;align-items:center;gap:12px;width:100%;padding:8px 16px;border:0;background:transparent;font:inherit;font-weight:500;text-align:left;cursor:pointer;} .hd-ap:hover{background:#f8fafc;} .hd-ap .hm-ico{width:36px;height:36px;border-radius:10px;box-shadow:none;} .hd-ap .hm-ico svg{width:20px;height:20px;}
   /* ================= 7. REQUEST DETAIL DRAWER (CARD 3 FIGMA) ================= */
   #request-detail-drawer {
     position: absolute;
@@ -1930,7 +1871,37 @@ body.role-user #g-set{display:none}
   .sc-ev.k-ppl{background:#FFF1D6;} .sc-ev.k-me.pending{background:#07554B;border:1px dashed #BFE3DC;border-left:4px solid #033A33;} .sc-ev.pending{background:color-mix(in srgb,var(--c) 10%,#fff);} .sc-mt{background:#F2F2F2;}
   .sc-mei{position:absolute;top:4px;right:4px;width:18px;height:18px;border-radius:50%;background:rgba(255,255,255,.2);display:inline-flex;align-items:center;justify-content:center;color:#fff;} .sc-mei svg{color:#fff;}
   /* lịch trùng giờ: các khối nằm cạnh nhau (hẹp), rê chuột hoặc focus thì nở rộng ra để đọc */
+  .sc-grp{position:absolute;left:1px;right:2px;z-index:3;display:flex;flex-direction:column;gap:2px;padding:3px;border:1px solid #D0D5DD;border-radius:8px;background:#F9FAFB;overflow:hidden;} .sc-gr{flex:none;height:19px;display:flex;align-items:center;gap:4px;padding:0 5px;border-left:3px solid var(--c);border-radius:4px;background:#fff;font-size:11.5px;font-weight:600;color:#262727;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;cursor:pointer;box-shadow:0 0 0 1px #EAECF0;} .sc-gr:hover{background:#F2F4F7;} .sc-gr em{font-style:normal;font-weight:500;color:#667085;} .sc-gr.r-no{color:#98A2B3;text-decoration:line-through;} .sc-gm{border-left-color:#D0D5DD;color:#175CD3;font-weight:600;justify-content:center;}
   .sc-ev.lane{padding:3px 5px;} .sc-ev.lane b{padding-right:0;font-size:11px;-webkit-line-clamp:3;} .sc-ev.lane .sc-mei,.sc-ev.lane .sc-tag,.sc-ev.lane .w{display:none;} .sc-ev.lane:hover,.sc-ev.lane:focus-visible{width:170px !important;z-index:9;} .sc-ev.lane:hover .w,.sc-ev.lane:focus-visible .w{display:flex;}
+  .sc-bar{flex-wrap:wrap;row-gap:8px;} .sc-sq{display:flex;align-items:center;gap:6px;height:36px;width:200px;padding:0 10px;border:1px solid #E4E6E6;border-radius:6px;background:#FAFBFA;color:#737676;} .sc-sq:focus-within{border-color:#07554B;box-shadow:0 0 0 3px rgba(7,85,75,.12);background:#fff;} .sc-sq input{flex:1;min-width:0;border:0;outline:0;background:transparent;font:inherit;font-size:13px;color:#262727;}
+  .sc-bar>.sc-fd{width:128px !important;} .sc-sq{width:150px;} .sc-ck3{padding:0 8px;gap:5px;}
+  .sc-ck3 svg{display:none;} .sc-ttlb{font-size:17px;padding:4px 4px;} .sc-bar{gap:4px;}
+  .sbn-bd{min-width:18px;height:18px;padding:0 5px;border-radius:9px;background:#F04438;color:#fff;font-size:11px;font-weight:600;display:inline-flex;align-items:center;justify-content:center;font-style:normal;} #sevago-sidebar.collapsed .sbn-bd{display:none !important;}
+  .sc-ib{list-style:none;margin:0;padding:0;} .sc-ib li{display:flex;align-items:center;gap:8px;padding:12px 20px;border-bottom:1px solid #EDEEEE;} .sc-ib li.un{background:#F3F7F6;} .sc-ib li>div{flex:1;min-width:0;} .sc-ib b{display:block;font-size:13px;font-weight:600;color:#262727;} .sc-ib small{display:block;font-size:12px;color:#737676;margin-top:2px;}
+  .sc-ad-ck{display:inline-flex;align-items:center;gap:6px;font-size:13px;color:#262727;cursor:pointer;margin-left:4px;} .sc-ad-ck input{accent-color:#07554B;width:16px;height:16px;margin:0;}
+  .sc-adc{margin:4px 6px 0;padding:2px 6px;border-radius:4px;background:var(--c);color:#fff;font-size:11px;font-weight:600;line-height:16px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;cursor:pointer;text-align:left;} .sc-adc.k-room{background:color-mix(in srgb,var(--c) 18%,#fff);color:color-mix(in srgb,var(--c) 70%,#262727);} .sc-adc.k-ppl{background:#FFF1D6;color:#7A4A06;border-left:3px solid #F79009;}
+  .sc-rz{position:absolute;left:0;right:0;bottom:0;height:7px;cursor:ns-resize;z-index:3;} .sc-rz:after{content:"";position:absolute;left:50%;bottom:2px;width:18px;height:3px;margin-left:-9px;border-radius:2px;background:currentColor;opacity:0;transition:opacity .15s;} .sc-ev:hover .sc-rz:after{opacity:.55;}
+  .sc-mei.k-room,.sc-mei.k-ppl{background:rgba(0,0,0,.07);} .sc-mei.k-room svg{color:#175CD3;} .sc-mei.k-ppl svg{color:#B54708;}
+  /* màu theo loại cuộc họp: có phòng = xanh dương, không phòng = xanh lá, đồng nghiệp bận = cam; của tôi = nền đậm */
+  .sc-ev.k-me.rm,.sc-ev.k-me.rm.approved{background:#175CD3;border-color:#175CD3;border-left-color:#0E3E8F;box-shadow:0 2px 6px rgba(23,92,211,.3);} .sc-ev.k-me.rm.pending{background:#175CD3;border:1px dashed #BFD4F7;border-left:4px solid #0E3E8F;} .sc-ch.k-me.rm{background:#175CD3;border-left-color:#0E3E8F;} .sc-ch.k-me.rm:hover{background:#1849A9;}
+  /* có tôi = nền đen; không có tôi: có phòng xanh dương, đồng nghiệp bận cam */
+  .sc-ev.k-me,.sc-ev.k-me.approved,.sc-ev.k-me.rm,.sc-ev.k-me.rm.approved{background:#262727;border-color:#262727;border-left-color:#000;box-shadow:0 2px 6px rgba(0,0,0,.25);} .sc-ev.k-me.pending,.sc-ev.k-me.rm.pending{background:#262727;border:1px dashed #C1C2C2;border-left:4px solid #000;} .sc-ch.k-me,.sc-ch.k-me.rm{background:#262727;border-left-color:#000;color:#fff;} .sc-ch.k-me:hover,.sc-ch.k-me.rm:hover{background:#3A3B3B;}
+  .sc-ev.r-no,.sc-ev.r-no.pending,.sc-ev.r-no.rm,.sc-ch.r-no{background:#F9FAFB !important;border:1px solid #E4E6E6 !important;border-left:4px solid #D0D5DD !important;box-shadow:none !important;} .sc-ev.r-no b,.sc-ev.r-no span,.sc-ev.r-no .w,.sc-ev.r-no .w svg,.sc-ch.r-no{color:#98A2B3 !important;} .sc-ev.r-no b,.sc-ch.r-no{text-decoration:line-through;}
+    .sc-ev.r-wait,.sc-ev.r-wait.pending,.sc-ev.r-wait.rm,.sc-ch.r-wait{background:#667085 !important;border:1px solid #667085 !important;border-left:4px solid #475467 !important;box-shadow:none !important;color:#fff !important;} .sc-ev.r-wait b,.sc-ev.r-wait span,.sc-ev.r-wait .w,.sc-ev.r-wait .w svg{color:#fff !important;}
+  .sc-tag.t-rs{border-color:#fff;color:#475467;background:#fff;}
+  /* popup chi tiết: màu chỉ dùng cho thông tin quan trọng (giờ, phòng, việc cần làm, phản hồi) */
+  .sd-card.sd-room{background:#EFF4FF;border-color:#B2CCFF;} .sd-card.sd-room>svg{color:#175CD3;} .sd-card.sd-room b{color:#1849A9;} .sd-card.sd-room em{color:#175CD3;}
+  .sd-rs.need{background:#FFFAEB;border-color:#FEC84B;} .sd-rs.need>span{color:#93370D;} .sd-rs.need>div{background:#FEF0C7;}
+  .sd-pl li.me{background:#F5F6F6;margin:0 -8px;padding-left:8px;padding-right:8px;border-radius:8px;} .sd-pl li.me b{font-weight:600;}
+  .sc-fa{display:flex;gap:8px;align-items:center;}
+  .sd-paper .MuiDialogActions-root{flex-wrap:wrap;gap:8px;} .sd-paper .MuiButton-root{white-space:nowrap;}
+  .sc-card .erp-pagination{padding:10px 16px;border-top:1px solid #E4E6E6;} .sc-pgsel{height:28px;border:1px solid #E4E6E6;border-radius:6px;background:#fff;font:inherit;font-size:12px;color:#262727;padding:0 6px;margin-left:12px;cursor:pointer;} .sc-card .page-box{user-select:none;} .sc-card .page-box:hover{background:#F2F2F2;} .sc-card .page-box.active:hover{background:var(--sevago-dark);}
+  /* bảng giống ERP: kẻ ô hai chiều, dòng gọn, đầu bảng xám nhạt */
+  .sc-card .erp-table th,.sc-card .erp-table td{border-right:1px solid #E4E6E6;border-bottom:1px solid #E4E6E6;padding:8px 12px;} .sc-card .erp-table th:last-child,.sc-card .erp-table td:last-child{border-right:0;} .sc-card .erp-table th{background:#F5F6F6;font-size:12px;color:#262727;} .sc-card .erp-table tbody tr:nth-child(even){background:transparent;} .sc-card .erp-table tbody tr:hover td{background:#F7F9F9;} .sc-card .erp-table td:first-child,.sc-card .erp-table th:first-child{text-align:center;}
+  .sc-card .page-box{width:30px;height:30px;font-size:13px;} .sc-pgsel{height:30px;}
+  .sc-pop{padding:12px;min-width:200px;display:flex;flex-direction:column;gap:10px;} .sc-pf{display:flex;flex-direction:column;gap:10px;min-width:240px;} .sc-pc{display:flex;align-items:center;gap:8px;font-size:13px;padding:2px 0;cursor:pointer;} .sc-pc input{accent-color:#07554B;} .sc-sl{list-style:none;margin:0;padding:0;} .sc-sl button{display:block;width:100%;text-align:left;border:0;background:none;font:inherit;font-size:13px;padding:8px 12px;border-radius:6px;cursor:pointer;} .sc-sl button:hover{background:#F2F2F2;} .sc-sl button.on{background:#E6EEED;color:#07554B;font-weight:600;} .sc-card .erp-table input[type=checkbox]{accent-color:#07554B;width:16px;height:16px;cursor:pointer;} .sc-pop:has(.sc-sl){padding:6px;}
+  body.sc-solo #sevago-sidebar{display:none;} /* chỉ có một mục điều hướng thì ẩn thanh bên */
+  @media print{#sevago-sidebar,.hdr,header,.sc-lens,.sc-sq,.sc-cks2,.sc-bar>*:not(.sc-ttlb),.hd-pop{display:none !important;} .sc-card{border:0;box-shadow:none;margin:0;} .sc-tg,.sc-tl,.sc-mo{overflow:visible !important;height:auto !important;} body,.sc-cal{background:#fff;} .sc-ev,.sc-ch,.sc-adc{-webkit-print-color-adjust:exact;print-color-adjust:exact;}}
 </style>
 </head>
 <body>
@@ -1942,7 +1913,7 @@ body.role-user #g-set{display:none}
   <header id="sevago-header">
     <div class="hdr-left">
       <button class="hdr-burger" aria-label="Mở menu" onclick="document.body.classList.toggle('nav-open')">☰</button>
-      <div class="hdr-grid-icon" title="Màn hình ứng dụng Sevago" role="button" tabindex="0" style="cursor:pointer" onclick="location.hash='#/home'" onkeydown="if(event.key==='Enter')location.hash='#/home'">
+      <div class="hdr-grid-icon" title="Màn hình ứng dụng Sevago" role="button" tabindex="0" style="cursor:pointer" data-hdt onclick="hdTog('hd-launch')" onkeydown="if(event.key==='Enter')hdTog('hd-launch')">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
           <circle cx="4" cy="4" r="2"/><circle cx="12" cy="4" r="2"/><circle cx="20" cy="4" r="2"/>
           <circle cx="4" cy="12" r="2"/><circle cx="12" cy="12" r="2"/><circle cx="20" cy="12" r="2"/>
@@ -1954,9 +1925,8 @@ body.role-user #g-set{display:none}
     </div>
 
     <div class="hdr-right">
-      <button class="hdr-co" title="Chọn công ty"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="3" width="16" height="18" rx="1"/><path d="M9 8h2M13 8h2M9 12h2M13 12h2M10 21v-4h4v4"/></svg><span>CN1-HQ</span><svg class="chev" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg></button>
       <!-- Notification Bell -->
-      <button class="hdr-icon-btn" onclick="toggleNotificationCenter()" title="Thông báo hệ thống">
+      <button class="hdr-icon-btn" data-hdt onclick="hdTog('hd-notif')" title="Thông báo" aria-label="Thông báo">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>
         <div class="hdr-badge-dot"></div>
       </button>
@@ -1964,8 +1934,8 @@ body.role-user #g-set{display:none}
       
 
       <!-- Tenant & User (media_1793175762431_b07286e4.png) -->
-      <div class="hdr-user-box" role="button" tabindex="0" title="Đổi vai trò (demo)" onclick="flToggleRole()" onkeydown="if(event.key==='Enter')flToggleRole()">
-        <div class="hdr-avatar"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21c0-9 5-14 9-15 0 8-3 13-9 15z"/><path d="M12 21C7 19 3 15 3 9c4 0 8 3 9 12z"/></svg></div>
+      <div class="hdr-user-box" role="button" tabindex="0" title="Tài khoản" data-hdt onclick="hdTog('hd-acct')" onkeydown="if(event.key==='Enter')hdTog('hd-acct')">
+        <div class="hdr-avatar" id="hdr-av"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21c0-9 5-14 9-15 0 8-3 13-9 15z"/><path d="M12 21C7 19 3 15 3 9c4 0 8 3 9 12z"/></svg></div>
         <div class="hdr-user-meta">
           <span class="hdr-user-name">Sevago Jewelry</span>
           <span class="hdr-user-role" id="hdr-role">Quản trị viên</span>
@@ -1974,45 +1944,7 @@ body.role-user #g-set{display:none}
     </div>
   </header>
 
-  <!-- ================= NOTIFICATION CENTER DROPDOWN (CARD 1 FIGMA) ================= -->
-  <div id="notification-dropdown" class="hidden">
-    <div class="notif-head">Thông báo hệ thống</div>
-    <div class="notif-tabs">
-      <div class="notif-tab active">Tất cả (2)</div>
-      <div class="notif-tab">Chưa đọc (1)</div>
-      <div class="notif-tab">Đã đọc (1)</div>
-    </div>
-    <div class="notif-list">
-      <!-- Card Item 1: Điều phối thành công (Green) -->
-      <div class="notif-card">
-        <div class="notif-card-title">
-          <span style="color:#10b981">✔</span>
-          <span>[Điều phối] Bag 071938 đã OUT thành công</span>
-        </div>
-        <div class="notif-card-desc">
-          Vui lòng tiếp tục điều phối để hoạt động sản xuất không bị gián đoạn.
-        </div>
-        <div class="notif-card-actions">
-          <button class="btn btn-outline-emerald btn-sm" onclick="showToast('Đã điều phối Bag 071938')">+ Điều phối ngay</button>
-        </div>
-      </div>
-
-      <!-- Card Item 2: Cảnh báo từ chối (Red / Dual Action) -->
-      <div class="notif-card">
-        <div class="notif-card-title">
-          <span style="color:#ef4444">⚠</span>
-          <span>[Lý do từ chối] Bag 071938 đã gửi yêu cầu từ chối IN</span>
-        </div>
-        <div class="notif-card-desc">
-          Vui lòng tiếp tục duyệt hoặc từ chối lý do để hoạt động không bị gián đoạn.
-        </div>
-        <div class="notif-card-actions">
-          <button class="btn btn-secondary btn-sm" onclick="showToast('Đã từ chối yêu cầu')">Từ chối</button>
-          <button class="btn btn-primary btn-sm" onclick="showToast('Đã phê duyệt yêu cầu')">Phê duyệt</button>
-        </div>
-      </div>
-    </div>
-  </div>
+  <div id="hd-notif" class="hd-pop hd-r hidden"></div><div id="hd-acct" class="hd-pop hd-a hidden"></div><div id="hd-launch" class="hd-pop hd-l hidden"></div>
 
   <!-- ================= MULTI-CONDITION SORTER POPUP (CARD 2 FIGMA) ================= -->
   <div id="sorter-popup-modal" class="hidden">
@@ -2048,7 +1980,7 @@ body.role-user #g-set{display:none}
     
     <!-- SIDEBAR (EXACT MEDIA_1793097373672_76455496.PNG TREE) -->
     <aside id="sevago-sidebar">
-      <nav class="sbn-wrap" id="nav-sch" aria-label="Điều hướng Lịch"><a href="#/sch" class="sbn" data-route="#/sch"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg><span>Lịch & Đặt chỗ</span></a><a href="#/sch/master" class="sbn" data-route="#/sch/master"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21h18M5 21V7l7-4 7 4v14M9 21v-6h6v6"/></svg><span>Thiết lập</span></a></nav>
+      <nav class="sbn-wrap" id="nav-sch" aria-label="Điều hướng Lịch"><a href="#/sch" class="sbn" data-route="#/sch"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg><span>Lịch & Đặt chỗ</span></a><a href="#/sch/master" class="sbn" data-route="#/sch/master"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21h18M5 21V7l7-4 7 4v14M9 21v-6h6v6"/></svg><span>Thiết lập</span></a><a href="#/sch/pending" class="sbn" id="sc-l-pend" data-route="#/sch/pending"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg><span>Chờ duyệt</span><b class="sbn-bd" id="sc-b-pend"></b></a></nav>
       <nav class="sbn-wrap" id="nav-req" aria-label="Điều hướng"><a href="#/inbox" class="sbn" data-route="#/inbox"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 16 12 14 15 10 15 8 12 2 12"/><path d="M5.45 5.11 2 12v6a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-6l-3.45-6.89A2 2 0 0 0 16.76 4H7.24a2 2 0 0 0-1.79 1.11z"/></svg><span>Việc của tôi</span></a><a href="#/requests" class="sbn" data-route="#/requests"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="9" y1="13" x2="15" y2="13"/><line x1="9" y1="17" x2="13" y2="17"/></svg><span>Luồng đề xuất</span></a><a href="#/kanban" class="sbn" id="g-proj" data-route="#/kanban"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="9"/><rect x="14" y="3" width="7" height="5"/><rect x="14" y="12" width="7" height="9"/><rect x="3" y="16" width="7" height="5"/></svg><span>Dự án & việc</span></a><a href="#/studio" class="sbn" id="g-set" data-route="#/studio"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 1 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 1 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 1 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 1 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg><span>Thiết lập</span></a></nav>
 
       <div class="sb-footer">
@@ -2517,7 +2449,6 @@ function getRoute() {
 let ROLE = 'admin'; try { const r = localStorage.getItem('role'); ROLE = r === 'user' || r === 'manager' ? r : 'admin'; } catch (e) {}
 const ROLE_NAME = { admin: 'Quản trị viên', manager: 'Quản lý', user: 'Nhân viên' };
 const ADMIN_ONLY = ['#/studio', '#/tickets', '#/report', '#/info', '#/fields', '#/settings'];
-function flToggleRole() { ROLE = ({ admin: 'manager', manager: 'user', user: 'admin' })[ROLE]; try { localStorage.setItem('role', ROLE); } catch (e) {} showToast('Đang xem với vai trò ' + ROLE_NAME[ROLE]); window.location.hash = ROLE === 'admin' ? '#/studio' : '#/inbox'; renderApp(); }
 function flLabelAll() { document.querySelectorAll('input:not([type=hidden]),select,textarea').forEach(e => { if (e.getAttribute('aria-label') || e.closest('label') || (e.id && document.querySelector('label[for="' + e.id + '"]'))) return; const f = e.closest('.fl-f,.fl-chips,.fl-sg'), l = f && f.querySelector('label,h4,.fl-lb'); const t = (l && l.textContent.trim()) || e.getAttribute('placeholder') || e.getAttribute('title'); if (t) e.setAttribute('aria-label', t.replace(/\s*\*$/, '')); }); }
 new MutationObserver(() => flLabelAll()).observe(document.documentElement, { childList: true, subtree: true });
 /* Màn hình đầu vào: lưới ứng dụng Sevago (theo mẫu), chỉ “Đề xuất” và “Dự án” mở được trong bản demo */
@@ -2533,7 +2464,7 @@ function flHomeRender() {
   const h = document.getElementById('sv-home'), fold = flFold(HMS.q), apps = HM_APPS.map((a, i) => [a, i]).filter(([a]) => (HMS.cat === 'Tất cả' || a[3] === HMS.cat) && flFold(a[0]).includes(fold)), hr = new Date().getHours();
   const nav = (n, ic) => `<button class="hm-nav${HMS.cat === n ? ' on' : ''}" onclick="HMS.cat='${n}';flHomeRender()"><svg viewBox="0 0 24 24" aria-hidden="true">${ic}</svg>${flE(n)}</button>`;
   const ics = ['<path d="M4 6h.01M12 6h.01M20 6h.01M4 12h.01M12 12h.01M20 12h.01M4 18h.01M12 18h.01M20 18h.01" stroke-width="3"/>', HM_IC.u, '<circle cx="12" cy="12" r="3"/><path d="M12 3v3M12 18v3M3 12h3M18 12h3M5.6 5.6l2.1 2.1M16.3 16.3l2.1 2.1M18.4 5.6l-2.1 2.1M7.7 16.3l-2.1 2.1"/>', HM_IC.n, HM_IC.n, HM_IC.n];
-  h.innerHTML = `<header class="hm-top"><div class="hm-logo"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21c-5-3-7-7-5-12 2 1 4 3 5 5 1-2 3-4 5-5 2 5 0 9-5 12zM12 3v18"/></svg><div><b>SEVAGO</b><small>JEWELRY</small></div></div><label class="hm-search"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M16 16l4 4"/></svg><input id="hm_q" type="search" placeholder="Tìm kiếm ứng dụng" value="${flE(HMS.q)}" oninput="HMS.q=this.value;flHomeRender();const i=document.getElementById('hm_q');i.focus();i.setSelectionRange(i.value.length,i.value.length)"></label><div class="hm-user"><button class="hm-ib" aria-label="Tài khoản" onclick="flToggleRole()" title="Đổi vai trò (demo)"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21c1-4 4-6 8-6s7 2 8 6"/></svg></button><button class="hm-ib" aria-label="Thông báo"><svg viewBox="0 0 24 24"><path d="M6 17V11a6 6 0 0 1 12 0v6l2 2H4zM10 21h4"/></svg></button><div class="hm-me"><span class="hm-av">K</span><div><b>Nguyễn Văn A</b><small>${flE(ROLE_NAME[ROLE])}</small></div></div></div></header>
+  h.innerHTML = `<header class="hm-top"><div class="hm-logo"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21c-5-3-7-7-5-12 2 1 4 3 5 5 1-2 3-4 5-5 2 5 0 9-5 12zM12 3v18"/></svg><div><b>SEVAGO</b><small>JEWELRY</small></div></div><label class="hm-search"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M16 16l4 4"/></svg><input id="hm_q" type="search" placeholder="Tìm kiếm ứng dụng" value="${flE(HMS.q)}" oninput="HMS.q=this.value;flHomeRender();const i=document.getElementById('hm_q');i.focus();i.setSelectionRange(i.value.length,i.value.length)"></label><div class="hm-user"><button class="hm-ib" aria-label="Tài khoản" onclick="hdSetRole(ROLE==='admin'?'manager':ROLE==='manager'?'user':'admin');flHomeRender()" title="Đổi vai trò (demo)"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21c1-4 4-6 8-6s7 2 8 6"/></svg></button><button class="hm-ib" aria-label="Thông báo"><svg viewBox="0 0 24 24"><path d="M6 17V11a6 6 0 0 1 12 0v6l2 2H4zM10 21h4"/></svg></button><div class="hm-me"><span class="hm-av">K</span><div><b>Nguyễn Văn A</b><small>${flE(ROLE_NAME[ROLE])}</small></div></div></div></header>
   <aside class="hm-side">${[['Tất cả', 0], ...HM_CATS.map((c, i) => [c, i + 1]).filter(([c]) => HM_APPS.some(a => a[3] === c))].map(([c, i]) => nav(c, ics[i])).join('')}</aside>
   <main class="hm-main">${apps.length ? `<div class="hm-grid">${apps.map(([a, i]) => `<button class="hm-app" onclick="flHomeOpen(${i})"><span class="hm-ico g${a[2]}"><svg viewBox="0 0 24 24" aria-hidden="true">${HM_IC[a[1]]}</svg></span><span>${flE(a[0])}</span></button>`).join('')}</div>` : '<div class="hm-empty">Chưa có ứng dụng trong nhóm này.</div>'}</main>
   <footer class="hm-foot"><div class="hm-clock"><b id="hm-time"></b><span id="hm-date"></span></div><div class="hm-wx"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="9" cy="8" r="3.5"/><path d="M7 20h10a4 4 0 0 0 0-8 5 5 0 0 0-9.5-1A4.5 4.5 0 0 0 7 20z"/></svg><span>33°C &nbsp; 65%</span></div><div class="hm-news"><h2>${hr < 12 ? 'Chào buổi sáng' : hr < 18 ? 'Chào buổi chiều' : 'Chào buổi tối'}, Đăng Khoa</h2><p>Thông báo toàn công ty</p><div><span>THÔNG BÁO KIỂM SOÁT AN NINH KHI RA VỀ - NV VÒNG NGOÀI</span><small>Khoa Khoa, 02/05</small></div><div><span>THÔNG BÁO KIỂM SOÁT AN NINH KHI RA VỀ - NV VÒNG NGOÀI</span><small>Khoa Khoa, 02/05</small></div></div></footer>`;
@@ -2542,9 +2473,9 @@ function flHomeRender() {
 function renderApp() {
   document.body.classList.remove('nav-open');
   if (ROLE !== 'admin' && getRoute() === '#/sch/master') { window.location.hash = '#/sch'; return; }
-  if (ROLE !== 'admin' && !['#/home', '#/inbox', '#/requests', '#/kanban', '#/sch'].includes(getRoute())) { window.location.hash = '#/kanban'; return; }
+  if (ROLE !== 'admin' && !['#/home', '#/inbox', '#/requests', '#/kanban', '#/sch', '#/sch/pending'].includes(getRoute())) { window.location.hash = '#/kanban'; return; }
   { const h = document.getElementById('sv-home'), on = getRoute() === '#/home'; h.classList.toggle('hidden', !on); if (on) { flHomeRender(); return; } }
-  document.body.classList.toggle('role-user', ROLE !== 'admin'); const hr = document.getElementById('hdr-role'); if (hr) hr.textContent = ROLE_NAME[ROLE];
+  document.body.classList.toggle('role-user', ROLE !== 'admin'); hdAv(); hdDot(); const hr = document.getElementById('hdr-role'); if (hr) hr.textContent = ROLE_NAME[ROLE];
   const route = getRoute();
   state.activeRoute = route;
   scUnmount(); const isSch = route.indexOf('#/sch') === 0; document.body.classList.toggle('app-sch', isSch); document.querySelector('.hdr-app-title').textContent = isSch ? 'Lịch & Đặt chỗ' : 'Dịch vụ & Đề xuất';
@@ -3212,11 +3143,6 @@ function toggleSbGroup(id) {
   if (el) el.classList.toggle('hidden');
 }
 
-function toggleNotificationCenter() {
-  const d = document.getElementById('notification-dropdown');
-  if (d) d.classList.toggle('hidden');
-}
-
 function toggleSorterModal() {
   const m = document.getElementById('sorter-popup-modal');
   if (m) m.classList.toggle('hidden');
@@ -3790,7 +3716,6 @@ window.openStudio = openStudio;
 window.backToSettingsList = backToSettingsList;
 window.toggleSidebar = toggleSidebar;
 window.toggleSbGroup = toggleSbGroup;
-window.toggleNotificationCenter = toggleNotificationCenter;
 window.toggleSorterModal = toggleSorterModal;
 window.addSorterRow = addSorterRow;
 window.applySorter = applySorter;
@@ -4928,12 +4853,12 @@ const SCD = {
     { id: 'r6', name: 'P.204 VIP', branch: 'b2', cap: 12, appr: true }, { id: 'r7', name: 'Hội trường lớn', branch: 'b2', cap: 80, appr: true, hall: true }],
   cars: [{ id: 'c1', plate: '29A-12345', model: 'Toyota Fortuner', seats: 7, garage: 'Hầm B1', driver: 'Đặng Minh Vũ' }, { id: 'c2', plate: '29B-99999', model: 'Ford Transit', seats: 16, garage: 'Hầm B1', driver: '' }],
   equip: [{ id: 'q1', name: 'Máy chiếu Epson', code: 'ASSET-PROJ-002', loc: 'Kho IT tầng 3', custodian: 'Lê Minh', appr: true }, { id: 'q2', name: 'Bộ micro không dây Rode', code: 'ASSET-MIC-001', loc: 'Kho IT tầng 3', custodian: 'Lê Minh', appr: false }],
-  maint: [{ id: 'm1', res: 'c2', from: scT(3, 0), to: scT(4, 23, 59), reason: 'Đăng kiểm định kỳ' }, { id: 'm2', res: 'r2', from: scT(2, 13), to: scT(2, 15), reason: 'Vệ sinh phòng' }],
+  maint: [], // chưa có màn hình quản lý bảo trì nên chưa có dữ liệu
   // bộ phận để gõ @ mời cả nhóm (dữ liệu mẫu; thật sự lấy từ HRM)
   groups: [{ id: 'SevaTech', c: '#0BA5EC', members: ['Nguyễn Văn An', 'Lê Hoàng', 'Đặng Minh Vũ', 'Lê Minh'] }, { id: 'HRM', c: '#7A5AF8', members: ['Phạm Thị Thu Hường', 'Trần Hải'] }, { id: 'SEVARETAIL', c: '#EE46BC', members: ['Phan Khánh Hùng', 'Lê Minh', 'Đặng Minh Vũ'] }, { id: 'SEVAHOLDING', c: '#FB6514', members: ['Nguyễn Văn An', 'Lê Hoàng', 'Trần Hải', 'Đặng Minh Vũ', 'Phan Khánh Hùng', 'Phạm Thị Thu Hường', 'Lê Minh'] }],
   ev: [], n: 1001
 };
-[[-2, 9, 0, 11, 0, 'Họp Sprint', 'r1', 'Nguyễn Văn An', [['Lê Hoàng', 'yes'], ['Trần Hải', 'yes'], ['Đặng Minh Vũ', 'maybe']]],
+[[-2, 9, 0, 11, 0, 'Họp Sprint', 'r1', 'Nguyễn Văn An', [['Lê Hoàng', 'yes'], ['Trần Hải', 'yes'], ['Đặng Minh Vũ', 'wait']]],
   [1, 10, 0, 12, 0, 'Gặp đối tác', 'r6', 'Trần Hải', [['Nguyễn Văn An', 'wait'], ['Phan Khánh Hùng', 'yes']]],
   [-1, 14, 0, 16, 0, 'Phỏng vấn ứng viên', 'r2', 'Lê Hoàng', [['Phạm Thị Thu Hường', 'yes']]],
   [2, 15, 0, 17, 0, 'Họp ban giám đốc', 'r7', 'Nguyễn Văn An', [['Lê Hoàng', 'wait'], ['Trần Hải', 'wait'], ['Lê Minh', 'wait']], 'pending'],
@@ -4941,10 +4866,18 @@ const SCD = {
   [0, 17, 0, 18, 0, 'Họp kế hoạch tuần', 'r1', 'Nguyễn Văn An', [['Lê Hoàng', 'wait'], ['Trần Hải', 'wait']]],
   [1, 14, 0, 15, 30, 'Review thiết kế', 'r3', 'Lê Minh', [['Nguyễn Văn An', 'yes'], ['Phan Khánh Hùng', 'yes']]],
   [1, 14, 0, 15, 0, 'Họp nhóm kinh doanh', '', 'Lê Hoàng', [['Đặng Minh Vũ', 'yes']]],
-  [1, 14, 0, 16, 0, 'Đào tạo an toàn lao động', 'r5', 'Phạm Thị Thu Hường', [['Lê Minh', 'yes']]]].forEach(a => SCD.ev.push({ id: 'e' + SCD.n, code: 'LH-' + SCD.n++, from: scT(a[0], a[1], a[2]), to: scT(a[0], a[3], a[4]), title: a[5], room: a[6], org: a[7], ppl: a[8].map(p => ({ n: p[0], r: p[1] })), st: a[9] || 'approved' }));
+  [1, 14, 0, 16, 0, 'Đào tạo an toàn lao động', 'r5', 'Phạm Thị Thu Hường', [['Lê Minh', 'yes']]],
+  [1, 14, 0, 15, 0, 'Họp dự án Alpha', 'r2', 'Nguyễn Văn An', [['Lê Hoàng', 'yes']]],
+  [1, 14, 30, 16, 0, 'Khảo sát khách hàng', '', 'Lê Hoàng', [['Nguyễn Văn An', 'wait']]]].forEach(a => SCD.ev.push({ id: 'e' + SCD.n, code: 'LH-' + SCD.n++, from: scT(a[0], a[1], a[2]), to: scT(a[0], a[3], a[4]), title: a[5], room: a[6], org: a[7], ppl: a[8].map(p => ({ n: p[0], r: p[1] })), st: a[9] || 'approved' }));
 SCD.ev.find(e => e.title === 'Họp ban giám đốc').desc = 'Chốt ngân sách quý 4 và kế hoạch mở cơ sở mới.\nMang theo báo cáo doanh thu tháng 10.';
 const SC = { v: 'week', on: { me: true, ppl: true, room: true }, mm: null, d: Date.now(), br: 'all', me: true, rm: {}, pp: {}, rt: 'all', tab: 'rooms', dlg: null, drag: null, bump: () => { } };
 [...SCD.rooms, ...SCD.cars, ...SCD.equip].forEach(r => { SC.rm[r.id] = true; }); SC.pp = { 'Lê Hoàng': true, 'Trần Hải': true };
+SC.notes = []; let scNid = 1; SC.pg = {}; // phân trang bảng: { khoá: { p: trang, n: số dòng } }
+/* --- thông báo trong ứng dụng (dữ liệu mẫu; thật sự đẩy từ máy chủ) --- */
+const scActor = () => ROLE === 'manager' ? 'Trần Hải' : SC_ME; // vai Quản lý = Trần Hải (HRM)
+function scNote(to, text, ev) { [].concat(to).forEach(t => { if (t && t !== scActor()) SC.notes.unshift({ id: scNid++, to: t, text, ev, at: Date.now(), read: false }); }); }
+const scHrmMembers = () => SCD.groups.find(g => g.id === 'HRM').members;
+[['Review thiết kế', 'Lê Minh mời bạn họp “Review thiết kế”.', 1.5], ['Gặp đối tác', 'Phòng P.204 VIP đã được duyệt cho “Gặp đối tác”.', 13]].forEach(([t, x, h]) => { const e = SCD.ev.find(z => z.title === t); if (e) SC.notes.push({ id: scNid++, to: SC_ME, text: x, ev: e.id, at: Date.now() - h * 36e5, read: false }); });
 /* --- hàm thuần --- */
 const scDS = t => { const d = new Date(t); d.setHours(0, 0, 0, 0); return d.getTime(); };
 const scHM = t => { const d = new Date(t); return hmPad(d.getHours()) + ':' + hmPad(d.getMinutes()); };
@@ -4955,28 +4888,32 @@ const scAt = (iso, hm) => { const [y, m, d] = iso.split('-').map(Number), [h, mi
 const scRoom = id => SCD.rooms.find(r => r.id === id);
 // '@SevaTech' mở thành danh sách thành viên (bỏ bản thân, bỏ trùng)
 const scGrp = id => SCD.groups.find(g => '@' + g.id === id);
-const scExpand = l => [...new Set(l.flatMap(x => x[0] === '@' ? (scGrp(x) ? scGrp(x).members : []) : [x]))].filter(n => n !== SC_ME);
+const scExpand = l => [...new Set(l.flatMap(x => x[0] === '@' ? (scGrp(x) ? scGrp(x).members : []) : [x]))].filter(n => n !== scActor());
 const scPplLabel = x => x[0] === '@' ? `${x} · ${scExpand([x]).length} người` : x;
-const scPplOpts = () => [...SCD.groups.map(g => '@' + g.id), ...FUSERS.filter(u => u !== SC_ME)];
+const scPplOpts = () => [...SCD.groups.map(g => '@' + g.id), ...FUSERS.filter(u => u !== scActor())];
 const scRes = id => SCD.rooms.find(x => x.id === id) || SCD.cars.find(x => x.id === id) || SCD.equip.find(x => x.id === id);
 const scResName = r => r ? (r.name || r.plate) : '';
-const scType = e => e.room ? (e.ppl.length ? 'Họp có phòng' : 'Đặt phòng') : e.ppl.length ? 'Hẹn người' : 'Việc cá nhân';
+const scType = e => e.off ? (e.allday ? 'Nghỉ cả ngày' : 'Báo bận') : e.room ? (e.ppl.length ? 'Họp có phòng' : 'Đặt phòng') : e.ppl.length ? 'Hẹn người' : 'Việc cá nhân';
 const scLive = e => e.st === 'approved' || e.st === 'pending';
-const scMine = e => e.org === SC_ME || e.ppl.some(p => p.n === SC_ME);
+const scRs = e => e.org === scActor() ? '' : (e.ppl.find(p => p.n === scActor()) || {}).r === 'wait' ? 'wait' : (e.ppl.find(p => p.n === scActor()) || {}).r === 'no' ? 'no' : ''; // phản hồi của mình với lịch người khác mời
+const SC_RS = { wait: 'Chưa trả lời', no: 'Đã từ chối' };
+const scMine = e => e.org === scActor() || e.ppl.some(p => p.n === scActor());
 const scTyOf = id => scRoom(id) ? 'room' : SCD.cars.some(c => c.id === id) ? 'car' : 'equip';
 // tick bật/tắt từng loại (SC.on): Của tôi, Đồng nghiệp, Phòng họp
 const scRoomOn = e => !!(e.room && SC.rm[e.room] && (SC.br === 'all' || scRoom(e.room).branch === SC.br));
-const scShow = e => scLive(e) && ((SC.on.me && scMine(e)) || (SC.on.ppl && scPplOn(e)) || (SC.on.room && scRoomOn(e)));
+const scQ = e => !SC.sq || flFold([e.title, e.code, e.org, e.desc || '', ...e.ppl.map(p => p.n), e.room ? scRoom(e.room).name : ''].join(' ')).includes(flFold(SC.sq));
+const scShow = e => scLive(e) && scQ(e) && ((SC.on.me && scMine(e)) || (SC.on.ppl && scPplOn(e)) || (SC.on.room && scRoomOn(e)));
 const scMt = m => SC.on.room && scTyOf(m.res) === 'room' && SC.rm[m.res] && (SC.br === 'all' || scRoom(m.res).branch === SC.br);
 // 5 loại hiển thị, mỗi loại một màu và một icon: Của tôi, Phòng họp, Xe công vụ, Thiết bị, Đồng nghiệp (chỉ thấy bận)
-const SC_TY = { me: { c: '#07554B', l: 'Của tôi' }, room: { c: '#2E90FA', l: 'Phòng họp' }, car: { c: '#F79009', l: 'Xe công vụ' }, equip: { c: '#7A5AF8', l: 'Thiết bị' }, ppl: { c: '#F79009', l: 'Đồng nghiệp (bận)' } };
+const SC_TY = { me: { c: '#262727', l: 'Của tôi' }, room: { c: '#2E90FA', l: 'Phòng họp' }, car: { c: '#F79009', l: 'Xe công vụ' }, equip: { c: '#7A5AF8', l: 'Thiết bị' }, ppl: { c: '#F79009', l: 'Đồng nghiệp (bận)' } };
 const scPplOn = e => [e.org, ...e.ppl.map(p => p.n)].some(n => SC.pp[n]);
 const scKind = e => SC.on.me && scMine(e) ? 'me' : SC.on.ppl && scPplOn(e) ? 'ppl' : SC.on.room && scRoomOn(e) ? 'room' : 'ppl'; // màu theo loại đang bật
 const scWho = e => [e.org, ...e.ppl.map(p => p.n)].filter(n => SC.pp[n]);
+const scLbl = e => scWho(e).join(', ') + (e.off ? (e.allday ? ' · nghỉ' : ' · bận') : ''); // nhãn đồng nghiệp bận (ẩn tiêu đề họp)
 const scCol = e => SC_TY[scKind(e)].c;
-const scHrm = () => SCD.groups.find(g => g.id === 'HRM').members.includes(ROLE === 'manager' ? 'Trần Hải' : SC_ME); // ai thuộc HRM đều duyệt được; vai Quản lý = Trần Hải (HRM)
-const scCan = e => (e.org === SC_ME || ROLE === 'admin') && e.to > Date.now() && scLive(e);
-const scClash = (room, from, to, skip) => { const e = SCD.ev.find(x => x.id !== skip && x.room === room && scLive(x) && x.from < to && x.to > from); if (e) return `Phòng đã có lịch “${e.title}” (${scHM(e.from)}–${scHM(e.to)}).`; const m = SCD.maint.find(x => x.res === room && x.from < to && x.to > from); return m ? `Phòng đang bảo trì: ${m.reason}.` : ''; };
+const scHrm = () => SCD.groups.find(g => g.id === 'HRM').members.includes(ROLE === 'manager' ? 'Trần Hải' : scActor()); // ai thuộc HRM đều duyệt được; vai Quản lý = Trần Hải (HRM)
+const scCan = e => e.org === scActor() && e.to > Date.now() && scLive(e); // chỉ chủ trì được sửa, dời, kéo giãn, hủy
+const scClash = (room, from, to, skip) => { const sk = [].concat(skip), e = SCD.ev.find(x => !sk.includes(x.id) && x.room === room && scLive(x) && x.from < to && x.to > from); if (e) return `Phòng đã có lịch “${e.title}” (${scHM(e.from)}–${scHM(e.to)}).`; const m = SCD.maint.find(x => x.res === room && x.from < to && x.to > from); return m ? `Phòng đang bảo trì: ${m.reason}.` : ''; };
 const scBusy = (name, from, to, skip) => SCD.ev.find(x => x.id !== skip && scLive(x) && x.from < to && x.to > from && (x.org === name || x.ppl.some(p => p.n === name)));
 const scBox = (f, t, d) => { const a = Math.max(f, d + SC_H0 * 36e5), b = Math.min(t, d + SC_H1 * 36e5); return { top: (a - d) / 36e5 * SC_PX - SC_H0 * SC_PX, height: Math.max(18, (b - a) / 36e5 * SC_PX - 1) }; };
 function scLanes(list) { // chia cột cho các sự kiện chồng giờ
@@ -4989,11 +4926,16 @@ const SC_WDL = ['Chủ nhật', 'thứ Hai', 'thứ Ba', 'thứ Tư', 'thứ Nă
 function scRepOpts(from) { const d = new Date(from), dm = d.getDate(), w = SC_WDL[d.getDay()], last = dm + 7 > new Date(d.getFullYear(), d.getMonth() + 1, 0).getDate();
   return [['none', 'Không lặp lại'], ['day', 'Hàng ngày'], ['week', 'Hàng tuần vào ' + w], ['month', 'Hàng tháng vào ngày ' + dm], ['mnth', `Hàng tháng vào ${w} ${['đầu tiên', 'thứ hai', 'thứ ba', 'thứ tư', 'thứ năm'][Math.ceil(dm / 7) - 1]}`], ...(last ? [['mlast', `Hàng tháng vào ${w} cuối cùng`]] : []), ['year', `Hàng năm vào ngày ${dm} tháng ${d.getMonth() + 1}`], ['wkd', 'Mọi ngày trong tuần (từ thứ Hai tới thứ Sáu)'], ['custom', 'Tùy chỉnh…']]; }
 // lặp lại: sinh các buổi; shortcut: tối đa 200 buổi, "không bao giờ kết thúc" = 8 tuần (tháng/năm 400 ngày), thêm khi cần
+const SC_WORK = { from: 7, to: 21, days: [1, 2, 3, 4, 5, 6], hol: ['01-01', '04-30', '05-01', '09-02'] }; // đặt phòng: T2–T7, 07:00–21:00, trừ lễ dương lịch. shortcut: lễ âm lịch (Tết, Giỗ Tổ) chưa có, thêm khi có màn cấu hình
+function scWorkErr(from, to) { const a = new Date(from), b = new Date(to - 1), md = x => hmPad(x.getMonth() + 1) + '-' + hmPad(x.getDate());
+  if (!SC_WORK.days.includes(a.getDay())) return 'Không đặt phòng vào chủ nhật.'; if (SC_WORK.hol.includes(md(a))) return 'Ngày lễ, không đặt phòng.';
+  if (scDS(from) !== scDS(to - 1) || a.getHours() < SC_WORK.from || b.getHours() * 60 + b.getMinutes() >= SC_WORK.to * 60) return `Đặt phòng chỉ trong giờ làm việc ${hmPad(SC_WORK.from)}:00–${SC_WORK.to}:00.`; return ''; }
+const scSeries = (e, scope) => scope === 'one' ? [e] : SCD.ev.filter(x => x.code === e.code && (scope === 'all' || x.from >= e.from)); // chuỗi lặp = các buổi cùng mã LH-
 function scSlots(v, from, to, room, now) {
   const rp = v.rep, C = v.custom || {}, d0 = new Date(from), dm = d0.getDate(), wd = d0.getDay(), nth = Math.ceil(dm / 7), cu = rp === 'custom' ? C.u : '', N = Math.max(1, +C.n || 1);
   let hz = rp === 'none' ? 0 : ['month', 'mnth', 'mlast', 'year'].includes(rp) || cu === 'month' || cu === 'year' ? 400 : 56;
-  if (rp === 'custom' && C.end === 'date' && C.date) hz = Math.min(800, Math.max(0, Math.floor((scAt(C.date, '23:59') - from) / SC_DAY)));
-  if (rp === 'custom' && C.end === 'count') hz = 800;
+  if (rp !== 'none' && C.end === 'date' && C.date) hz = Math.min(800, Math.max(0, Math.floor((scAt(C.date, '23:59') - from) / SC_DAY)));
+  if (rp !== 'none' && C.end === 'count') hz = 800;
   if (room) hz = Math.min(hz, Math.max(0, Math.floor(((room.hall ? 90 : 30) * SC_DAY + now - from) / SC_DAY)));
   const out = [];
   for (let k = 0; k <= hz && out.length < 200; k++) {
@@ -5002,29 +4944,38 @@ function scSlots(v, from, to, room, now) {
       custom: cu === 'day' ? k % N === 0 : cu === 'week' ? Math.floor(k / 7) % N === 0 && (C.days && C.days.length ? C.days : [wd]).includes(w) : cu === 'month' ? md % N === 0 && dd === dm : md % (12 * N) === 0 && dd === dm })[rp];
     if (ok) out.push([from + k * SC_DAY, to + k * SC_DAY]);
   }
-  return rp === 'custom' && C.end === 'count' ? out.slice(0, Math.max(1, +C.cnt || 1)) : out;
+  return rp !== 'none' && C.end === 'count' ? out.slice(0, Math.max(1, +C.cnt || 1)) : out;
 }
 function scSaveEv(v0, id) { // trả { err } hoặc { msg, warn }
-  const v = { ...v0, ppl: scExpand(v0.ppl) };
-  const from = scAt(v.d, v.f), to = scAt(v.d, v.e), now = Date.now(), err = [], room = v.room && scRoom(v.room), ed = id && SCD.ev.find(x => x.id === id), t = v.t.trim();
+  const v = { ...v0, ppl: v0.off ? [] : scExpand(v0.ppl), room: v0.off ? '' : v0.room };
+  const from = v.allday ? scAt(v.d, '00:00') : scAt(v.d, v.f), to = v.allday ? from + SC_DAY : scAt(v.d, v.e), now = Date.now(), err = [], room = v.room && scRoom(v.room), ed = id && SCD.ev.find(x => x.id === id), t = v.t.trim(), tg = ed ? scSeries(ed, v.scope || 'one') : [];
   const sl = scSlots(id ? { ...v, rep: 'none' } : v, from, to, room, now), n = sl.length;
   if (!t) err.push('Chưa có tiêu đề. Nhập tiêu đề để tạo lịch.');
   if (v.mode === 'room' && !room) err.push('Chưa chọn phòng. Chọn một phòng để đặt.');
   if (v.mode === 'ppl' && !v.ppl.length) err.push('Chưa chọn người. Mời ít nhất một người.');
   if (isNaN(from) || isNaN(to) || !(to > from)) err.push('Giờ kết thúc phải sau giờ bắt đầu.');
   else {
-    if (from < now && !ed) err.push('Không tạo được lịch trong quá khứ. Chọn giờ sau hiện tại.');
+    if ((v.allday ? to <= now : from < now) && !ed) err.push('Không tạo được lịch trong quá khứ. Chọn giờ sau hiện tại.');
     if (room) {
       const lim = room.hall ? 90 : 30; if (sl.some(s => s[0] > now + lim * SC_DAY)) err.push(`Chỉ đặt ${room.hall ? 'hội trường' : 'phòng họp'} trước tối đa ${lim} ngày. Chọn ngày gần hơn.`);
       if (room.cap && v.ppl.length + 1 > room.cap) err.push(`Phòng chứa tối đa ${room.cap} người nhưng lịch có ${v.ppl.length + 1} người. Bớt người tham gia hoặc chọn phòng lớn hơn.`);
-      sl.forEach(s => { const c = scClash(v.room, s[0], s[1], id); if (c) err.push(`${scDMY(s[0])}: ${c}`); });
+      sl.forEach(s => { const w = scWorkErr(s[0], s[1]); if (w) err.push(`${scDMY(s[0])}: ${w}`); });
+      (ed ? tg.map(x => [x.from + (from - ed.from), x.from + (from - ed.from) + (to - from)]) : sl).forEach(s => { const c = scClash(v.room, s[0], s[1], id && tg.length > 1 ? [id, ...tg.map(x => x.id)] : id); if (c) err.push(`${scDMY(s[0])}: ${c}`); });
     }
   }
   if (err.length) return { err };
   const st = room && room.appr ? 'pending' : 'approved', busy = v.ppl.filter(p => scBusy(p, from, to, id));
-  if (ed) { ed.title = t; ed.desc = v.desc.trim(); ed.from = from; ed.to = to; ed.room = v.room; ed.ppl = v.ppl.map(p => ed.ppl.find(x => x.n === p) || { n: p, r: 'wait' }); if (ed.st !== 'pending') ed.st = st; }
-  else { const code = 'LH-' + SCD.n++; sl.forEach((s, i) => SCD.ev.push({ id: 'e' + code + i, code, from: s[0], to: s[1], title: t, desc: v.desc.trim(), room: v.room, org: SC_ME, ppl: v.ppl.map(p => ({ n: p, r: 'wait' })), st })); }
+  if (ed) { const dF = from - ed.from; tg.forEach(x => { x.title = t; x.off = !!v.off; x.allday = !!v.allday; x.desc = v.desc.trim(); x.from += dF; x.to = x.from + (to - from); x.room = v.room; x.ppl = v.ppl.map(p => x.ppl.find(y => y.n === p) || { n: p, r: 'wait' }); if (x.st !== 'pending') x.st = st; }); }
+  else { const code = 'LH-' + SCD.n++; sl.forEach((s, i) => SCD.ev.push({ id: 'e' + code + i, code, from: s[0], to: s[1], title: t, off: !!v.off, allday: !!v.allday, desc: v.desc.trim(), room: v.room, org: scActor(), ppl: v.ppl.map(p => ({ n: p, r: 'wait' })), st })); }
+  if (ed) scNote([ed.org, ...ed.ppl.map(p => p.n)], `${scActor()} đã thay đổi lịch “${t}”.`, ed.id);
+  else { const ne = SCD.ev[SCD.ev.length - 1]; scNote(v.ppl, `${scActor()} mời bạn họp “${t}” lúc ${scHM(from)}, ${scDMY(from)}.`, ne.id); if (st === 'pending') scNote(scHrmMembers(), `${scActor()} xin duyệt ${room.name} cho “${t}”.`, ne.id); }
   return { msg: ed ? `Đã lưu thay đổi lịch “${t}”.` : st === 'pending' ? `Đã gửi yêu cầu giữ ${room.name} cho “${t}”. Chờ HRM duyệt.` : (v.mode === 'room' ? `Đã đặt ${room.name} cho “${t}”${n > 1 ? ` (${n} buổi)` : ''}.` : v.mode === 'ppl' ? `Đã gửi lời mời “${t}” tới ${v.ppl.length} người${room ? ' và giữ ' + room.name : ''}.` : `Đã tạo lịch “${t}”${room ? ' và giữ ' + room.name : ''}${n > 1 ? ` (${n} buổi)` : ''}.`), warn: busy.length ? `Lưu ý: ${busy.join(', ')} đang bận khung giờ này.` : '' };
+}
+function scResize(e, to) { // kéo giãn giờ kết thúc
+  if (!scCan(e)) return showToast('Bạn không đổi giờ được lịch này.', 'warning');
+  to = Math.min(to, scDS(e.from) + SC_DAY); if (to <= e.from) return; if (to === e.to) return SC.bump();
+  const c = e.room && scClash(e.room, e.from, to, e.id); if (c) { SC.bump(); return showToast('Không kéo dài được. ' + c, 'error'); }
+  e.to = to; scNote([e.org, ...e.ppl.map(p => p.n)], `${scActor()} đổi giờ kết thúc “${e.title}” thành ${scHM(to)}.`, e.id); showToast(`Đã đổi “${e.title}” thành ${scHM(e.from)}–${scHM(to)}.`); SC.bump();
 }
 function scMove(e, from) { // kéo thả đổi giờ
   if (!scCan(e)) return showToast('Bạn không đổi giờ được lịch này.', 'warning');
@@ -5066,14 +5017,69 @@ function scSaveForm(kind, id, v) {
 const SC_LIBS = ['https://cdn.jsdelivr.net/npm/react@18.3.1/umd/react.production.min.js', 'https://cdn.jsdelivr.net/npm/react-dom@18.3.1/umd/react-dom.production.min.js', 'https://cdn.jsdelivr.net/npm/@mui/material@5.16.7/umd/material-ui.production.min.js', 'https://cdn.jsdelivr.net/npm/htm@3.1.1/dist/htm.umd.js'];
 let scP = null, SC_ROOT = null, SC_APP = null;
 const scLoad = () => scP || (scP = SC_LIBS.reduce((p, u) => p.then(() => new Promise((ok, no) => { const s = document.createElement('script'); s.src = u; s.onload = ok; s.onerror = () => no(new Error(u)); document.head.appendChild(s); })), Promise.resolve()));
-function scUnmount() { if (SC_ROOT) { SC_ROOT.unmount(); SC_ROOT = null; } }
+function scBookNow() { const d = new Date(); d.setMinutes(d.getMinutes() < 30 ? 30 : 60, 0, 0); if (d.getHours() >= SC_WORK.to - 1) { d.setDate(d.getDate() + 1); d.setHours(9, 0, 0, 0); } scBookAt(d.getTime()); }
+document.addEventListener('keydown', e => { if (e.key.toLowerCase() !== 'c' || e.ctrlKey || e.metaKey || e.altKey || SC.dlg || getRoute() !== '#/sch' || /INPUT|TEXTAREA|SELECT/.test(e.target.tagName) || e.target.isContentEditable) return; e.preventDefault(); scBookNow(); }); // phím C: tạo lịch ở giờ gần nhất, như Google Calendar
+function scBadges() { const hr = scHrm(), p = SCD.ev.filter(e => e.st === 'pending' && scLive(e)).length, set = (id, v) => { const el = document.getElementById(id); if (el) { el.textContent = v || ''; el.style.display = v ? '' : 'none'; } }, pl = document.getElementById('sc-l-pend');
+  if (pl) pl.style.display = hr ? '' : 'none'; document.body.classList.toggle('sc-solo', [...document.querySelectorAll('#nav-sch .sbn')].filter(x => getComputedStyle(x).display !== 'none').length < 2); set('sc-b-pend', p); hdDot(); }
+function scUnmount() { if (SC_ROOT) { SC_ROOT.unmount(); SC_ROOT = null; } document.body.classList.remove('sc-solo'); hdDot(); }
+/* --- header: thông báo (gộp Workspace + Booking), tài khoản, launcher --- */
+const scEsc = x => String(x).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[c]);
+const hdLs = (k, v) => { try { return v === undefined ? localStorage.getItem(k) : v === null ? localStorage.removeItem(k) : localStorage.setItem(k, v); } catch (e) {} };
+const HD = { tab: 'all', app: '', rng: 7, sub: 0, st: hdLs('hdSt') || 'ok', unit: 0, rd: new Set(), sr: new Set() }; // rd/sr: đã đọc / đánh dấu, khoá "ứng dụng:id"
+const HD_UNITS = [['Sevago Jewelry — Phòng Thiết kế', 'Đơn vị chính'], ['Sevago Jewelry — Phòng Kế hoạch', 'Kiêm nhiệm']]; // dữ liệu demo
+const HD_ST = { ok: ['Sẵn sàng', '#12B76A'], busy: ['Đang bận', '#F04438'], away: ['Vắng mặt', '#98A2B3'] };
+const hdEl = id => document.getElementById(id), hdTodo = n => (n.acts && n.acts.length) || /xin duyệt/.test(n.text);
+const hdIcX = '<svg viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></svg>';
+const hdRead = n => n.rem || HD.rd.has(n.k), hdKey = n => n.app + ':' + n.id;
+function hdItems() { const me = scActor(), now = Date.now(), L = [];
+  // Booking: nhắc lịch sắp họp + thông báo của mình
+  SCD.ev.filter(e => scLive(e) && e.from > now && e.from - now <= 30 * 6e4 && (e.org === me || e.ppl.some(p => p.n === me && p.r !== 'no'))).forEach(e => L.push({ id: 'r' + e.id, app: 'Booking', rem: true, ev: e.id, at: now, text: `Sắp họp trong ${Math.max(1, Math.round((e.from - now) / 6e4))} phút: “${e.title}”.` }));
+  SC.notes.filter(n => n.to === me).forEach(n => L.push({ id: n.id, app: 'Booking', ev: n.ev, at: n.at, text: n.text, me: /mời bạn/.test(n.text), todo: /xin duyệt/.test(n.text) }));
+  // Workspace: phiếu đang chờ mình xử lý/duyệt, và phiếu mình tạo đã xong/bị hủy
+  flTk(FL.svc).forEach(t => { t.tokens.forEach(k => { const b = FL.B[k.b]; if (b && MANUAL.includes(b.type) && !flLocked(b)) L.push({ id: t.id + ':' + b.id, app: 'Workspace', tid: t.id, bid: b.id, at: t.at, todo: true, text: `Phiếu ${t.id} “${t.title}” đang chờ bạn ${b.type === 'approval' ? 'phê duyệt' : 'xử lý'} ở bước “${b.title}”.`, acts: b.type === 'approval' ? [['Từ chối', 'rej'], ['Phê duyệt', 'ok']] : null }); });
+    if (t.status && t.by === ROLE_NAME[ROLE]) L.push({ id: t.id + ':' + t.status, app: 'Workspace', tid: t.id, me: true, at: (t.hist[t.hist.length - 1] || t).at, text: `Phiếu ${t.id} “${t.title}” ${t.status === 'done' ? 'đã hoàn tất' : 'đã bị hủy'}.` }); });
+  return L.map(n => (n.k = hdKey(n), n.read = hdRead(n), n.star = HD.sr.has(n.k), n)).sort((a, b) => b.at - a.at); }
+function hdAgo(t) { const m = Math.max(0, Math.round((Date.now() - t) / 6e4)); return m < 1 ? 'Vừa xong' : m < 60 ? m + ' phút trước' : m < 1440 ? Math.round(m / 60) + ' giờ trước' : scDMY(t); }
+function hdDot() { const d = document.querySelector('.hdr-badge-dot'); if (d) d.style.display = hdItems().some(n => !n.read) ? '' : 'none'; }
+function hdNotifRender() { const lim = Date.now() - HD.rng * 864e5, T = { all: () => 1, me: n => n.me, todo: n => n.todo, star: n => n.star };
+  const L = hdItems().filter(n => n.at >= lim && (!HD.app || n.app === HD.app) && T[HD.tab](n)), sel = (v, cur, t) => `<option value="${v}"${String(v) === String(cur) ? ' selected' : ''}>${t}</option>`;
+  hdEl('hd-notif').innerHTML = `<div class="hd-h"><b>Thông báo</b><button class="hd-x" aria-label="Đóng" onclick="hdClose()">${hdIcX}</button></div>
+  <div class="hd-tabs">${[['all', 'Tất cả'], ['me', 'Nhắc tới tôi'], ['todo', 'Cần xử lý'], ['star', 'Đánh dấu']].map(([k, t]) => `<button class="${HD.tab === k ? 'on' : ''}" onclick="HD.tab='${k}';hdNotifRender()">${t}</button>`).join('')}</div>
+  <div class="hd-f"><select aria-label="Loại" onchange="HD.app=this.value;hdNotifRender()">${sel('', HD.app, 'Loại: Tất cả ứng dụng')}${sel('Workspace', HD.app, 'Workspace')}${sel('Booking', HD.app, 'Booking')}</select><select aria-label="Khoảng thời gian" onchange="HD.rng=+this.value;hdNotifRender()">${sel(1, HD.rng, 'Hôm nay')}${sel(7, HD.rng, '7 ngày qua')}${sel(30, HD.rng, '30 ngày qua')}</select></div>
+  <div class="hd-s"><span>Danh sách (${L.length})</span><button onclick="hdReadAll()">Đánh dấu đã đọc tất cả</button></div>
+  <div class="hd-ls">${L.map(n => `<div class="hd-i${n.read ? ' rd' : ''}" onclick="hdOpen('${n.k}')"><i class="hd-d"></i><div><div class="hd-a1">${n.app}${n.rem ? ' · Nhắc lịch' : ''} · ${hdAgo(n.at)}</div><div class="hd-t">${scEsc(n.text)}</div>${n.acts ? `<div class="hd-ac">${n.acts.map(([t, k]) => `<button class="btn btn-${k === 'ok' ? 'primary' : 'secondary'} btn-sm" onclick="event.stopPropagation();hdAct('${n.k}','${k}')">${scEsc(t)}</button>`).join('')}</div>` : ''}</div>${n.rem ? '' : `<button class="hd-st${n.star ? ' on' : ''}" aria-label="Đánh dấu" onclick="event.stopPropagation();hdStar('${n.k}')">★</button>`}</div>`).join('') || '<div class="hd-em">Không có thông báo.</div>'}</div>`; hdDot(); }
+const hdFind = k => hdItems().find(n => n.k === k);
+function hdOpen(k) { const n = hdFind(k); if (!n) return; HD.rd.add(k); hdClose();
+  if (n.app === 'Workspace') location.hash = '#/kanban';
+  else if (getRoute() === '#/sch') scOpen({ k: 'det', id: n.ev }); else { SC.dlg = { k: 'det', id: n.ev }; location.hash = '#/sch'; } hdDot(); }
+function hdStar(k) { HD.sr.has(k) ? HD.sr.delete(k) : HD.sr.add(k); hdNotifRender(); }
+function hdAct(k, key) { const n = hdFind(k), t = n && flTk(FL.svc).find(x => x.id === n.tid), i = t ? t.tokens.findIndex(x => x.b === n.bid) : -1; if (i < 0) return; flKAct(n.tid, i, key); hdNotifRender(); }
+function hdReadAll() { hdItems().forEach(n => HD.rd.add(n.k)); hdNotifRender(); }
+function hdAcctRender() { const nm = scActor(), av = hdLs('hdAv'), [stT, stC] = HD_ST[HD.st];
+  const hd = (t, back) => `<div class="hd-h"><div>${back ? `<button class="hd-x" aria-label="Quay lại" onclick="HD.sub=0;hdAcctRender()"><svg viewBox="0 0 24 24"><path d="M15 6l-6 6 6 6"/></svg></button>` : ''}<b style="padding:4px">${t}</b></div><button class="hd-x" aria-label="Đóng" onclick="hdClose()">${hdIcX}</button></div>`;
+  hdEl('hd-acct').innerHTML = HD.sub ? `${hd('Tất cả đơn vị đảm nhận', 1)}${HD_UNITS.map(([u, r], i) => `<button class="hd-un" onclick="HD.unit=${i};hdAcctRender()"><span>${scEsc(u)}<small>${r}</small></span>${HD.unit === i ? '<b>✓</b>' : ''}</button>`).join('')}` :
+  `<div class="hd-me"><div class="hd-av"${av ? ` style="background-image:url('${av}')"` : ''}>${av ? '' : scEsc(nm.trim().split(' ').pop()[0])}<i style="background:${stC}"></i></div><b>${scEsc(nm)}</b><span style="color:#64748b">${scEsc(HD_UNITS[HD.unit][0])}</span><button class="hd-lk" onclick="hdEl('hd-file').click()">Đổi ảnh đại diện</button><input id="hd-file" type="file" accept="image/*" hidden onchange="hdAvatar(this.files[0])"></div>
+  <div class="hd-sec"><small>Trạng thái</small>${Object.entries(HD_ST).map(([k, [t, c]]) => `<label><input type="radio" name="hd-st" ${HD.st === k ? 'checked' : ''} onchange="HD.st='${k}';hdLs('hdSt',HD.st);hdAcctRender()"><i style="width:8px;height:8px;border-radius:50%;background:${c}"></i>${t}</label>`).join('')}</div>
+  <div class="hd-sec"><small>Vai trò (demo)</small>${Object.entries(ROLE_NAME).map(([k, t]) => `<label><input type="radio" name="hd-ro" ${ROLE === k ? 'checked' : ''} onchange="hdSetRole('${k}')">${t}</label>`).join('')}</div>
+  <button class="hd-mi" onclick="HD.sub=1;hdAcctRender()">Xem tất cả đơn vị đảm nhận</button>${ROLE === 'admin' ? '<button class="hd-mi" onclick="hdClose();location.hash=\'#/settings\'">Cài đặt</button>' : ''}<button class="hd-mi dg" onclick="hdLogout()">Đăng xuất</button>`; }
+function hdAvatar(f) { if (!f || f.size > 1e6) return showToast('Ảnh tối đa 1 MB.'); const r = new FileReader(); r.onload = () => { hdLs('hdAv', r.result); hdAcctRender(); hdAv(); }; r.readAsDataURL(f); }
+function hdAv() { const a = hdLs('hdAv'), e = hdEl('hdr-av'); if (e) { e.style.backgroundImage = a ? `url('${a}')` : ''; e.style.backgroundSize = 'cover'; e.firstElementChild.style.display = a ? 'none' : ''; } }
+function hdSetRole(r) { ROLE = r; hdLs('role', r); showToast('Đang xem với vai trò ' + ROLE_NAME[r]); hdClose(); window.location.hash = r === 'admin' ? '#/studio' : '#/inbox'; renderApp(); }
+function hdLogout() { ['role', 'hdAv', 'hdSt'].forEach(k => hdLs(k, null)); location.hash = '#/home'; location.reload(); }
+function hdLaunchRender() { const g = {}; HM_APPS.forEach((a, i) => (g[a[3]] = g[a[3]] || []).push([a, i]));
+  hdEl('hd-launch').innerHTML = `<div class="hd-h"><button class="hd-x" aria-label="Đóng" onclick="hdClose()">${hdIcX}</button><button class="hd-x" aria-label="Màn hình ứng dụng" title="Màn hình ứng dụng" onclick="hdClose();location.hash='#/home'"><svg viewBox="0 0 24 24"><path d="M3 11l9-8 9 8M5 10v10h14V10"/></svg></button></div>${Object.entries(g).map(([c, L]) => `<div class="hd-g">${scEsc(c)}</div>${L.map(([a]) => `<button class="hd-ap" onclick="hdClose();location.hash='${a[4]}'"><span class="hm-ico g${a[2]}"><svg viewBox="0 0 24 24" aria-hidden="true">${HM_IC[a[1]]}</svg></span>${scEsc(a[0])}</button>`).join('')}`).join('')}`; }
+const HD_R = { 'hd-notif': hdNotifRender, 'hd-acct': hdAcctRender, 'hd-launch': hdLaunchRender };
+function hdClose() { Object.keys(HD_R).forEach(k => hdEl(k).classList.add('hidden')); }
+function hdTog(id) { const open = hdEl(id).classList.contains('hidden'); hdClose(); if (open) { HD.sub = 0; HD_R[id](); hdEl(id).classList.remove('hidden'); } }
+document.addEventListener('click', e => { if (!e.composedPath().some(n => n.matches && n.matches('.hd-pop,[data-hdt]'))) hdClose(); }); // composedPath: nút bấm có thể đã bị vẽ lại khỏi DOM
+document.addEventListener('keydown', e => { if (e.key === 'Escape') hdClose(); });
 function scMount() {
   document.getElementById('main-viewport').innerHTML = '<div id="sc-root" class="sc-root"><p class="sc-load">Đang tải giao diện lịch…</p></div>';
   scLoad().then(() => { const el = document.getElementById('sc-root'); if (!el || getRoute().indexOf('#/sch') !== 0) return; SC_APP = SC_APP || scBuild(); el.innerHTML = ''; SC_ROOT = ReactDOM.createRoot(el); SC_ROOT.render(React.createElement(SC_APP)); })
     .catch(() => { scP = null; const el = document.getElementById('sc-root'); if (el) el.innerHTML = '<div class="kb-none"><b>Không tải được thư viện giao diện</b><span>Màn Lịch dùng MUI từ CDN nên cần internet. Kiểm tra mạng rồi tải lại trang.</span></div>'; });
 }
 function scBuild() {
-  const { ThemeProvider, createTheme, Button, IconButton, ToggleButton, ToggleButtonGroup, TextField, MenuItem, Checkbox, FormControlLabel, Autocomplete, Chip, Dialog, DialogTitle, DialogContent, DialogActions, Alert, Tabs, Tab, Table, TableHead, TableBody, TableRow, TableCell, LinearProgress, SvgIcon, Tooltip, ListSubheader, Paper } = MaterialUI;
+  const { ThemeProvider, createTheme, Button, IconButton, ToggleButton, ToggleButtonGroup, TextField, MenuItem, Checkbox, FormControlLabel, Autocomplete, Chip, Dialog, DialogTitle, DialogContent, DialogActions, Alert, Tabs, Tab, Table, TableHead, TableBody, TableRow, TableCell, LinearProgress, SvgIcon, Tooltip, ListSubheader, Paper, Popover } = MaterialUI;
   const html = htm.bind(React.createElement), tick = () => { const [, s] = React.useReducer(x => x + 1, 0); return s; };
   const N = { 900: '#262727', 800: '#4C4D4D', 700: '#737676', 500: '#C1C2C2', 300: '#E4E6E6', 200: '#F2F2F2', 100: '#FAFBFA' }, PRI = '#07554B';
   const theme = createTheme({ palette: { primary: { main: PRI, dark: '#064D44', light: '#E6EEED', contrastText: '#fff' }, error: { main: '#D92D20', dark: '#B42318' }, warning: { main: '#F79009' }, success: { main: '#12B76A' }, info: { main: '#2E90FA' }, text: { primary: N[900], secondary: N[800] }, divider: N[300], background: { default: N[100] } }, shape: { borderRadius: 8 }, typography: { fontFamily: "'Inter', sans-serif", fontSize: 14, button: { textTransform: 'none', fontWeight: 500, fontSize: 14 } }, components: {
@@ -5096,30 +5102,31 @@ function scBuild() {
   const MP = { me: 'M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z', ppl: 'M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5c-1.66 0-3 1.34-3 3s1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5C6.34 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z', room: 'M14 6v15H3v-2h2V3h9v1h5v15h2v2h-4V6h-3zm-4 5v2h2v-2h-2z', car: 'M18.92 6.01C18.72 5.42 18.16 5 17.5 5h-11c-.66 0-1.21.42-1.42 1.01L3 12v8c0 .55.45 1 1 1h1c.55 0 1-.45 1-1v-1h12v1c0 .55.45 1 1 1h1c.55 0 1-.45 1-1v-8l-2.08-5.99zM6.5 16c-.83 0-1.5-.67-1.5-1.5S5.67 13 6.5 13s1.5.67 1.5 1.5S7.33 16 6.5 16zm11 0c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5zM5 11l1.5-4.5h11L19 11H5z', equip: 'M20 18c1.1 0 1.99-.9 1.99-2L22 6c0-1.1-.9-2-2-2H4c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2H0v2h24v-2h-4zM4 6h16v10H4V6z' };
   const Mi = (d, sz = 12) => html`<svg viewBox="0 0 24 24" width=${sz} height=${sz} fill="currentColor" aria-hidden="true" style=${{ flex: 'none' }}><path d=${d} /></svg>`;
   const evOpen = (e, k) => k === 'ppl' && ROLE !== 'admin' ? showToast('Chỉ xem được trạng thái bận của đồng nghiệp.', 'info') : scOpen({ k: 'det', id: e.id });
-  const EvBlk = ({ e, style, lane }) => { const k = scKind(e), r = e.room && scRoom(e.room), who = scWho(e); return html`<div className=${'sc-ev k-' + k + ' ' + e.st + (lane ? ' lane' : '') + (parseFloat(style && style.height) < 64 ? ' s' : '') + (parseFloat(style && style.height) < 36 ? ' xs' : '')} draggable=${k !== 'ppl' && scCan(e)} style=${{ ...style, '--c': SC_TY[k].c }} title=${k === 'ppl' ? `${who.join(', ')} đang bận` : `${e.title} · ${ST[e.st][0]}`} role="button" tabIndex=${0} onKeyDown=${x => x.key === 'Enter' && evOpen(e, k)} onClick=${x => { x.stopPropagation(); evOpen(e, k); }} onDragStart=${() => { SC.drag = e.id; }}><b>${k === 'ppl' ? who.join(', ') : e.title}</b><span>${scHM(e.from)}–${scHM(e.to)}</span>${k === 'ppl' ? null : r ? html`<span className="w">${Mi(MP.room)}${r.name}</span>` : html`<span className="w">${Mi(MP.ppl)}${e.ppl.length + 1} người</span>`}${k === 'me' ? html`<i className="sc-mei" title=${e.org === SC_ME ? 'Bạn là chủ trì' : 'Bạn được mời'}>${Mi(MP.me, 12)}</i>` : null}${e.st !== 'approved' && k !== 'ppl' ? html`<i className=${'sc-tag t-' + ST[e.st][1]}>${ST[e.st][0]}</i>` : null}</div>`; };
+  const EvBlk = ({ e, style, lane }) => { const k = scKind(e), r = e.room && scRoom(e.room), who = scWho(e); return html`<div className=${'sc-ev k-' + k + (k === 'me' && scRs(e) ? ' r-' + scRs(e) : '') + (e.room ? ' rm' : '') + ' ' + e.st + (lane ? ' lane' : '') + (parseFloat(style && style.height) < 64 ? ' s' : '') + (parseFloat(style && style.height) < 36 ? ' xs' : '')} draggable=${k !== 'ppl' && scCan(e)} style=${{ ...style, '--c': SC_TY[k].c }} title=${k === 'ppl' ? `${who.join(', ')} đang bận` : `${e.title} · ${ST[e.st][0]}${k === 'me' && scRs(e) ? ' · ' + SC_RS[scRs(e)] : ''}`} role="button" tabIndex=${0} onKeyDown=${x => x.key === 'Enter' && evOpen(e, k)} onClick=${x => { x.stopPropagation(); evOpen(e, k); }} onDragStart=${() => { SC.drag = e.id; }}><b>${k === 'ppl' ? scLbl(e) : e.title}</b><span>${scHM(e.from)}–${scHM(e.to)}</span>${k === 'ppl' ? null : r ? html`<span className="w">${Mi(MP.room)}${r.name}</span>` : html`<span className="w">${Mi(MP.ppl)}${e.ppl.length + 1} người</span>`}${k !== 'ppl' && !e.allday && scCan(e) ? html`<span className="sc-rz" title="Kéo để đổi giờ kết thúc" onMouseDown=${x => { x.preventDefault(); x.stopPropagation(); const card = x.currentTarget.parentElement, y0 = x.clientY, h0 = card.offsetHeight; let nt = e.to; const mv = m => { nt = Math.max(e.from + 9e5, Math.round((e.to + (m.clientY - y0) / SC_PX * 36e5) / 9e5) * 9e5); card.style.height = Math.max(18, h0 + (nt - e.to) / 36e5 * SC_PX) + 'px'; }, up = () => { document.removeEventListener('mousemove', mv); document.removeEventListener('mouseup', up); scResize(e, nt); }; document.addEventListener('mousemove', mv); document.addEventListener('mouseup', up); }} onClick=${x => x.stopPropagation()}></span>` : null}<i className=${'sc-mei k-' + k} title=${k === 'me' ? (e.org === scActor() ? 'Lịch của bạn · bạn là chủ trì' : 'Lịch của bạn · bạn được mời') : k === 'room' ? 'Phòng đang có người đặt' : 'Đồng nghiệp đang bận'}>${Mi(MP[k], 12)}</i>${k === 'me' && scRs(e) ? html`<i className=${'sc-tag t-' + (scRs(e) === 'no' ? 'default' : 'rs')}>${SC_RS[scRs(e)]}</i>` : null}${e.st !== 'approved' && k !== 'ppl' ? html`<i className=${'sc-tag t-' + ST[e.st][1]}>${ST[e.st][0]}</i>` : null}</div>`; };
   const TimeGrid = ({ days }) => {
     const hrs = Array.from({ length: SC_H1 - SC_H0 }, (_, i) => SC_H0 + i), now = Date.now(), ref = React.useRef(null);
     React.useEffect(() => { if (ref.current) ref.current.scrollTop = Math.max(0, (days.includes(scDS(now)) ? new Date(now).getHours() - 1 : 7) * SC_PX); }, [SC.v, days[0]]); // tới giờ hiện tại nếu đang xem hôm nay, không thì 07:00
     return html`<div className="sc-tg" ref=${ref}>
-      <div className="sc-hd"><div className="sc-gut"></div>${days.map(d => html`<div key=${d} className=${'sc-dh' + (scDS(now) === d ? ' today' : '') + ([0,6].includes(new Date(d).getDay()) ? ' we' : '')}><small>${SC_WD[new Date(d).getDay()]}</small><b>${new Date(d).getDate()}</b></div>`)}</div>
+      <div className="sc-hd"><div className="sc-gut"></div>${days.map(d => html`<div key=${d} className=${'sc-dh' + (scDS(now) === d ? ' today' : '') + ([0,6].includes(new Date(d).getDay()) ? ' we' : '')}><small>${SC_WD[new Date(d).getDay()]}</small><b>${new Date(d).getDate()}</b>${SCD.ev.filter(e => e.allday && scShow(e) && scDS(e.from) === d).map(e => { const k = scKind(e); return html`<div key=${e.id} className=${'sc-adc k-' + k} style=${{ '--c': SC_TY[k].c }} role="button" tabIndex=${0} title=${e.title + ' · cả ngày'} onKeyDown=${x => x.key === 'Enter' && evOpen(e, k)} onClick=${() => evOpen(e, k)}>${k === 'ppl' ? scLbl(e) : e.title}</div>`; })}</div>`)}</div>
       <div className="sc-bd"><div className="sc-gut">${hrs.map(h => html`<span key=${h} style=${{ height: SC_PX }}>${hmPad(h)}:00</span>`)}</div>
-        ${days.map(d => { const list = scLanes(SCD.ev.filter(e => scShow(e) && scDS(e.from) === d)), mt = SCD.maint.filter(m => scMt(m) && m.from < d + SC_DAY && m.to > d);
-          return html`<div key=${d} title="Nhấp để tạo lịch" className=${'sc-col' + (new Date(d).getDay() % 6 === 0 ? ' we' : '') + (scDS(now) === d ? ' today' : '')} style=${{ height: hrs.length * SC_PX }} onClick=${x => x.target === x.currentTarget && scSlot(x, d)} onDragOver=${x => x.preventDefault()} onDrop=${x => scDrop(x, d)}>
-            ${mt.map(m => html`<div key=${m.id} className="sc-mt" style=${scBox(Math.max(m.from, d), Math.min(m.to, d + SC_DAY), d)}><span>Bảo trì: ${scResName(scRes(m.res))}</span></div>`)}
-            ${list.map(({ e, c, n }) => html`<${EvBlk} key=${e.id} e=${e} lane=${n > 1} style=${{ ...scBox(e.from, e.to, d), left: `calc(${c * 100 / n}% + 1px)`, width: `calc(${100 / n}% - 3px)` }} />`)}
+        ${days.map(d => { const dayEv = SCD.ev.filter(e => scShow(e) && scDS(e.from) === d), list = scLanes(dayEv.filter(e => !e.allday)), mt = SCD.maint.filter(m => scMt(m) && m.from < d + SC_DAY && m.to > d);
+          return html`<div key=${d} className=${'sc-col' + (new Date(d).getDay() % 6 === 0 ? ' we' : '') + (scDS(now) === d ? ' today' : '')} style=${{ height: hrs.length * SC_PX }} onClick=${x => x.target === x.currentTarget && scSlot(x, d)} onDragOver=${x => x.preventDefault()} onDrop=${x => scDrop(x, d)}>
+            ${mt.map(m => html`<div key=${m.id} className="sc-mt" title=${`Bảo trì: ${m.reason} (${scHM(m.from)}–${scHM(m.to)}). Không đặt được trong khung giờ này.`} style=${scBox(Math.max(m.from, d), Math.min(m.to, d + SC_DAY), d)}><span>Bảo trì: ${scResName(scRes(m.res))}</span></div>`)}
+            ${list.filter(x => days.length < 2 || x.n < 3).map(({ e, c, n }) => html`<${EvBlk} key=${e.id} e=${e} lane=${n > 1} style=${{ ...scBox(e.from, e.to, d), left: `calc(${c * 100 / n}% + 1px)`, width: `calc(${100 / n}% - 3px)` }} />`)}
+            ${days.length > 1 ? list.filter(x => x.n >= 3).sort((x, y) => x.e.from - y.e.from).reduce((g, x) => { const l = g[g.length - 1]; if (l && x.e.from < l.to) { l.L.push(x.e); l.to = Math.max(l.to, x.e.to); } else g.push({ from: x.e.from, to: x.e.to, L: [x.e] }); return g; }, []).map(g => { const bx = scBox(g.from, g.to, d), fit = Math.max(3, Math.floor((parseFloat(bx.height) - 6) / 21)), sh = g.L.length > fit ? fit - 1 : g.L.length; return html`<div key=${'grp' + g.from} className="sc-grp" style=${{ ...bx, height: Math.max(parseFloat(bx.height), 6 + (sh + (g.L.length > sh ? 1 : 0)) * 21) }}>${g.L.slice(0, sh).map(e => { const k = scKind(e), rs = k === 'me' ? scRs(e) : ''; return html`<div key=${e.id} className=${'sc-gr' + (rs ? ' r-' + rs : '')} style=${{ '--c': rs === 'wait' ? '#667085' : SC_TY[k].c }} title=${k === 'ppl' ? scLbl(e) + ' đang bận' : e.title} role="button" tabIndex=${0} onClick=${x => { x.stopPropagation(); evOpen(e, k); }} onKeyDown=${x => x.key === 'Enter' && evOpen(e, k)}><em>${scHM(e.from)}</em> ${k === 'ppl' ? scLbl(e) : e.title}</div>`; })}${g.L.length > sh ? html`<div className="sc-gr sc-gm" role="button" tabIndex=${0} onClick=${x => { x.stopPropagation(); SC.v = 'day'; SC.d = d; SC.bump(); }} onKeyDown=${x => x.key === 'Enter' && (SC.v = 'day', SC.d = d, SC.bump())}>+${g.L.length - sh} lịch nữa · xem theo ngày</div>` : null}</div>`; }) : null}
             ${d + SC_DAY <= now || scDS(now) === d ? html`<div className="sc-past" style=${{ height: d + SC_DAY <= now ? '100%' : (now - d) / 36e5 * SC_PX }} title="Giờ đã qua, không tạo được lịch"></div>` : null}
             ${scDS(now) === d ? html`<div className="sc-now" style=${{ top: ((now - d) / 36e5 - SC_H0) * SC_PX }}></div>` : null}</div>`; })}</div></div>`;
   };
   const Month = () => {
     const d0 = new Date(SC.d); d0.setDate(1); const st = scDS(d0.getTime()) - ((d0.getDay() + 6) % 7) * SC_DAY, today = scDS(Date.now());
     return html`<div className="sc-mo"><div className="sc-mh">${['T2', 'T3', 'T4', 'T5', 'T6', 'T7', 'CN'].map(x => html`<div key=${x}>${x}</div>`)}</div><div className="sc-mg">${Array.from({ length: 42 }, (_, i) => { const t = st + i * SC_DAY, dd = new Date(t), ev = SCD.ev.filter(e => scShow(e) && scDS(e.from) === t).sort((a, b) => a.from - b.from);
-      return html`<div key=${t} className=${'sc-mc' + (dd.getMonth() !== d0.getMonth() ? ' off' : '')} onClick=${() => scBookAt(t + 9 * 36e5)}><span className=${'sc-mn' + (t === today ? ' today' : '')}>${dd.getDate()}</span>${ev.slice(0, 3).map(e => { const k = scKind(e); return html`<div key=${e.id} className=${'sc-ch k-' + k + ' ' + e.st} style=${{ '--c': SC_TY[k].c }} title=${k === 'ppl' ? 'Đồng nghiệp đang bận' : e.title} role="button" tabIndex=${0} onKeyDown=${x => x.key === 'Enter' && evOpen(e, k)} onClick=${x => { x.stopPropagation(); evOpen(e, k); }}>${scHM(e.from)} ${k === 'ppl' ? scWho(e).join(', ') : e.title}</div>`; })}${ev.length > 3 ? html`<div className="sc-more" onClick=${x => { x.stopPropagation(); SC.v = 'day'; SC.d = t; SC.bump(); }}>+${ev.length - 3} nữa</div>` : null}</div>`; })}</div></div>`;
+      return html`<div key=${t} className=${'sc-mc' + (dd.getMonth() !== d0.getMonth() ? ' off' : '')} onClick=${() => scBookAt(t + 9 * 36e5)}><span className=${'sc-mn' + (t === today ? ' today' : '')}>${dd.getDate()}</span>${ev.slice(0, 3).map(e => { const k = scKind(e); return html`<div key=${e.id} className=${'sc-ch k-' + k + (k === 'me' && scRs(e) ? ' r-' + scRs(e) : '') + (e.room ? ' rm' : '') + ' ' + e.st} style=${{ '--c': SC_TY[k].c }} title=${k === 'ppl' ? 'Đồng nghiệp đang bận' : e.title} role="button" tabIndex=${0} onKeyDown=${x => x.key === 'Enter' && evOpen(e, k)} onClick=${x => { x.stopPropagation(); evOpen(e, k); }}>${e.allday ? '' : scHM(e.from) + ' '}${k === 'ppl' ? scLbl(e) : e.title}</div>`; })}${ev.length > 3 ? html`<div className="sc-more" onClick=${x => { x.stopPropagation(); SC.v = 'day'; SC.d = t; SC.bump(); }}>+${ev.length - 3} nữa</div>` : null}</div>`; })}</div></div>`;
   };
   const Agenda = () => {
     const from = scDS(SC.d), list = SCD.ev.filter(e => scShow(e) && e.to >= from && e.from < from + 30 * SC_DAY).sort((a, b) => a.from - b.from); let last = 0;
     if (!list.length) return html`<div className="kb-none"><b>Không có lịch</b><span>Trong 30 ngày tới chưa có sự kiện nào ở các lịch đang bật.</span></div>`;
     return html`<div className="sc-ag">${list.map(e => { const ds = scDS(e.from), h = ds !== last; last = ds; const r = e.room && scRoom(e.room);
-      return html`<div key=${e.id}>${h ? html`<h4>${scWD(e.from)}, ${scDMY(e.from)}</h4>` : null}<button className="sc-agi" style=${{ '--c': scCol(e) }} onClick=${() => scOpen({ k: 'det', id: e.id })}><i></i><span>${scHM(e.from)}–${scHM(e.to)}</span><b>${e.title}</b><small>${scType(e)} · ${r ? r.name : e.ppl.length + 1 + ' người'} · ${e.org}</small><${Bdg} label=${ST[e.st][0]} k=${ST[e.st][1]} /></button></div>`; })}</div>`;
+      return html`<div key=${e.id}>${h ? html`<h4>${scWD(e.from)}, ${scDMY(e.from)}</h4>` : null}<button className="sc-agi" style=${{ '--c': scCol(e) }} onClick=${() => scOpen({ k: 'det', id: e.id })}><i></i><span>${e.allday ? 'Cả ngày' : scHM(e.from) + '–' + scHM(e.to)}</span><b>${e.title}</b><small>${scType(e)} · ${r ? r.name : e.ppl.length + 1 + ' người'} · ${e.org}</small><${Bdg} label=${ST[e.st][0]} k=${ST[e.st][1]} /></button></div>`; })}</div>`;
   };
   const LBL = { me: 'Của tôi', ppl: 'Đồng nghiệp', room: 'Phòng họp', car: 'Xe công vụ', equip: 'Thiết bị' }, brn = id => (SCD.branches.find(b => b.id === id) || {}).name;
   const Timeline = () => {
@@ -5128,9 +5135,9 @@ function scBuild() {
     const grp = (l, t) => rows.push(html`<div key=${'g' + l} className="sc-tg2" style=${{ '--c': SC_TY[t].c }}>${Mi(MP[t], 14)}<span>${l}</span></div>`);
     const row = (id, nm, sub, t, evs, mts, kindOf) => { const ln = scLanes(evs), nl = Math.max(1, ...ln.map(x => x.n)); rows.push(html`<div key=${id} className="sc-tr"><div className="sc-tn"><i className="sc-ti" style=${{ '--c': SC_TY[t].c }}>${Mi(MP[t], 14)}</i><div><b>${nm}</b><small>${sub}</small></div></div><div className="sc-tc" style=${{ width: hrs * SC_W, height: Math.max(52, nl * 44 + 8) }} onClick=${x => x.target === x.currentTarget && scTlSlot(x, id, day)}>
       ${mts.map(m => html`<div key=${m.id} className="sc-mt h" style=${pos(m.from, m.to)} title=${m.reason}><span>Bảo trì</span></div>`)}
-      ${ln.map(({ e, c }) => { const k = kindOf(e); return html`<div key=${e.id} className=${'sc-ev h k-' + k + ' ' + e.st} style=${{ '--c': SC_TY[k].c, ...pos(e.from, e.to), top: 6 + c * 44 }} title=${k === 'ppl' ? 'Đang bận' : e.title} role="button" tabIndex=${0} onKeyDown=${x => x.key === 'Enter' && evOpen(e, k)} onClick=${x => { x.stopPropagation(); evOpen(e, k); }}><b>${k === 'ppl' ? scHM(e.from) + '–' + scHM(e.to) : e.title}</b>${k === 'ppl' ? null : html`<span>${scHM(e.from)}–${scHM(e.to)}</span>`}</div>`; })}</div></div>`); };
+      ${ln.map(({ e, c }) => { const k = kindOf(e); return html`<div key=${e.id} className=${'sc-ev h k-' + k + (k === 'me' && scRs(e) ? ' r-' + scRs(e) : '') + (e.room ? ' rm' : '') + ' ' + e.st} style=${{ '--c': SC_TY[k].c, ...pos(e.from, e.to), top: 6 + c * 44 }} title=${k === 'ppl' ? 'Đang bận' : e.title} role="button" tabIndex=${0} onKeyDown=${x => x.key === 'Enter' && evOpen(e, k)} onClick=${x => { x.stopPropagation(); evOpen(e, k); }}><b>${k === 'ppl' ? scHM(e.from) + '–' + scHM(e.to) : e.title}</b>${k === 'ppl' ? null : html`<span>${scHM(e.from)}–${scHM(e.to)}</span>`}</div>`; })}</div></div>`); };
     const mt = id => SCD.maint.filter(m => m.res === id && m.from < day + SC_DAY && m.to > day), of = n => SCD.ev.filter(e => scLive(e) && scDS(e.from) === day && (e.org === n || e.ppl.some(p => p.n === n))), O = SC.on;
-    if (O.me || O.ppl) { grp('Người', O.ppl ? 'ppl' : 'me'); if (O.me) row('p:' + SC_ME, SC_ME, 'Lịch của bạn', 'me', of(SC_ME), [], () => 'me'); if (O.ppl) Object.keys(SC.pp).forEach(n => row('p:' + n, n, 'Đồng nghiệp, chỉ thấy bận hoặc rảnh', 'ppl', of(n), [], () => 'ppl')); }
+    if (O.me || O.ppl) { grp('Người', O.ppl ? 'ppl' : 'me'); if (O.me) row('p:' + scActor(), scActor(), 'Lịch của bạn', 'me', of(scActor()), [], () => 'me'); if (O.ppl) Object.keys(SC.pp).forEach(n => row('p:' + n, n, 'Đồng nghiệp, chỉ thấy bận hoặc rảnh', 'ppl', of(n), [], () => 'ppl')); }
     if (O.room) SCD.branches.filter(b => SC.br === 'all' || b.id === SC.br).forEach(b => { const rs = SCD.rooms.filter(r => r.branch === b.id && SC.rm[r.id]); if (rs.length) grp('Phòng họp · ' + b.name, 'room'); rs.forEach(r => row(r.id, r.name, r.cap ? r.cap + ' người' : 'Không giới hạn', 'room', SCD.ev.filter(e => e.room === r.id && scLive(e) && scDS(e.from) === day), mt(r.id), () => 'room')); });
     return html`<div className="sc-tl" ref=${tlr}><div className="sc-tlh"><div className="sc-tn"></div><div style=${{ display: 'flex' }}>${Array.from({ length: hrs }, (_, i) => html`<div key=${i} style=${{ width: SC_W }}>${hmPad(SC_H0 + i)}:00</div>`)}</div></div>${rows.length ? rows : html`<p className="sc-note" style=${{ padding: 24 }}>Chưa chọn mục nào ở trên.</p>`}${!O.room ? html`<p className="sc-note" style=${{ padding: '16px 24px' }}>Muốn xem phòng nào còn trống? Tick “Phòng họp” ở thanh phía trên.</p>` : null}</div>`;
   };
@@ -5139,17 +5146,17 @@ function scBuild() {
   const Lens = () => { const gref = React.useRef(), GPaper = React.useMemo(() => pr => html`<${Paper} ...${pr}>${gref.current()}${pr.children}<//>`, []), all = (arr, v) => { arr.forEach(x => { SC.rm[x.id] = v; }); SC.bump(); }, bulk = arr => html`<span className="sc-bulk"><button onClick=${() => all(arr, true)}>Chọn tất cả</button><button onClick=${() => all(arr, false)}>Bỏ chọn</button></span>`;
     gref.current = () => html`<div className="sc-gbs sc-gbp"><small>Xem cả bộ phận</small>${SCD.groups.map(g => { const m = scExpand(['@' + g.id]), on = m.every(n => SC.pp[n]); return html`<${GBdg} key=${g.id} id=${g.id} on=${on} onClick=${() => { m.forEach(n => { if (on) delete SC.pp[n]; else SC.pp[n] = true; }); SC.bump(); }} />`; })}</div>`;
     const rooms = SCD.rooms.filter(r => SC.br === 'all' || r.branch === SC.br);
-    const O = SC.on, pplB = html`<div className="sc-pick" key="p"><${Autocomplete} multiple size="small" PaperComponent=${GPaper} options=${FUSERS.filter(u => u !== SC_ME)} value=${Object.keys(SC.pp)} onChange=${(_, x) => { SC.pp = Object.fromEntries(x.map(n => [n, true])); SC.bump(); }} filterOptions=${(o, st) => o.filter(u => fold(scPplLabel(u)).includes(fold(st.inputValue)))} noOptionsText="Không có ai khớp" renderInput=${p => html`<${Fld} ...${p} placeholder="Gõ tên đồng nghiệp để xem khi nào họ bận" />`} /></div>`,
+    const O = SC.on, pplB = html`<div className="sc-pick" key="p"><${Autocomplete} multiple size="small" PaperComponent=${GPaper} options=${FUSERS.filter(u => u !== scActor())} value=${Object.keys(SC.pp)} onChange=${(_, x) => { SC.pp = Object.fromEntries(x.map(n => [n, true])); SC.bump(); }} filterOptions=${(o, st) => o.filter(u => fold(scPplLabel(u)).includes(fold(st.inputValue)))} noOptionsText="Không có ai khớp" renderInput=${p => html`<${Fld} ...${p} placeholder="Gõ tên đồng nghiệp để xem khi nào họ bận" />`} /></div>`,
       roomB = html`<div className="sc-pick" key="r"><${Fld} select size="small" value=${SC.br} onChange=${x => { SC.br = x.target.value; SC.bump(); }} sx=${{ width: 150 }} inputProps=${{ 'aria-label': 'Lọc theo cơ sở' }}><${MenuItem} value="all">Tất cả cơ sở<//>${SCD.branches.map(b => html`<${MenuItem} key=${b.id} value=${b.id}>${b.name}<//>`)}<//>${rooms.map(r => html`<${RChip} key=${r.id} t="room" label=${`${r.name} (${r.cap || '∞'})`} on=${!!SC.rm[r.id]} set=${v => { SC.rm[r.id] = v; }} />`)}${bulk(rooms)}</div>`;
     return O.ppl || O.room ? html`<div className="sc-lens">${O.ppl ? pplB : null}${O.room ? roomB : null}</div>` : null; };
-  const LensTabs = () => html`<div className="sc-cks2" role="group" aria-label="Hiển thị lịch của">${['me', 'ppl', 'room'].map(t => html`<label key=${t} className=${'sc-ck3' + (SC.on[t] ? ' on' : '')} style=${{ '--c': SC_TY[t].c }} title=${t === 'me' ? 'Các cuộc họp bạn tổ chức hoặc được mời' : undefined}><input type="checkbox" checked=${SC.on[t]} onChange=${() => { if (SC.on[t] && Object.values(SC.on).filter(Boolean).length === 1) return showToast('Cần bật ít nhất một loại lịch.', 'info'); SC.on[t] = !SC.on[t]; SC.bump(); }} />${Mi(MP[t], 16)}${LBL[t]}</label>`)}</div>`;
+  const LensTabs = () => html`<div className="sc-cks2" role="group" aria-label="Hiển thị lịch của">${['me', 'ppl', 'room'].map(t => html`<label key=${t} className=${'sc-ck3' + (SC.on[t] ? ' on' : '')} style=${{ '--c': SC_TY[t].c }} title=${{ me: 'Lịch của bạn (nền đen): họp bạn tổ chức hoặc được mời', ppl: 'Đồng nghiệp bận: chỉ thấy giờ bận của người được chọn (cam)', room: 'Phòng họp: các phòng đang có người đặt (xanh dương)' }[t]}><input type="checkbox" checked=${SC.on[t]} onChange=${() => { if (SC.on[t] && Object.values(SC.on).filter(Boolean).length === 1) return showToast('Cần bật ít nhất một loại lịch.', 'info'); SC.on[t] = !SC.on[t]; SC.bump(); }} />${Mi(MP[t], 16)}${LBL[t]}</label>`)}</div>`;
   const Head = ({ title, tabs, cur, onTab, act }) => html`<${React.Fragment}><div className="canvas-top-bar"><div className="canvas-top-left"><div className="canvas-service-title"><span>${title}</span></div></div><div className="canvas-top-right">${act}</div></div>
     ${tabs.length ? html`<nav className="fl-tabs" aria-label=${title}>${tabs.map(([k, l]) => html`<a key=${k} role="button" tabIndex=${0} className=${k === cur ? 'on' : ''} aria-current=${k === cur ? 'page' : undefined} onClick=${() => onTab(k)} onKeyDown=${x => x.key === 'Enter' && onTab(k)}>${l}</a>`)}</nav>` : null}<//>`;
   const Bar = () => { const ref = React.useRef(null);
-    return html`<div className="sc-bar"><${Fld} select size="small" value=${SC.v} onChange=${x => { SC.v = x.target.value; SC.bump(); }} sx=${{ width: 160 }} inputProps=${{ 'aria-label': 'Kiểu xem' }}>${[['day', 'Ngày'], ['week', 'Tuần'], ['month', 'Tháng'], ['ag', 'Lịch biểu'], ['tl', 'Dòng thời gian']].map(([k, l]) => html`<${MenuItem} key=${k} value=${k}>${l}<//>`)}<//>
+    return html`<div className="sc-bar"><${Fld} select size="small" value=${SC.v} onChange=${x => { SC.v = x.target.value; SC.bump(); }} sx=${{ width: 160 }} inputProps=${{ 'aria-label': 'Kiểu xem' }}>${[['day', 'Ngày'], ['week', 'Tuần'], ['month', 'Tháng'], ['ag', 'Lịch biểu'], ['tl', 'Dòng thời gian']].map(([k, l]) => html`<${MenuItem} key=${k} value=${k}>${l}<//>`)}<//><${Button} variant="outlined" size="small" onClick=${() => scNav(0)} sx=${{ height: 36 }}>Hôm nay<//>
       <button className="sc-ttlb" title="Chọn ngày" onClick=${() => ref.current && (ref.current.showPicker ? ref.current.showPicker() : ref.current.focus())}>${scTitle()}${Mi('M7 10l5 5 5-5z', 18)}</button>
       <input ref=${ref} type="date" className="sc-dp" tabIndex=${-1} aria-label="Đi tới ngày" value=${scISO(SC.d)} onChange=${x => { if (x.target.value) { SC.d = scAt(x.target.value, '12:00'); SC.bump(); } }} /><${IconButton} aria-label="Trước" onClick=${() => scNav(-1)}>${Ic(P.l)}<//><${IconButton} aria-label="Sau" onClick=${() => scNav(1)}>${Ic(P.r)}<//>
-      <span style=${{ flex: 1 }}></span><${LensTabs} /></div>`; };
+      <span style=${{ flex: 1 }}></span><div className="sc-sq"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" strokeWidth="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg><input type="search" aria-label="Tìm lịch" placeholder="Tìm lịch, người, phòng" value=${SC.sq || ''} onChange=${x => { SC.sq = x.target.value; SC.bump(); }} /></div><${LensTabs} /></div>`; };
   const CalPage = () => { const d = new Date(SC.d), mon = scDS(SC.d) - ((d.getDay() + 6) % 7) * SC_DAY;
     return html`<div className="sc-cal"><div className="sc-main sc-card"><${Bar} /><${Lens} />${SC.v === 'day' ? html`<${TimeGrid} days=${[scDS(SC.d)]} />` : SC.v === 'week' ? html`<${TimeGrid} days=${Array.from({ length: 7 }, (_, i) => mon + i * SC_DAY)} />` : SC.v === 'month' ? html`<${Month} />` : SC.v === 'ag' ? html`<${Agenda} />` : html`<${Timeline} />`}</div></div>`; };
   /* --- hộp thoại đặt lịch hợp nhất --- */
@@ -5159,25 +5166,27 @@ function scBuild() {
   /* --- hộp thoại đặt và sửa lịch: form bên trái, tóm tắt và kiểm tra trực tiếp bên phải --- */
   // bộ phận hiện thành nhãn bấm được: @SevaTech [3]
   const GBdg = ({ id, on, onClick }) => html`<button type="button" className=${'sc-gb2' + (on ? ' on' : '')} style=${{ '--c': scGrp('@' + id).c }} onMouseDown=${x => x.preventDefault()} aria-pressed=${on} title=${`${on ? 'Bỏ' : 'Thêm'} cả bộ phận ${id}`} onClick=${onClick}>@${id}<b>${scExpand(['@' + id]).length}</b></button>`;
+  const scEndRow = (v, set) => { const c = v.custom, up = q => set({ custom: { ...c, ...q } });
+    return html`<div className="sc-cu1"><span>Kết thúc</span><${Fld} select hideLabel label="Kết thúc" value=${c.end} onChange=${x => up({ end: x.target.value })} sx=${{ width: 150 }}>${[['never', 'Không bao giờ'], ['date', 'Vào ngày'], ['count', 'Sau số lần']].map(([k, l]) => html`<${MenuItem} key=${k} value=${k}>${l}<//>`)}<//>${c.end === 'date' ? html`<${Fld} type="date" hideLabel label="Ngày kết thúc" value=${c.date} onChange=${x => up({ date: x.target.value })} sx=${{ width: 160 }} />` : c.end === 'count' ? html`<${Fld} type="number" hideLabel label="Số lần" value=${c.cnt} onChange=${x => up({ cnt: x.target.value })} inputProps=${{ min: 1 }} sx=${{ width: 80 }} /><span>lần</span>` : html`<small className="sc-note" style=${{ margin: 0 }}>Tạo trước 8 tuần (tháng, năm: 400 ngày); phòng theo hạn đặt phòng.</small>`}</div>`; };
   const scCustom = (v, set) => { const c = v.custom, up = q => set({ custom: { ...c, ...q } }), ds = c.days.length ? c.days : [new Date(scAt(v.d, v.f)).getDay()];
     return html`<div className="sc-cu"><div className="sc-cu1"><span>Lặp lại mỗi</span><${Fld} type="number" hideLabel label="Số lần lặp" value=${c.n} onChange=${x => up({ n: x.target.value })} inputProps=${{ min: 1 }} sx=${{ width: 80 }} /><${Fld} select hideLabel label="Đơn vị" value=${c.u} onChange=${x => up({ u: x.target.value })} sx=${{ width: 120 }}>${[['day', 'ngày'], ['week', 'tuần'], ['month', 'tháng'], ['year', 'năm']].map(([k, l]) => html`<${MenuItem} key=${k} value=${k}>${l}<//>`)}<//></div>
       ${c.u === 'week' ? html`<div className="sc-wdp" role="group" aria-label="Lặp vào các thứ">${[1, 2, 3, 4, 5, 6, 0].map(w => html`<button key=${w} type="button" aria-pressed=${ds.includes(w)} className=${ds.includes(w) ? 'on' : ''} onClick=${() => up({ days: ds.includes(w) ? ds.filter(x => x !== w) : [...ds, w] })}>${w ? 'T' + (w + 1) : 'CN'}</button>`)}</div>` : null}
-      <div className="sc-cu1"><span>Kết thúc</span><${Fld} select hideLabel label="Kết thúc" value=${c.end} onChange=${x => up({ end: x.target.value })} sx=${{ width: 150 }}>${[['never', 'Không bao giờ'], ['date', 'Vào ngày'], ['count', 'Sau số lần']].map(([k, l]) => html`<${MenuItem} key=${k} value=${k}>${l}<//>`)}<//>${c.end === 'date' ? html`<${Fld} type="date" hideLabel label="Ngày kết thúc" value=${c.date} onChange=${x => up({ date: x.target.value })} sx=${{ width: 160 }} />` : c.end === 'count' ? html`<${Fld} type="number" hideLabel label="Số lần" value=${c.cnt} onChange=${x => up({ cnt: x.target.value })} inputProps=${{ min: 1 }} sx=${{ width: 80 }} /><span>lần</span>` : null}</div>
-      ${c.end === 'never' ? html`<small className="sc-note">Không kết thúc: tạo trước 8 tuần (tháng, năm: 400 ngày); phòng thì theo hạn đặt phòng.</small>` : null}</div>`; };
+      ${scEndRow(v, set)}
+      </div>`; };
     const Row = ({ label, req, children }) => html`<div className="sc-fd"><label className="sc-lb">${label}${req ? html` <em>*</em>` : null}</label>${children}</div>`;
   const BookDlg = ({ o }) => {
     const ed = o.id && SCD.ev.find(x => x.id === o.id), mode = ed ? 'any' : o.mode || 'any';
-    const [v, setV] = React.useState(() => { const from = ed ? ed.from : o.from, to = ed ? ed.to : from + 36e5, rm = ed ? ed.room : o.room || ''; return { t: ed ? ed.title : '', d: scISO(from), f: scHM(from), e: scHM(to), rep: 'none', custom: { n: 1, u: 'week', days: [], end: 'never', date: '', cnt: 10 }, desc: ed ? ed.desc || '' : '', ppl: ed ? ed.ppl.map(p => p.n) : (o.ppl || []), room: rm, br: rm ? scRoom(rm).branch : SC.br !== 'all' ? SC.br : SCD.branches[0].id }; });
+    const [v, setV] = React.useState(() => { const from = ed ? ed.from : o.from, to = ed ? ed.to : from + 36e5, rm = ed ? ed.room : o.room || ''; return { t: ed ? ed.title : '', d: scISO(from), f: scHM(from), e: scHM(to), allday: ed ? !!ed.allday : false, off: ed ? !!ed.off : false, scope: 'one', rep: 'none', custom: { n: 1, u: 'week', days: [], end: 'never', date: '', cnt: 10 }, desc: ed ? ed.desc || '' : '', ppl: ed ? ed.ppl.map(p => p.n) : (o.ppl || []), room: rm, br: rm ? scRoom(rm).branch : SC.br !== 'all' ? SC.br : SCD.branches[0].id }; });
     const [err, setErr] = React.useState([]), set = p => setV(s => ({ ...s, ...p }));
     const gref = React.useRef(), GPaper = React.useMemo(() => pr => html`<${Paper} ...${pr}>${gref.current()}${pr.children}<//>`, []);
     gref.current = () => html`<div className="sc-gbs sc-gbp"><small>Mời cả bộ phận</small>${SCD.groups.map(g => html`<${GBdg} key=${g.id} id=${g.id} on=${v.ppl.includes('@' + g.id)} onClick=${() => set({ ppl: v.ppl.includes('@' + g.id) ? v.ppl.filter(x => x !== '@' + g.id) : [...v.ppl, '@' + g.id] })} />`)}</div>`;
-    const ppl = scExpand(v.ppl), from = scAt(v.d, v.f), to = scAt(v.d, v.e), ok = to > from, room = v.room && scRoom(v.room), dur = ok ? to - from : 0;
-    const clash = room && ok ? scClash(v.room, from, to, o.id) : '', busy = ok ? [SC_ME, ...ppl].filter(n => scBusy(n, from, to, o.id)) : [], over = room && room.cap && ppl.length + 1 > room.cap;
+    const ppl = scExpand(v.ppl), from = v.allday ? scAt(v.d, '00:00') : scAt(v.d, v.f), to = v.allday ? from + SC_DAY : scAt(v.d, v.e), ok = to > from, room = v.room && scRoom(v.room), dur = ok ? to - from : 0;
+    const clash = room && ok ? scClash(v.room, from, to, o.id) : '', busy = ok ? [scActor(), ...ppl].filter(n => scBusy(n, from, to, o.id)) : [], over = room && room.cap && ppl.length + 1 > room.cap;
     const save = () => { const r = scSaveEv({ ...v, mode }, o.id); if (r.err) return setErr(r.err); scShut(); showToast(r.msg + (r.warn ? ' ' + r.warn : ''), r.warn ? 'warning' : 'success'); };
     const rref = React.useRef(), RPaper = React.useMemo(() => pr => html`<${Paper} ...${pr}>${rref.current()}${pr.children}<//>`, []);
     rref.current = () => html`<div className="sc-bt" role="tablist" aria-label="Chọn cơ sở">${SCD.branches.map(b => html`<button key=${b.id} type="button" role="tab" aria-selected=${v.br === b.id} className=${v.br === b.id ? 'on' : ''} onMouseDown=${x => x.preventDefault()} onClick=${() => set({ br: b.id })}>${b.name}<small>${SCD.rooms.filter(r => r.branch === b.id).length}</small></button>`)}</div>`;
-    const roomState = id => { const r = scRoom(id), bz = ok && scClash(id, from, to, o.id), small = r.cap && r.cap < ppl.length + 1; return bz ? ['Đang bận', 'bad'] : small ? [`Chỉ chứa ${r.cap}`, 'bad'] : r.appr ? ['Cần duyệt', 'warn'] : ['Trống', 'ok']; };
-    const pplRow = html`<${Row} key="p" label="Người tham gia"><${Autocomplete} multiple size="small" PaperComponent=${GPaper} options=${FUSERS.filter(u => u !== SC_ME)} value=${v.ppl} getOptionLabel=${scPplLabel} renderTags=${(val, gp) => val.map((x, i) => { const g = x[0] === '@' && scGrp(x); return html`<${Chip} ...${gp({ index: i })} label=${scPplLabel(x)} sx=${g ? { bgcolor: 'color-mix(in srgb,' + g.c + ' 14%,#fff)', color: 'color-mix(in srgb,' + g.c + ' 70%,#262727)', border: '1px solid color-mix(in srgb,' + g.c + ' 40%,#fff)' } : null} />`; })} onChange=${(_, x) => set({ ppl: x })} filterOptions=${(os, st) => os.filter(u => fold(scPplLabel(u)).includes(fold(st.inputValue)))} noOptionsText="Không có ai khớp" renderInput=${p => html`<${Fld} ...${p} hideLabel label="Người tham gia" placeholder=${v.ppl.length ? 'Thêm người' : `Mời người tham gia (${mode === 'ppl' ? 'bắt buộc' : 'không bắt buộc'})`} />`} />
+    const roomState = id => { const r = scRoom(id), bz = ok && scClash(id, from, to, o.id), small = r.cap && r.cap < ppl.length + 1; return ok && scWorkErr(from, to) ? ['Ngoài giờ', 'bad'] : bz ? ['Đang bận', 'bad'] : small ? [`Chỉ chứa ${r.cap}`, 'bad'] : r.appr ? ['Cần duyệt', 'warn'] : ['Trống', 'ok']; };
+    const pplRow = html`<${Row} key="p" label="Người tham gia"><${Autocomplete} multiple size="small" PaperComponent=${GPaper} options=${FUSERS.filter(u => u !== scActor())} value=${v.ppl} getOptionLabel=${scPplLabel} renderTags=${(val, gp) => val.map((x, i) => { const g = x[0] === '@' && scGrp(x); return html`<${Chip} ...${gp({ index: i })} label=${scPplLabel(x)} sx=${g ? { bgcolor: 'color-mix(in srgb,' + g.c + ' 14%,#fff)', color: 'color-mix(in srgb,' + g.c + ' 70%,#262727)', border: '1px solid color-mix(in srgb,' + g.c + ' 40%,#fff)' } : null} />`; })} onChange=${(_, x) => set({ ppl: x })} filterOptions=${(os, st) => os.filter(u => fold(scPplLabel(u)).includes(fold(st.inputValue)))} noOptionsText="Không có ai khớp" renderInput=${p => html`<${Fld} ...${p} hideLabel label="Người tham gia" placeholder=${v.ppl.length ? 'Thêm người' : `Mời người tham gia (${mode === 'ppl' ? 'bắt buộc' : 'không bắt buộc'})`} />`} />
 
           ${v.ppl.some(x => x[0] === '@') ? html`<small className="sc-note" style=${{ margin: 0 }}>Tổng ${ppl.length} người sẽ được mời, không tính bạn.</small>` : null}
           ${busy.length ? html`<small className="sc-warn">${busy.join(', ')} đang bận khung giờ này.</small>` : null}
@@ -5186,48 +5195,84 @@ function scBuild() {
           ${room ? html`<small className=${clash || over ? 'sc-bad' : room.appr ? 'sc-warn' : 'sc-good'}>${clash || (over ? `Phòng chứa tối đa ${room.cap} người nhưng lịch có ${ppl.length + 1} người.` : room.appr ? `Cần HRM duyệt. Phòng được giữ sau khi duyệt.` : 'Phòng trống. Tự động duyệt.')}</small>` : null}<//>`;
     return html`<${Dialog} className="sc-erp" open maxWidth="sm" onClose=${scShut} PaperProps=${{ style: { borderTop: '4px solid ' + (mode === 'room' ? SC_TY.room.c : mode === 'ppl' ? '#4C4D4D' : SC_TY.me.c) } }}><${DialogTitle}><div className="sc-dt"><b>${ed ? 'Chỉnh sửa lịch' : mode === 'room' ? 'Đặt phòng họp' : mode === 'ppl' ? 'Mời họp' : 'Tạo lịch mới'}</b><small>${ed ? `${ed.code}. Người tham gia sẽ nhận thông báo khi bạn lưu thay đổi.` : mode === 'room' ? 'Chọn phòng và giờ. Mời người nếu cần.' : mode === 'ppl' ? 'Chọn người và giờ. Thêm phòng nếu cần.' : 'Người và phòng đều không bắt buộc.'}</small></div><//>
       <${DialogContent} sx=${{ display: 'flex', flexDirection: 'column', gap: 2.5 }}>
-        <${Row} label="Tiêu đề" req><${Fld} label="Tiêu đề" hideLabel required autoFocus value=${v.t} onChange=${x => set({ t: x.target.value })} placeholder="Ví dụ: Họp kế hoạch tuần" /><//>
+        <${Row} label="Tiêu đề" req><${Fld} label="Tiêu đề" hideLabel required autoFocus value=${v.t} onChange=${x => set({ t: x.target.value })} placeholder=${v.off ? 'Ví dụ: Nghỉ phép, đi công tác' : 'Ví dụ: Họp kế hoạch tuần'} /><//>
         <${Row} label="Mô tả"><${Fld} label="Mô tả" hideLabel multiline minRows=${2} maxRows=${5} value=${v.desc} onChange=${x => set({ desc: x.target.value })} placeholder="Nội dung, chương trình họp, tài liệu cần chuẩn bị (không bắt buộc)" /><//>
-        <${Row} label="Thời gian" req><div className="sc-tm"><${Fld} type="date" hideLabel label="Ngày" required value=${v.d} onChange=${x => set({ d: x.target.value })} sx=${{ width: 160 }} /><${Fld} type="time" hideLabel label="Giờ bắt đầu" value=${v.f} onChange=${x => set({ f: x.target.value })} inputProps=${{ step: 900 }} sx=${{ width: 120 }} /><span>–</span><${Fld} type="time" hideLabel label="Giờ kết thúc" value=${v.e} onChange=${x => set({ e: x.target.value })} inputProps=${{ step: 900 }} sx=${{ width: 120 }} />${ok ? html`<small>${fmtDur(dur)}</small>` : null}</div>
-          ${ed ? null : html`<${Fld} select hideLabel label="Lặp lại" value=${v.rep} onChange=${x => set({ rep: x.target.value })} sx=${{ width: '100%' }}>${scRepOpts(from).map(([k, l]) => html`<${MenuItem} key=${k} value=${k}>${l}<//>`)}<//>${v.rep === 'custom' ? scCustom(v, set) : null}`}<//>
-        ${mode === 'room' ? [roomRow, pplRow] : [pplRow, roomRow]}
+        <label className="sc-ad-ck" style=${{ marginLeft: 0 }}><input type="checkbox" checked=${v.off} onChange=${x => set({ off: x.target.checked, ppl: [], room: '' })} />Báo bận / nghỉ (không phải họp, người khác chỉ thấy bạn bận)</label>
+        <${Row} label="Thời gian" req><div className="sc-tm"><${Fld} type="date" hideLabel label="Ngày" required value=${v.d} onChange=${x => set({ d: x.target.value })} sx=${{ width: 160 }} />${v.allday ? null : html`<${Fld} type="time" hideLabel label="Giờ bắt đầu" value=${v.f} onChange=${x => set({ f: x.target.value })} inputProps=${{ step: 900 }} sx=${{ width: 120 }} /><span>–</span><${Fld} type="time" hideLabel label="Giờ kết thúc" value=${v.e} onChange=${x => set({ e: x.target.value })} inputProps=${{ step: 900 }} sx=${{ width: 120 }} />${ok ? html`<small>${fmtDur(dur)}</small>` : null}`}<label className="sc-ad-ck"><input type="checkbox" checked=${v.allday} onChange=${x => set({ allday: x.target.checked })} />Cả ngày</label></div>
+ ${ed && SCD.ev.filter(x => x.code === ed.code).length > 1 ? html`<${Fld} select hideLabel label="Áp dụng cho" value=${v.scope} onChange=${x => set({ scope: x.target.value })} sx=${{ width: '100%' }}>${[['one', 'Chỉ buổi này'], ['next', 'Buổi này và các buổi sau'], ['all', 'Tất cả các buổi trong chuỗi']].map(([k, l]) => html`<${MenuItem} key=${k} value=${k}>${l}<//>`)}<//>` : null}
+          ${ed ? null : html`<${Fld} select hideLabel label="Lặp lại" value=${v.rep} onChange=${x => set({ rep: x.target.value })} sx=${{ width: '100%' }}>${scRepOpts(from).map(([k, l]) => html`<${MenuItem} key=${k} value=${k}>${l}<//>`)}<//>${v.rep === 'custom' ? scCustom(v, set) : v.rep !== 'none' ? html`<div className="sc-cu">${scEndRow(v, set)}</div>` : null}`}<//>
+        ${v.off ? null : mode === 'room' ? [roomRow, pplRow] : [pplRow, roomRow]}
         ${err.length ? html`<${Alert} severity="error" role="alert"><b>Chưa tạo được lịch vì:</b><ul className="sc-ul">${err.map(x => html`<li key=${x}>${x}</li>`)}</ul><//>` : null}
-      <//><${DialogActions}><${Button} onClick=${scShut}>Hủy bỏ<//><${Button} variant="contained" onClick=${save}>${ed ? 'Lưu thay đổi' : room && room.appr ? 'Gửi yêu cầu duyệt phòng' : mode === 'room' ? 'Đặt phòng' : mode === 'ppl' ? (room ? 'Gửi lời mời và giữ phòng' : 'Gửi lời mời') : !room ? 'Tạo lịch' : 'Tạo lịch và giữ phòng'}<//><//><//>`;
+      <//><${DialogActions}><${Button} onClick=${scShut}>Hủy bỏ<//><${Button} variant="contained" onClick=${save}>${ed ? 'Lưu thay đổi' : v.off ? 'Báo bận / nghỉ' : room && room.appr ? 'Gửi yêu cầu duyệt phòng' : mode === 'room' ? 'Đặt phòng' : mode === 'ppl' ? (room ? 'Gửi lời mời và giữ phòng' : 'Gửi lời mời') : !room ? 'Tạo lịch' : 'Tạo lịch và giữ phòng'}<//><//><//>`;
   };
   /* --- chi tiết sự kiện: thời gian là tiêu điểm, người tham gia có vòng màu theo phản hồi --- */
   const RC = { yes: '#12B76A', maybe: '#F79009', no: '#F04438', wait: '#C1C2C2' };
   const DetDlg = ({ id }) => {
     const e = SCD.ev.find(x => x.id === id), [ask, setAsk] = React.useState(null), [note, setNote] = React.useState('');
     if (!e) return null;
-    const r = e.room && scRoom(e.room), br = r && SCD.branches.find(b => b.id === r.branch), mine = e.ppl.find(p => p.n === SC_ME), live = scLive(e), fut = e.to > Date.now(), can = scCan(e), approver = e.st === 'pending' && scHrm(), c = SC_TY[scKind(e)].c;
+    const r = e.room && scRoom(e.room), br = r && SCD.branches.find(b => b.id === r.branch), mine = e.ppl.find(p => p.n === scActor()), live = scLive(e), fut = e.to > Date.now(), can = scCan(e), approver = e.st === 'pending' && !!e.room && scHrm(), // duyệt chỉ có ở lịch đặt phòng cần HRM duyệt
+     c = e.room ? SC_TY.room.c : '#475467'; // màu popup theo loại họp: có phòng xanh dương, không phòng xám xanh
     const all = [{ n: e.org, r: 'yes', org: true }, ...e.ppl], cnt = k => all.filter(p => p.r === k).length, tot = all.length, pct = Math.round(cnt('yes') * 100 / tot), done = msg => { setAsk(null); setNote(''); SC.bump(); showToast(msg); };
-    const resp = (k, n) => { mine.r = k; mine.note = n || ''; done(k === 'yes' ? 'Đã xác nhận tham gia.' : k === 'no' ? 'Đã từ chối tham gia.' : 'Đã đánh dấu chưa chắc chắn.'); };
-    const need = ask && ask.endsWith('!'), kind = ask && ask.replace('!', '');
+    const resp = (k, n) => { mine.r = k; mine.note = n || ''; scNote(e.org, `${scActor()} ${k === 'yes' ? 'xác nhận tham gia' : k === 'no' ? 'từ chối tham gia' : 'chưa chắc tham gia'} “${e.title}”.`, e.id); done(k === 'yes' ? 'Đã xác nhận tham gia.' : k === 'no' ? 'Đã từ chối tham gia.' : 'Đã đánh dấu chưa chắc chắn.'); };
+    const need = ask && ask.endsWith('!'), kind = ask && ask.replace('!', ''), [scope, setScope] = React.useState('one'), nSer = SCD.ev.filter(x => x.code === e.code && scLive(x)).length;
     const submit = () => { const n = note.trim();
-      if (kind === 'cancel') { if (n.length < 10) return setAsk('cancel!'); e.st = 'canceled'; e.cancel = n; scShut(); showToast(`Đã hủy lịch “${e.title}”. Phòng và khung giờ đã được giải phóng.`); }
-      else if (kind === 'reject') { if (!n) return setAsk('reject!'); e.st = 'rejected'; e.cancel = n; scShut(); showToast(`Đã từ chối yêu cầu “${e.title}”.`); }
+      if (kind === 'cancel') { if (n.length < 10) return setAsk('cancel!'); const tg = scSeries(e, scope).filter(x => scLive(x)); tg.forEach(x => { x.st = 'canceled'; x.cancel = n; }); scNote([e.org, ...e.ppl.map(p => p.n)], `Lịch “${e.title}”${tg.length > 1 ? ` (${tg.length} buổi)` : ''} đã bị hủy. Lý do: ${n}`, e.id); scShut(); showToast(`Đã hủy ${tg.length > 1 ? tg.length + ' buổi' : 'lịch'} “${e.title}”. Phòng và khung giờ đã được giải phóng.`); }
+      else if (kind === 'reject') { if (!n) return setAsk('reject!'); e.st = 'rejected'; e.cancel = n; scNote(e.org, `Yêu cầu “${e.title}” bị từ chối. Lý do: ${n}`, e.id); scShut(); showToast(`Đã từ chối yêu cầu “${e.title}”.`); }
       else resp('no', n); };
     return html`<${Dialog} open maxWidth="sm" onClose=${scShut} PaperProps=${{ className: 'sd-paper', style: { '--c': c } }}>
       <div className="sd-hd"><div className="sd-top"><span className="sd-type">${scType(e)}</span><span className="sd-code">${e.code}</span><span style=${{ flex: 1 }}></span><${Bdg} label=${ST[e.st][0]} k=${ST[e.st][1]} /><${IconButton} aria-label="Đóng" onClick=${scShut}>${Ic(P.x)}<//></div>
         <h2 className="sd-title">${e.title}</h2>
-        <div className="sd-when"><b>${scHM(e.from)}<i>–</i>${scHM(e.to)}</b><span>${scWD(e.from)}, ${scDMY(e.from)} · ${fmtDur(e.to - e.from)}</span></div></div>
+        <div className="sd-when"><b>${e.allday ? 'Cả ngày' : html`${scHM(e.from)}<i>–</i>${scHM(e.to)}`}</b><span>${scWD(e.from)}, ${scDMY(e.from)}${e.allday ? '' : ' · ' + fmtDur(e.to - e.from)}</span></div></div>
       <${DialogContent} className="sd-bd">
         ${e.cancel ? html`<${Alert} severity="info" sx=${{ py: 0 }}>Lý do: ${e.cancel}<//>` : null}
-        <div className="sd-cards"><div className="sd-card">${Mi(MP.room, 18)}<span><small>Phòng</small><b>${r ? r.name : 'Không dùng phòng'}</b><em>${r ? `${br.name}${r.cap ? ' · ' + r.cap + ' người' : ''}${r.appr ? ' · HRM duyệt' : ''}` : 'Họp không cần phòng'}</em></span></div>
+        <div className="sd-cards"><div className="sd-card sd-room">${Mi(MP.room, 18)}<span><small>Phòng</small><b>${r ? r.name : 'Không dùng phòng'}</b><em>${r ? `${br.name}${r.cap ? ' · ' + r.cap + ' người' : ''}${r.appr ? ' · HRM duyệt' : ''}` : 'Họp không cần phòng'}</em></span></div>
           <div className="sd-card"><${Av} n=${e.org} /><span><small>Chủ trì</small><b>${e.org}</b><em>Người tổ chức</em></span></div></div>
         <section aria-label="Mô tả"><div className="sd-sh"><b>Mô tả</b></div><p className="sd-desc" style=${e.desc ? null : { color: '#9B9C9C' }}>${e.desc || 'Chưa có mô tả.'}</p></section>
         <section aria-label="Người tham gia"><div className="sd-sh"><b>Người tham gia</b><span>${cnt('yes')}/${tot} xác nhận · ${pct}%</span></div>
           <div className="sd-bar" role="img" aria-label=${`${cnt('yes')} xác nhận, ${cnt('maybe')} chưa chắc, ${cnt('no')} từ chối, ${cnt('wait')} chưa phản hồi`}>${['yes', 'maybe', 'no', 'wait'].map(k => cnt(k) ? html`<i key=${k} style=${{ flex: cnt(k), background: RC[k] }}></i>` : null)}</div>
-          <ul className="sd-pl">${all.map((p, i) => html`<li key=${p.n} style=${{ animationDelay: i * 40 + 'ms' }}><${Av} n=${p.n} rc=${RC[p.r]} /><span><b>${p.n}</b>${p.org ? html`<small>Chủ trì</small>` : p.note ? html`<small>${p.note}</small>` : null}</span>${p.org ? html`<${Bdg} label="Chủ trì" k="default" />` : html`<${Bdg} label=${RS[p.r][0]} k=${RS[p.r][1]} />`}</li>`)}</ul></section>
-        ${mine && live && fut && !ask ? html`<div className="sd-rs" role="group" aria-label="Bạn có tham gia không?"><span>Bạn có tham gia không?</span><div>${[['yes', 'Tham gia'], ['maybe', 'Chưa chắc'], ['no', 'Từ chối']].map(([k, l]) => html`<button key=${k} type="button" aria-pressed=${mine.r === k} className=${mine.r === k ? 'on' : ''} style=${{ '--rc': RC[k] }} onClick=${() => k === 'no' ? setAsk('decline') : resp(k)}>${l}</button>`)}</div></div>` : null}
+          <ul className="sd-pl">${all.map((p, i) => html`<li key=${p.n} className=${p.n === scActor() ? 'me' : ''} style=${{ animationDelay: i * 40 + 'ms' }}><${Av} n=${p.n} rc=${RC[p.r]} /><span><b>${p.n}${p.n === scActor() ? ' (Bạn)' : ''}</b>${p.org ? html`<small>Chủ trì</small>` : p.note ? html`<small>${p.note}</small>` : null}</span>${p.org ? html`<${Bdg} label="Chủ trì" k="default" />` : html`<${Bdg} label=${RS[p.r][0]} k=${RS[p.r][1]} />`}</li>`)}</ul></section>
+        ${mine && live && fut && !ask && !approver ? html`<div className=${'sd-rs' + (mine.r === 'wait' ? ' need' : '')} role="group" aria-label="Bạn có tham gia không?"><span>Bạn có tham gia không?</span><div>${[['yes', 'Tham gia'], ['no', 'Từ chối']].map(([k, l]) => html`<button key=${k} type="button" aria-pressed=${mine.r === k} className=${mine.r === k ? 'on' : ''} style=${{ '--rc': RC[k] }} onClick=${() => k === 'no' ? setAsk('decline') : resp(k)}>${l}</button>`)}</div></div>` : null}
+        ${kind === 'cancel' && nSer > 1 ? html`<${Fld} select hideLabel label="Hủy" value=${scope} onChange=${x => setScope(x.target.value)}>${[['one', 'Chỉ buổi này'], ['next', 'Buổi này và các buổi sau'], ['all', 'Tất cả các buổi trong chuỗi']].map(([k, l]) => html`<${MenuItem} key=${k} value=${k}>${l}<//>`)}<//>` : null}
         ${ask ? html`<${Fld} multiline minRows=${2} autoFocus label=${kind === 'cancel' ? 'Lý do hủy (tối thiểu 10 ký tự)' : kind === 'reject' ? 'Lý do từ chối' : 'Lý do vắng mặt (không bắt buộc)'} value=${note} onChange=${x => setNote(x.target.value)} error=${need} helperText=${need ? (kind === 'cancel' ? 'Nhập ít nhất 10 ký tự để hủy.' : 'Nhập lý do để từ chối.') : ''} />` : null}
       <//>
       <${DialogActions} sx=${{ justifyContent: 'space-between' }}>
         ${ask ? html`<span></span><div><${Button} onClick=${() => { setAsk(null); setNote(''); }}>Quay lại<//><${Button} variant="contained" color=${kind === 'decline' ? 'primary' : 'error'} onClick=${submit}>Xác nhận<//></div>` : html`
-          <div>${can && e.org === SC_ME ? html`<${Button} color="error" startIcon=${Ic(P.del)} onClick=${() => setAsk('cancel')}>Hủy cuộc họp<//>` : null}</div> 
-          <div>${can ? html`<${Button} variant="outlined" startIcon=${Ic(P.ed)} onClick=${() => scOpen({ k: 'book', id: e.id })}>Sửa<//>` : null}${approver ? html`<${Button} color="error" onClick=${() => setAsk('reject')}>Từ chối đặt<//><${Button} variant="contained" onClick=${() => { e.st = 'approved'; scShut(); showToast(`Đã duyệt lịch “${e.title}”.`); }}>Duyệt<//>` : null}</div>`}
+          <div>${can ? html`<${Button} color="error" startIcon=${Ic(P.del)} onClick=${() => setAsk('cancel')}>Hủy cuộc họp<//>` : null}</div> 
+          <div className="sc-fa">${can ? html`<${Button} variant="outlined" startIcon=${Ic(P.ed)} onClick=${() => scOpen({ k: 'book', id: e.id })}>Sửa<//>` : null}${approver ? html`<${Button} color="error" onClick=${() => setAsk('reject')}>Không duyệt<//><${Button} variant="contained" onClick=${() => { e.st = 'approved'; scNote([e.org, ...e.ppl.map(p => p.n)], `Lịch “${e.title}” đã được duyệt.`, e.id); scShut(); showToast(`Đã duyệt lịch “${e.title}”.`); }}>Duyệt<//>` : null}</div>`}
       <//><//>`;
   };
+  /* --- chờ duyệt (HRM) và hộp thông báo --- */
+  const scPgOf = k => SC.pg[k] || (SC.pg[k] = { p: 1, n: 20 });
+  const scSlice = (k, L) => { const g = scPgOf(k), pages = Math.max(1, Math.ceil(L.length / g.n)); g.p = Math.min(g.p, pages); return [L.slice((g.p - 1) * g.n, g.p * g.n), (g.p - 1) * g.n]; };
+  const Pager = ({ k, total }) => { const g = scPgOf(k), pages = Math.max(1, Math.ceil(total / g.n)), go = p => { g.p = Math.min(pages, Math.max(1, p)); SC.bump(); }, show = [...new Set([1, 2, g.p - 1, g.p, g.p + 1, pages - 1, pages])].filter(i => i >= 1 && i <= pages).sort((x, y) => x - y), items = show.flatMap((i, j) => (j && i - show[j - 1] > 1 ? ['…', i] : [i])); // ví dụ: 1 2 … 5 6 7 … 9 10
+    return html`<div className="erp-pagination"><span style=${{ marginRight: 'auto' }}>Tổng ${total} dòng</span><span className="page-box" role="button" aria-label="Trang đầu" onClick=${() => go(1)}>«</span><span className="page-box" role="button" aria-label="Trang trước" onClick=${() => go(g.p - 1)}>‹</span>${items.map((i, j) => i === '…' ? html`<span key=${'e' + j} className="page-box" style=${{ cursor: 'default' }}>…</span>` : html`<span key=${i} role="button" className=${'page-box' + (i === g.p ? ' active' : '')} onClick=${() => go(i)}>${i}</span>`)}<span className="page-box" role="button" aria-label="Trang sau" onClick=${() => go(g.p + 1)}>›</span><span className="page-box" role="button" aria-label="Trang cuối" onClick=${() => go(pages)}>»</span><select className="sc-pgsel" aria-label="Số dòng mỗi trang" value=${g.n} onChange=${e => { g.n = +e.target.value; g.p = 1; SC.bump(); }}>${[10, 20, 50].map(n => html`<option key=${n} value=${n}>${n} / trang</option>`)}</select></div>`; };
+  const SVG = d => html`<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" dangerouslySetInnerHTML=${{ __html: d }}></svg>`;
+  const ICF = '<polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3"/>', ICS = '<line x1="21" y1="10" x2="7" y2="10"/><line x1="21" y1="6" x2="3" y2="6"/><line x1="21" y1="14" x2="12" y2="14"/><line x1="21" y1="18" x2="16" y2="18"/>', ICC = '<line x1="4" y1="21" x2="4" y2="14"/><line x1="4" y1="10" x2="4" y2="3"/><line x1="12" y1="21" x2="12" y2="12"/><line x1="12" y1="8" x2="12" y2="3"/><line x1="20" y1="21" x2="20" y2="16"/><line x1="20" y1="12" x2="20" y2="3"/><line x1="1" y1="14" x2="7" y2="14"/><line x1="9" y1="8" x2="15" y2="8"/><line x1="17" y1="16" x2="23" y2="16"/>', ICR = '<path d="M21.5 2v6h-6M21.34 15.57a10 10 0 1 1-.57-8.38"/>';
+  // nút mở bảng chọn nhỏ (bộ lọc, sắp xếp, cột hiển thị); children có thể là hàm nhận close
+  const TbPop = ({ icon, label, badge, title, children }) => { const [a, setA] = React.useState(null), close = () => setA(null);
+    return html`<${React.Fragment}>${label ? html`<button className=${badge ? 'filter-btn-with-badge' : 'btn btn-secondary'} style=${{ gap: 6 }} onClick=${e => setA(e.currentTarget)}>${SVG(icon)}<span>${label}</span>${badge ? html`<span className="filter-count-badge">${badge}</span>` : null}</button>` : html`<button className="btn btn-secondary btn-square" title=${title} aria-label=${title} onClick=${e => setA(e.currentTarget)}>${SVG(icon)}</button>`}<${Popover} open=${!!a} anchorEl=${a} onClose=${close} anchorOrigin=${{ vertical: 'bottom', horizontal: 'left' }}><div className="sc-pop">${typeof children === 'function' ? children(close) : children}</div><//><//>`; };
+  const TbRefresh = () => html`<button className="btn btn-secondary btn-square" title="Làm mới" aria-label="Làm mới" onClick=${() => { SC.bump(); showToast('Đã làm mới danh sách'); }}>${SVG(ICR)}</button>`;
+  const TbSearch = ({ v, on, ph }) => html`<div className="erp-search-box"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg><input type="text" placeholder=${ph} value=${v || ''} onChange=${e => on(e.target.value)} /></div>`;
+  const Crumb = ({ cur }) => html`<div className="erp-breadcrumb-bar"><a href="#/sch">Lịch & Đặt chỗ</a><span className="sep">${'>'}</span><span className="cur">${cur}</span></div>`;
+  const SortList = ({ opts, v, set, close }) => html`<ul className="sc-sl">${opts.map(([k, l]) => html`<li key=${k}><button className=${v === k ? 'on' : ''} onClick=${() => { set(k); close(); SC.bump(); }}>${l}</button></li>`)}</ul>`;
+  const PCOL = [['title', 'Cuộc họp'], ['when', 'Thời gian'], ['room', 'Phòng'], ['org', 'Người đặt'], ['st', 'Trạng thái']];
+  const Pend = () => { const hr = scHrm(), q = flFold(SC.pq || ''), F = SC.pf || (SC.pf = { room: '', org: '' }), hid = SC.pc || (SC.pc = {}), srt = SC.ps || 'time', sel = SC.sel || (SC.sel = {}),
+      base = SCD.ev.filter(e => e.st === 'pending' && scLive(e)), cmp = { time: (a, b) => a.from - b.from, 'time-d': (a, b) => b.from - a.from, title: (a, b) => a.title.localeCompare(b.title, 'vi'), org: (a, b) => a.org.localeCompare(b.org, 'vi') }[srt],
+      L = base.filter(e => flFold(e.title + ' ' + e.org + ' ' + (e.room ? scRoom(e.room).name : '')).includes(q) && (!F.room || e.room === F.room) && (!F.org || e.org === F.org)).sort(cmp), [rows, off] = scSlice('pend', L), ns = L.filter(e => sel[e.id]),
+      ok = e => { e.st = 'approved'; scNote([e.org, ...e.ppl.map(p => p.n)], `Lịch “${e.title}” đã được duyệt.`, e.id); };
+    const cell = { title: e => html`<b>${e.title}</b>`, when: e => `${scWD(e.from)} ${scDMY(e.from)} · ${e.allday ? 'Cả ngày' : scHM(e.from) + '–' + scHM(e.to)}`, room: e => e.room ? scRoom(e.room).name : '—', org: e => e.org, st: () => html`<${Bdg} label="Chờ duyệt" k="warning" />` }, cols = PCOL.filter(([k]) => !hid[k]);
+    return html`<div className="sc-mast"><${Crumb} cur="Chờ duyệt" /><div className="sc-card"><div className="sc-ch2"><h1>Chờ duyệt</h1></div>
+      <div className="erp-toolbar" style=${{ padding: '12px 16px' }}><div className="erp-toolbar-left">
+        <${TbPop} icon=${ICF} label="Bộ lọc" badge=${(F.room ? 1 : 0) + (F.org ? 1 : 0)}><div className="sc-pf"><${Fld} select label="Phòng" value=${F.room} onChange=${e => { F.room = e.target.value; SC.pg.pend = null; SC.bump(); }}><${MenuItem} value="">Tất cả<//>${[...new Set(base.map(e => e.room).filter(Boolean))].map(id => html`<${MenuItem} key=${id} value=${id}>${scRoom(id).name}<//>`)}<//><${Fld} select label="Người đặt" value=${F.org} onChange=${e => { F.org = e.target.value; SC.pg.pend = null; SC.bump(); }}><${MenuItem} value="">Tất cả<//>${[...new Set(base.map(e => e.org))].map(n => html`<${MenuItem} key=${n} value=${n}>${n}<//>`)}<//><button className="btn btn-secondary" onClick=${() => { F.room = ''; F.org = ''; SC.bump(); }}>Xóa lọc</button></div><//>
+        <${TbPop} icon=${ICS} label="Sắp xếp">${close => html`<${SortList} opts=${[['time', 'Thời gian: gần nhất trước'], ['time-d', 'Thời gian: xa nhất trước'], ['title', 'Tên cuộc họp A–Z'], ['org', 'Người đặt A–Z']]} v=${srt} set=${k => { SC.ps = k; }} close=${close} />`}<//>
+        <${TbSearch} v=${SC.pq} on=${v => { SC.pq = v; SC.pg.pend = null; SC.bump(); }} ph="Tìm cuộc họp, người đặt, phòng" /></div>
+        <div className="erp-toolbar-right">${hr && ns.length ? html`<button className="btn btn-primary" onClick=${() => { ns.forEach(e => { ok(e); delete sel[e.id]; }); showToast(`Đã duyệt ${ns.length} lịch.`); SC.bump(); }}><span>Duyệt ${ns.length} lịch đã chọn</span></button>` : null}
+        <${TbPop} icon=${ICC} title="Cột hiển thị">${PCOL.map(([k, l]) => html`<label key=${k} className="sc-pc"><input type="checkbox" checked=${!hid[k]} onChange=${() => { hid[k] = !hid[k]; SC.bump(); }} />${l}</label>`)}<//><${TbRefresh} /></div></div>
+      <div className="erp-table-wrap"><table className="erp-table"><thead><tr>${hr ? html`<th style=${{ width: 40 }}><input type="checkbox" aria-label="Chọn tất cả trong trang" checked=${rows.length > 0 && rows.every(e => sel[e.id])} onChange=${x => { rows.forEach(e => { if (x.target.checked) sel[e.id] = true; else delete sel[e.id]; }); SC.bump(); }} /></th>` : null}<th style=${{ width: 56 }}>#</th>${cols.map(([k, l]) => html`<th key=${k}>${l}</th>`)}<th style=${{ width: 130, textAlign: 'right' }}>Thao tác</th></tr></thead>
+        <tbody>${rows.length ? rows.map((e, i) => html`<tr key=${e.id}>${hr ? html`<td><input type="checkbox" aria-label=${'Chọn ' + e.title} checked=${!!sel[e.id]} onChange=${x => { if (x.target.checked) sel[e.id] = true; else delete sel[e.id]; SC.bump(); }} /></td>` : null}<td>${off + i + 1}</td>${cols.map(([k]) => html`<td key=${k} style=${k === 'when' ? { whiteSpace: 'nowrap' } : null}>${cell[k](e)}</td>`)}
+          <td style=${{ textAlign: 'right', whiteSpace: 'nowrap' }}><${Tooltip} title="Xem chi tiết"><${IconButton} size="small" aria-label="Xem chi tiết" onClick=${() => scOpen({ k: 'det', id: e.id })}>${Ic('M12 4.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5zM12 17c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5zm0-8c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z')}<//><//>${hr ? html`<${Tooltip} title="Không duyệt"><${IconButton} size="small" aria-label="Không duyệt" sx=${{ color: '#B42318' }} onClick=${() => scOpen({ k: 'rej', id: e.id })}>${Ic(P.x)}<//><//><${Tooltip} title="Duyệt"><${IconButton} size="small" aria-label="Duyệt" sx=${{ color: '#067647' }} onClick=${() => { ok(e); showToast(`Đã duyệt lịch “${e.title}”.`); SC.bump(); }}>${Ic('M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z')}<//><//>` : null}</td></tr>`) : html`<tr><td colSpan=${cols.length + (hr ? 3 : 2)} style=${{ padding: 24, color: '#737676' }}>Không có yêu cầu nào đang chờ duyệt.</td></tr>`}</tbody></table></div><${Pager} k="pend" total=${L.length} /></div></div>`; };
+  const RejDlg = ({ id }) => { const e = SCD.ev.find(x => x.id === id), [n, setN] = React.useState(''), [bad, setBad] = React.useState(false); if (!e) return null;
+    return html`<${Dialog} className="sc-erp" open maxWidth="xs" onClose=${scShut}><${DialogTitle}>Không duyệt “${e.title}”<//><${DialogContent}><${Fld} multiline minRows=${3} autoFocus label="Lý do không duyệt" required value=${n} onChange=${x => setN(x.target.value)} error=${bad} helperText=${bad ? 'Nhập lý do để người đặt biết.' : ''} /><//><${DialogActions}><${Button} onClick=${scShut}>Hủy bỏ<//><${Button} variant="contained" color="error" onClick=${() => { if (!n.trim()) return setBad(true); e.st = 'rejected'; e.cancel = n.trim(); scNote(e.org, `Yêu cầu “${e.title}” không được duyệt. Lý do: ${n.trim()}`, e.id); scShut(); showToast(`Đã không duyệt “${e.title}”.`); }}>Xác nhận<//><//><//>`; };
   /* --- danh mục tài nguyên --- */
   const FormDlg = ({ kind, id }) => {
     const cfg = SCF[kind], it = id ? SCD[kind].find(x => x.id === id) : {}, [v, setV] = React.useState(() => { const o = {}; cfg.f.forEach(f => { o[f[0]] = f[2] === 'chk' ? !!it[f[0]] : it[f[0]] ?? ''; }); if (kind === 'rooms') { o.cm = it.cap ? '1' : '0'; o.cap = it.cap || ''; o.branch = it.branch || SCD.branches[0].id; } if (kind === 'cars') o.seats = String(it.seats || 7); return o; });
@@ -5254,20 +5299,26 @@ function scBuild() {
       ${err.length ? html`<${Alert} severity="error" role="alert"><ul className="sc-ul">${err.map(x => html`<li key=${x}>${x}</li>`)}</ul><//>` : null}<//>
       <${DialogActions}><${Button} onClick=${scShut}>Hủy bỏ<//><${Button} variant="contained" onClick=${save}>Lưu<//><//><//>`;
   };
-  const Master = () => {
-    // chỉ phòng họp; xe, thiết bị, bảo trì chưa làm nên chưa có màn hình
-    const brn = id => (SCD.branches.find(b => b.id === id) || {}).name, q = fold(SC.q || ''), L = SCD.rooms.filter(r => fold(r.name + ' ' + brn(r.branch)).includes(q));
-    return html`<div className="sc-mast">
-      <div className="sc-card">
-        <div className="erp-toolbar" style=${{ padding: '12px 16px', borderBottom: '1px solid #E4E6E6' }}><div className="erp-toolbar-left"><div className="erp-search-box"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg><input type="text" placeholder="Tìm tên phòng, cơ sở" value=${SC.q || ''} onChange=${e => { SC.q = e.target.value; SC.bump(); }} /></div></div>
-          <div className="erp-toolbar-right"><button className="btn btn-primary" onClick=${() => scOpen({ k: 'form', kind: 'rooms' })}><span>Thêm phòng họp</span></button></div></div>
-      <div className="erp-table-wrap"><table className="erp-table"><thead><tr><th style=${{ minWidth: 200 }}>Tên phòng</th><th>Cơ sở</th><th>Sức chứa</th><th>Trạng thái</th><th>Loại</th><th style=${{ width: 100, textAlign: 'right' }}>Thao tác</th></tr></thead>
-        <tbody>${L.length ? L.map(r => html`<tr key=${r.id}><td><b>${r.name}</b></td><td>${brn(r.branch)}</td><td>${r.cap ? r.cap + ' người' : 'Không giới hạn'}</td><td>${r.appr ? html`<${Bdg} label="Phê duyệt" k="warning" />` : html`<${Bdg} label="Tự động" k="success" />`}</td><td>${r.hall ? 'Hội trường (90 ngày)' : 'Phòng thường (30 ngày)'}</td><td style=${{ textAlign: 'right' }}><${Button} size="small" startIcon=${Ic(P.ed)} onClick=${() => scOpen({ k: 'form', kind: 'rooms', id: r.id })}>Sửa<//></td></tr>`) : html`<tr><td colSpan=${6}>Không có phòng nào khớp.</td></tr>`}</tbody></table></div></div></div>`;
+  const MCOL = [['name', 'Tên phòng'], ['branch', 'Cơ sở'], ['cap', 'Sức chứa'], ['st', 'Trạng thái'], ['kind', 'Loại']];
+  const Master = () => { // chỉ phòng họp; xe, thiết bị, bảo trì chưa làm nên chưa có màn hình
+    const brn = id => (SCD.branches.find(b => b.id === id) || {}).name, q = fold(SC.q || ''), F = SC.mf || (SC.mf = { br: '', st: '' }), hid = SC.mc || (SC.mc = {}), srt = SC.ms || 'name',
+      cmp = { name: (x, y) => x.name.localeCompare(y.name, 'vi'), cap: (x, y) => (y.cap || 1e9) - (x.cap || 1e9), branch: (x, y) => brn(x.branch).localeCompare(brn(y.branch), 'vi') }[srt],
+      L = SCD.rooms.filter(r => fold(r.name + ' ' + brn(r.branch)).includes(q) && (!F.br || r.branch === F.br) && (!F.st || (F.st === 'appr') === !!r.appr)).sort(cmp), [rows, off] = scSlice('rooms', L), cols = MCOL.filter(([k]) => !hid[k]);
+    const cell = { name: r => html`<b>${r.name}</b>`, branch: r => brn(r.branch), cap: r => r.cap ? r.cap + ' người' : 'Không giới hạn', st: r => r.appr ? html`<${Bdg} label="Phê duyệt" k="warning" />` : html`<${Bdg} label="Tự động" k="success" />`, kind: r => r.hall ? 'Hội trường (90 ngày)' : 'Phòng thường (30 ngày)' };
+    return html`<div className="sc-mast"><${Crumb} cur="Thiết lập phòng họp" /><div className="sc-card"><div className="sc-ch2"><h1>Phòng họp</h1></div>
+      <div className="erp-toolbar" style=${{ padding: '12px 16px' }}><div className="erp-toolbar-left">
+        <${TbPop} icon=${ICF} label="Bộ lọc" badge=${(F.br ? 1 : 0) + (F.st ? 1 : 0)}><div className="sc-pf"><${Fld} select label="Cơ sở" value=${F.br} onChange=${e => { F.br = e.target.value; SC.pg.rooms = null; SC.bump(); }}><${MenuItem} value="">Tất cả<//>${SCD.branches.map(b => html`<${MenuItem} key=${b.id} value=${b.id}>${b.name}<//>`)}<//><${Fld} select label="Trạng thái" value=${F.st} onChange=${e => { F.st = e.target.value; SC.pg.rooms = null; SC.bump(); }}><${MenuItem} value="">Tất cả<//><${MenuItem} value="auto">Tự động<//><${MenuItem} value="appr">Phê duyệt<//><//><button className="btn btn-secondary" onClick=${() => { F.br = ''; F.st = ''; SC.bump(); }}>Xóa lọc</button></div><//>
+        <${TbPop} icon=${ICS} label="Sắp xếp">${close => html`<${SortList} opts=${[['name', 'Tên phòng A–Z'], ['cap', 'Sức chứa: lớn nhất trước'], ['branch', 'Cơ sở']]} v=${srt} set=${k => { SC.ms = k; }} close=${close} />`}<//>
+        <${TbSearch} v=${SC.q} on=${v => { SC.q = v; SC.pg.rooms = null; SC.bump(); }} ph="Tìm tên phòng, cơ sở" /></div>
+        <div className="erp-toolbar-right"><button className="btn btn-primary" onClick=${() => scOpen({ k: 'form', kind: 'rooms' })}><span>+ Thêm phòng họp</span></button>
+        <${TbPop} icon=${ICC} title="Cột hiển thị">${MCOL.map(([k, l]) => html`<label key=${k} className="sc-pc"><input type="checkbox" checked=${!hid[k]} onChange=${() => { hid[k] = !hid[k]; SC.bump(); }} />${l}</label>`)}<//><${TbRefresh} /></div></div>
+      <div className="erp-table-wrap"><table className="erp-table"><thead><tr><th style=${{ width: 56 }}>#</th>${cols.map(([k, l]) => html`<th key=${k}>${l}</th>`)}<th style=${{ width: 90, textAlign: 'right' }}>Thao tác</th></tr></thead>
+        <tbody>${rows.length ? rows.map((r, i) => html`<tr key=${r.id}><td>${off + i + 1}</td>${cols.map(([k]) => html`<td key=${k}>${cell[k](r)}</td>`)}<td style=${{ textAlign: 'right' }}><${Tooltip} title="Sửa"><${IconButton} size="small" aria-label="Sửa" onClick=${() => scOpen({ k: 'form', kind: 'rooms', id: r.id })}>${Ic(P.ed)}<//><//></td></tr>`) : html`<tr><td colSpan=${cols.length + 2} style=${{ padding: 24, color: '#737676' }}>Không có phòng nào khớp.</td></tr>`}</tbody></table></div><${Pager} k="rooms" total=${L.length} /></div></div>`;
   };
   return function ScApp() {
-    SC.bump = tick(); const d = SC.dlg, master = getRoute() === '#/sch/master';
-    return html`<${ThemeProvider} theme=${theme}>${master ? html`<${Master} />` : html`<${CalPage} />`}
-      ${d && d.k === 'book' ? html`<${BookDlg} key=${d.id || d.from} o=${d} />` : d && d.k === 'det' ? html`<${DetDlg} key=${d.id} id=${d.id} />` : d && d.k === 'form' ? html`<${FormDlg} key=${d.kind + (d.id || '')} kind=${d.kind} id=${d.id} />` : d && d.k === 'maint' ? html`<${MaintDlg} />` : null}<//>`;
+    SC.bump = tick(); const d = SC.dlg, master = getRoute() === '#/sch/master', pend = getRoute() === '#/sch/pending'; React.useEffect(scBadges);
+    return html`<${ThemeProvider} theme=${theme}>${master ? html`<${Master} />` : pend ? html`<${Pend} />` : html`<${CalPage} />`}
+      ${d && d.k === 'book' ? html`<${BookDlg} key=${d.id || d.from} o=${d} />` : d && d.k === 'det' ? html`<${DetDlg} key=${d.id} id=${d.id} />` : d && d.k === 'form' ? html`<${FormDlg} key=${d.kind + (d.id || '')} kind=${d.kind} id=${d.id} />` : d && d.k === 'maint' ? html`<${MaintDlg} />` : d && d.k === 'rej' ? html`<${RejDlg} key=${d.id} id=${d.id} />` : null}<//>`;
   };
 }
 
